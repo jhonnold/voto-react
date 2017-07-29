@@ -18,6 +18,7 @@ import {
 import VotoNavBar from '../components/VotoNavBar';
 import DashboardCard from '../components/DashboardCard';
 import logo from '../images/logo.png'
+import SessionCard from '../components/SessionCard';
 
 const styleSheet = createStyleSheet('TeacherLandingPage', {
   root: {
@@ -67,14 +68,65 @@ class TeacherLandingPage extends React.Component {
     return (
       <div className={classes.root}>
         {/*<VotoNavBar />*/}
-        <Grid container className={classes.cardContainer}>
+        {/*<Grid container className={classes.cardContainer}>*/}
 
-          {cards.map((name, i) => (
-            <DashboardCard name={name} />
-          ))}
+          {/*{cards.map((name, i) => (*/}
+            {/*<DashboardCard name={name} />*/}
+          {/*))}*/}
+
+        {/*</Grid>*/}
+        <Grid container gutter={8} style={{padding: '0.5rem'}}>
+
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <SessionCard shouldDisplayDateInfo shouldDisplayEditButtons />
+          </Grid>
 
         </Grid>
-
         <Button fab className={classes.fab}>
           <Add />
         </Button>
