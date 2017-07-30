@@ -77,3 +77,18 @@
 .rotate180 {
     transform: rotate(180deg);
 }
+
+.session-card-buttons-wrapper {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.session-card-buttons-container {
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    max-width: 25rem;
+}
+
+

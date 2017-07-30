@@ -12,12 +12,19 @@ import {
   Delete,
   Edit,
   Slideshow,
+  Favorite
 } from 'material-ui-icons';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import slide from '../images/sampleslide.png';
 
 import './styles/SessionCardStyles.css';
+
+const SessionCardSlide = (props) => (
+  <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
+    <img src={slide} className="session-card-slide" />
+  </Grid>
+);
 
 export default class SessionCard extends React.Component {
 
@@ -77,36 +84,29 @@ export default class SessionCard extends React.Component {
             <Divider style={{margin: '.5rem 0'}} />
             <div className="session-card-image-slider">
               <Grid container gutter={8} wrap="nowrap">
-                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
-                  <img src={slide} className="session-card-slide" />
-                </Grid>
-                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
-                  <img src={slide} className="session-card-slide" />
-                </Grid>
-                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
-                  <img src={slide} className="session-card-slide" />
-                </Grid>
-                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
-                  <img src={slide} className="session-card-slide" />
-                </Grid>
-                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
-                  <img src={slide} className="session-card-slide" />
-                </Grid><Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
-                <img src={slide} className="session-card-slide" />
+                <SessionCardSlide />
+                <SessionCardSlide />
+                <SessionCardSlide />
+                <SessionCardSlide />
+                <SessionCardSlide />
+                <SessionCardSlide />
+                <SessionCardSlide />
+                <SessionCardSlide />
               </Grid>
-                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
-                  <img src={slide} className="session-card-slide" />
-                </Grid>
-                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
-                  <img src={slide} className="session-card-slide" />
-                </Grid>
-
-                {/*<img src={slide} className="session-card-slide" />*/}
-                {/*<img src={slide} className="session-card-slide" />*/}
-                {/*<img src={slide} className="session-card-slide" />*/}
-                {/*<img src={slide} className="session-card-slide" />*/}
-                {/*<img src={slide} className="session-card-slide" />*/}
-              </Grid>
+            </div>
+            <Divider style={{margin: '.5rem 0'}} />
+            <div className="session-card-buttons-wrapper">
+              <div className="session-card-buttons-container">
+                <IconButton>
+                  <Favorite />
+                </IconButton>
+                <IconButton>
+                  <Edit />
+                </IconButton>
+                <IconButton>
+                  <Delete />
+                </IconButton>
+              </div>
             </div>
           </Collapse>
           <Divider style={{margin: '.5rem 0'}} />
