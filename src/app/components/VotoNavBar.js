@@ -49,7 +49,7 @@ export default class VotoNavBar extends React.Component {
           position="static"
           className="nav-bar-app"
         >
-          <Toolbar className="no-padding">
+          <Toolbar className="no-padding" style={{height: '4rem'}}>
             {drawNavHeader &&
               <div className="nav-bar-side-nav-header">
                 <span className="nav-bar-side-nav-header-text">

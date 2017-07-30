@@ -10,7 +10,7 @@
     flex: 1;
 }
 
-.app-container {
+.app-wrapper {
     display: flex;
     flex: 1;
     flex-direction: column;
