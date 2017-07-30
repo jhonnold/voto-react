@@ -3,10 +3,10 @@
     flex: 1;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
 }
 
-.session-card-header-container {
+.session-card-top-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -19,13 +19,19 @@
     align-items: center;
 }
 
+.session-card-header-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 1rem;
+}
+
 .session-card-avatar {
     background-color: #3185db !important;
 }
 
 .session-card-title {
-    margin-left: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
     color: #3d464d;
 }
@@ -33,9 +39,9 @@
 .session-card-description-wrapper {
     display: flex;
     flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 1rem;
+    flex-direction: row;
+    justify-content: space-around;
+    max-width: 25rem;
 }
 
 .session-card-description-text {
@@ -48,4 +54,26 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+.session-card-subtitle-caption {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.session-card-image-slider {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+}
+
+.session-card-slide {
+    width: 100%;
+    border: 1px solid gray;
+}
+
+.rotate180 {
+    transform: rotate(180deg);
 }

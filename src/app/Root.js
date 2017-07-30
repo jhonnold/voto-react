@@ -10,13 +10,14 @@ import { VotoSideNav } from './components/VotoSideNav'
 import IconTest from './testing/IconTest';
 import StateTest from './testing/StateTest';
 import VotoNavWrapper from './containers/VotoNavWrapper';
+import SessionListPage from './containers/SessionListPage';
 
 export default class Root extends React.Component {
 
   render() {
     return (
       <VotoNavWrapper>
-        <TeacherLandingPage/>
+        <SessionListPage />
       </VotoNavWrapper>
     );
   }

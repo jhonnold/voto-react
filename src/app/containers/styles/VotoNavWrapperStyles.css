@@ -1,11 +1,17 @@
 .nav-wrapper {
+    width: 100%;
+    min-height: 100%;
     display: flex;
-    flex: 1;
     flex-direction: column;
 }
 
 .nav-bottom-wrapper {
     display: flex;
     flex: 1;
-    flex-direction: row;
+}
+
+.app-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
 }

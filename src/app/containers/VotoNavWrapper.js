@@ -25,7 +25,7 @@ export default class VotoNavWrapper extends React.Component {
 
   _handleResize() {
     this.setState({
-      drawSideNav: (window.innerWidth >= 768),
+      drawSideNav: (window.innerWidth >= 750),
     })
   }
 
@@ -39,7 +39,15 @@ export default class VotoNavWrapper extends React.Component {
           {drawSideNav &&
             <VotoSideNav />
           }
-          {this.props.children}
+          <div className="app-container"
+            style={{
+              maxWidth: (
+                drawSideNav ? 'calc(100% - 256px)'
+                            : '100%'
+              ),
+          }}>
+            {this.props.children}
+          </div>
         </div>
       </div>
     );

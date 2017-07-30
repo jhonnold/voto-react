@@ -1,16 +1,10 @@
 import React from 'react';
 import {
-  CardContent,
-  CardActions,
-  CardMedia,
-  CardHeader
-} from 'material-ui/Card';
-import {
   Card,
-  Typography,
-  Button,
   Avatar,
-  IconButton
+  IconButton,
+  Grid,
+  Divider,
 } from 'material-ui';
 import Collapse from 'material-ui/transitions/Collapse';
 import {
@@ -19,6 +13,9 @@ import {
   Edit,
   Slideshow,
 } from 'material-ui-icons';
+import { Scrollbars } from 'react-custom-scrollbars';
+
+import slide from '../images/sampleslide.png';
 
 import './styles/SessionCardStyles.css';
 
@@ -29,7 +26,6 @@ export default class SessionCard extends React.Component {
 
     this.state = {
       expanded: false,
-      ...props,
     }
   }
 
@@ -40,52 +36,92 @@ export default class SessionCard extends React.Component {
   };
 
   render() {
-    const {
-      shouldDisplayDateInfo,
-      shouldDisplayEditButtons,
-    } = this.state;
+    const { expanded } = this.state;
 
     return (
-      <div className="session-card-wrapper">
+      <Grid item xs={12} lg={6}>
         <Card className="session-card-container">
-          <div className="session-card-header-container">
+          <div className="session-card-top-container">
             <div className="session-card-title-wrapper">
               <Avatar className="session-card-avatar">
                 C
               </Avatar>
-              <span className="session-card-title">
-                CS3141-R15
-              </span>
+              <div className="session-card-header-wrapper">
+                <span className="session-card-title">
+                  CS3141-R15
+                </span>
+                <span className="session-card-description-text">
+                  Agile Development
+                </span>
+              </div>
             </div>
-            { shouldDisplayDateInfo ?
-              <div className="session-card-description-wrapper">
-                <span className="session-card-description-text">
-                  Jan. 15
-                </span>
-                <span className="session-card-description-text">
-                  Used 3 times
-                </span>
-              </div> : <div style={{flex: 1}} />
-            }
-            { shouldDisplayEditButtons ?
-              <div className="session-card-actions-wrapper">
-                <IconButton>
-                  <Slideshow />
-                </IconButton>
-                <IconButton>
-                  <Edit />
-                </IconButton>
-                <IconButton>
-                  <Delete />
-                </IconButton>
-              </div> : <div style={{flex: 1}} />
-            }
-            <IconButton>
+            <div style={{flex: 1}} />
+            <div className="session-card-actions-wrapper">
+              <IconButton>
+                <Slideshow />
+              </IconButton>
+            </div>
+            <IconButton
+              className={expanded && "rotate180"}
+              onClick={this._handleExpandClick}
+            >
               <ExpandMore />
             </IconButton>
           </div>
+          <Collapse
+            in={expanded}
+            transitionDuration="auto"
+            unmountOnExit
+            className="test"
+          >
+            <Divider style={{margin: '.5rem 0'}} />
+            <div className="session-card-image-slider">
+              <Grid container gutter={8} wrap="nowrap">
+                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
+                  <img src={slide} className="session-card-slide" />
+                </Grid>
+                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
+                  <img src={slide} className="session-card-slide" />
+                </Grid>
+                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
+                  <img src={slide} className="session-card-slide" />
+                </Grid>
+                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
+                  <img src={slide} className="session-card-slide" />
+                </Grid>
+                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
+                  <img src={slide} className="session-card-slide" />
+                </Grid><Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
+                <img src={slide} className="session-card-slide" />
+              </Grid>
+                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
+                  <img src={slide} className="session-card-slide" />
+                </Grid>
+                <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
+                  <img src={slide} className="session-card-slide" />
+                </Grid>
+
+                {/*<img src={slide} className="session-card-slide" />*/}
+                {/*<img src={slide} className="session-card-slide" />*/}
+                {/*<img src={slide} className="session-card-slide" />*/}
+                {/*<img src={slide} className="session-card-slide" />*/}
+                {/*<img src={slide} className="session-card-slide" />*/}
+              </Grid>
+            </div>
+          </Collapse>
+          <Divider style={{margin: '.5rem 0'}} />
+          <div className="session-card-subtitle-caption">
+            <div className="session-card-description-wrapper">
+              <span className="session-card-description-text">
+                Jan. 15
+              </span>
+              <span className="session-card-description-text">
+                Used 4 times
+              </span>
+            </div>
+          </div>
         </Card>
-      </div>
+      </Grid>
     );
   }
 }
