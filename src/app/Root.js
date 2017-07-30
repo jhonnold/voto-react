@@ -1,24 +1,55 @@
 import React from 'react';
-import VotoNavBar from './components/VotoNavBar';
-import LoginPage from './containers/LoginPage';
-import TeacherLandingPage from './containers/TeacherLandingPage';
-import TeacherHostPage from './containers/TeacherHostPage';
-import TeacherEditPage from './containers/TeacherEditPage';
-
-import { VotoSideNav } from './components/VotoSideNav'
-
-import IconTest from './testing/IconTest';
-import StateTest from './testing/StateTest';
+import {
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router';
+import {
+  TransitionGroup,
+  CSSTransition
+} from 'react-transition-group';
 import VotoNavWrapper from './containers/VotoNavWrapper';
 import SessionListPage from './containers/SessionListPage';
 
-export default class Root extends React.Component {
+import './styles/RootStyles.css';
 
-  render() {
-    return (
-      <VotoNavWrapper>
-        <SessionListPage />
-      </VotoNavWrapper>
-    );
-  }
+const Fade = (props) => (
+  <CSSTransition
+    {...props}
+    classNames="fade"
+    timeout={450}
+    mountOnEnter={true}
+    unmountOnExit={true}
+  />
+);
+
+const Blank = props => {
+  return (
+    <div>
+      <span>Blank</span>
+    </div>
+  );
 }
+
+const Root = props => {
+
+  return (
+    <VotoNavWrapper>
+      <Route exact path="/" render={() => (
+        <Redirect to="/dashboard" />
+      )} />
+      <TransitionGroup>
+        <Fade key={props.location.pathname}>
+          <section style={{position: 'fixed'}}>
+            <Switch location={props.location}>
+              <Route exact path="/sessions" component={SessionListPage} />
+              <Route path="/" component={Blank} />
+            </Switch>
+          </section>
+        </Fade>
+      </TransitionGroup>
+    </VotoNavWrapper>
+  );
+};
+
+export default Root;

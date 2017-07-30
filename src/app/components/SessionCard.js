@@ -69,7 +69,7 @@ export default class SessionCard extends React.Component {
               </IconButton>
             </div>
             <IconButton
-              className={expanded && "rotate180"}
+              className={expanded ? "rotate180" : ''}
               onClick={this._handleExpandClick}
             >
               <ExpandMore />

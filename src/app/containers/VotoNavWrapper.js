@@ -1,8 +1,9 @@
 import React from 'react';
 import VotoNavBar from '../components/VotoNavBar';
-import { VotoSideNav } from '../components/VotoSideNav';
+import VotoSideNav from '../components/VotoSideNav';
 
 import './styles/VotoNavWrapperStyles.css';
+
 
 export default class VotoNavWrapper extends React.Component {
 
@@ -46,7 +47,9 @@ export default class VotoNavWrapper extends React.Component {
                             : '100%'
               ),
           }}>
-            {this.props.children}
+            {
+              this.props.children
+            }
           </div>
         </div>
       </div>

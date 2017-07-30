@@ -12,10 +12,6 @@ import './styles/SessionListPageStyles.css';
 
 export default class SessionListPage extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="session-list-container">
