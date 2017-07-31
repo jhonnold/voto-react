@@ -82,6 +82,8 @@ class Root extends React.Component{
                 bottom: 0,
                 width: (this.state.navShowing ? 'calc(100% - 256px'
                                               : '100%'),
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
               <Switch location={props.location}>

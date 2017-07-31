@@ -5,6 +5,7 @@ import {
 import {
   Grid
 } from 'material-ui';
+
 import './styles/LoginPageStyles.css';
 
 class LoginPage extends React.Component {
@@ -20,11 +21,11 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <Grid container gutter={0}>
-        <Grid item xs={12}>
-          <span>test</span>
-        </Grid>
-      </Grid>
+      <div className="login-page-wrapper">
+        <div className="login-page-container">
+          
+        </div>
+      </div>
     );
   }
 }
