@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import {
   createStore,
-  applyMiddleware
+  applyMiddleware,
+  combineReducers,
+  compose,
 } from 'redux';
 import {
   Provider
@@ -18,6 +20,10 @@ import {
   Route,
 } from 'react-router';
 import logger from 'redux-logger';
+// import {
+//   createResponsiveStoreEnhancer,
+//   createResponsiveStateReducer,
+// } from 'redux-responsive';
 import {
   MuiThemeProvider,
 } from 'material-ui/styles';
@@ -27,7 +33,10 @@ import './index.css';
 const history = createHistory();
 const routerMiddle = routerMiddleware(history);
 
-let store = createStore(
+// const reducer = combineReducers({
+// })
+
+const store = createStore(
   routerReducer,
   applyMiddleware(routerMiddle, logger)
 );

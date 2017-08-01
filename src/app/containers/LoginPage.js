@@ -20,11 +20,19 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <Grid container gutter={0}>
-        <Grid item xs={12}>
-          <span>test</span>
-        </Grid>
-      </Grid>
+      <div className="login-page-wrapper">
+        <form className="login-page-container">
+          <span className="login-page-form-header">
+            Voto
+          </span>
+          <input
+            type="text"
+            className="login-page-login-input"
+            placeholder="test"
+          />
+          <input type="password" className="login-page-login-password" />
+        </form>
+      </div>
     );
   }
 }
