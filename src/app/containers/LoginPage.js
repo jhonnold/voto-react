@@ -3,8 +3,14 @@ import {
   connect
 } from 'react-redux';
 import {
+<<<<<<< HEAD
   Button
 } from 'material-ui'
+=======
+  Grid
+} from 'material-ui';
+
+>>>>>>> 9b2e497549b6a87a301ad8b257457caa65c23c1f
 import './styles/LoginPageStyles.css';
 
 class LoginPage extends React.Component {
