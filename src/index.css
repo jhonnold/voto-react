@@ -9,3 +9,7 @@ html, body {
     min-height: 100vh;
     display: flex;
 }
+
+* {
+  font-family: roboto;
+}

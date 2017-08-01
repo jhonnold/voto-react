@@ -8,32 +8,43 @@
 .login-page-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: .5rem;
-    padding: .5rem;
+    padding: 4rem;
     max-width: 20rem;
     width: 100%;
     box-shadow: 3px 3px 5px #AAA;
-    background-image: linear-gradient(top, #3185db, #3f51b5);
+    background-color: #3d464d;
 }
 
 .login-page-form-header {
-  font-size: 2rem;
-  font-weight: 900;
+  font-size: 4rem;
   align-self: center;
-  margin: 2rem;
+  margin: 0 0 2rem 0;
   color: #fff;
+  letter-spacing: 0.125rem;
 }
 
 .login-page-login-input {
   transition: .3s ease all;
+  border: 0;
   box-sizing: border-box;
-  border: none;
-  border-bottom: 1px solid gray;
-  width: 50%;
+  border-bottom: 2px solid #ada8a5;
+  color: #ada8a5;
+  width: 65%;
+  outline: none;
+  background: none;
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
 }
 
 .login-page-login-input:focus {
   outline: none;
-  border-bottom: 2px solid blue;
+  border-image: linear-gradient(to right, #3185db, #3f51b5);
+  border-image-slice: 1;
   width: 100%;
+}
+
+.login-page-submit-button {
+
 }

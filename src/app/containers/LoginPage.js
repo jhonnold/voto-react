@@ -3,8 +3,8 @@ import {
   connect
 } from 'react-redux';
 import {
-  Grid
-} from 'material-ui';
+  Button
+} from 'material-ui'
 import './styles/LoginPageStyles.css';
 
 class LoginPage extends React.Component {
@@ -28,9 +28,19 @@ class LoginPage extends React.Component {
           <input
             type="text"
             className="login-page-login-input"
-            placeholder="test"
+            placeholder="Email"
           />
-          <input type="password" className="login-page-login-password" />
+          <input
+            type="password"
+            className="login-page-login-input"
+            placeholder="Password"
+          />
+          <Button
+            raised
+            className="login-page-submit-button"
+          >
+            Test
+          </Button>
         </form>
       </div>
     );
