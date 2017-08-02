@@ -10,6 +10,8 @@ export const sagaMonitor = {
   effectResolved: (effectId, result) => {
     if (result.type === types.LOGIN_USER_RESOLVED) {
       store.dispatch(push(`/dashboard`));
+    } else if (result.type === types.SIGNUP_USER_RESOLVED) {
+      store.dispatch(push(`/dashboard`));
     }
   }
 }

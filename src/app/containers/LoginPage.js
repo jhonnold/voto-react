@@ -66,14 +66,14 @@ class LoginPage extends React.Component {
             <Button
               raised
               className="login-page-button"
-              onClick={() => this.props.goToSignUp()}
+              onClick={this.props.goToSignUp}
             >
               Sign Up
             </Button>
           </div>
           <span
             className="login-page-forgot-text"
-            onClick={() => this.props.goToForgotPassword()}
+            onClick={this.props.goToForgotPassword}
           >
             Forgot your password?
           </span>

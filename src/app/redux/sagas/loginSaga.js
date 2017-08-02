@@ -1,7 +1,7 @@
 import {
   call,
   put,
-  takeEvery,
+  takeEvery ,
 } from 'redux-saga/effects';
 import * as types from '../actions/types';
 import {
@@ -13,7 +13,6 @@ import {
 } from '../actions/userActions';
 
 function* loginUser(action) {
-
   try {
     const response = yield call(AuthApi.loginUser, action.payload);
     yield put(loginSuccess(response));

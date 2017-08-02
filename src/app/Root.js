@@ -10,9 +10,11 @@ import {
 } from 'react-transition-group';
 import VotoNavWrapper from './containers/VotoNavWrapper';
 import SessionListPage from './containers/SessionListPage';
+import LoginPage from './containers/LoginPage';
+import SignupPage from './containers/SignupPage';
 
 import './styles/RootStyles.css';
-import LoginPage from './containers/LoginPage';
+
 
 const Fade = (props) => (
   <CSSTransition
@@ -87,8 +89,9 @@ class Root extends React.Component{
               }}
             >
               <Switch location={props.location}>
-                <Route exact path="/login" component={LoginPage}/>
-                <Route exact path="/sessions" component={SessionListPage}/>
+                <Route exact path="/login" component={LoginPage} />
+                <Route exact path="/signup" component={SignupPage} />
+                <Route exact path="/sessions" component={SessionListPage} />
                 <Route component={Blank}/>
               </Switch>
             </section>

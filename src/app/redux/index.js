@@ -13,9 +13,7 @@ import {
   userReducer
 } from './reducers/userReducer';
 import createSagaMiddleware from 'redux-saga';
-import {
-  loginUserSaga
-} from './sagas/loginSaga';
+import rootSaga from './sagas/index';
 import {
   sagaMonitor
 } from './sagas/sagaMonitor';
@@ -44,4 +42,4 @@ export const store = createStore(
   applyMiddleware(routerMiddle, logger, sagaMiddleware),
 );
 
-sagaMiddleware.run(loginUserSaga);
+sagaMiddleware.run(rootSaga);
