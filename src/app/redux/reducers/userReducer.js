@@ -1,7 +1,7 @@
 import * as types from '../actions/types';
 
 export const userReducer = (state = {}, action) => {
-  const { payload, type } = action;
+  const { type } = action;
 
   switch (type) {
     case types.LOGIN_USER_RESOLVED:

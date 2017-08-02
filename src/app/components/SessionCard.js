@@ -14,7 +14,6 @@ import {
   Slideshow,
   Favorite
 } from 'material-ui-icons';
-import { Scrollbars } from 'react-custom-scrollbars';
 
 import slide from '../images/sampleslide.png';
 
@@ -22,7 +21,7 @@ import './styles/SessionCardStyles.css';
 
 const SessionCardSlide = (props) => (
   <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
-    <img src={slide} className="session-card-slide" />
+    <img src={slide} className="session-card-slide" alt="session-slide" />
   </Grid>
 );
 

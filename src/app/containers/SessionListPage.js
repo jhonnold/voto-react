@@ -1,11 +1,7 @@
 import React from 'react';
 import {
   Grid,
-  Button
 } from 'material-ui';
-import {
-  Add
-} from 'material-ui-icons';
 import SessionCard from '../components/SessionCard';
 
 import './styles/SessionListPageStyles.css';
