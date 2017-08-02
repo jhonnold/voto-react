@@ -16,7 +16,6 @@ import {
   // FolderOpen as FolderOpenIcon,
   // FolderSpecial,
 } from 'material-ui-icons';
-
 export default class VotoNavDrawer extends React.Component {
 
   render() {

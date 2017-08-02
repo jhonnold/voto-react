@@ -6,5 +6,5 @@ export const AuthApi = {
   },
   createUser: (params) => {
     return axios.post('/database/createUser', params);
-  }
+  },
 }

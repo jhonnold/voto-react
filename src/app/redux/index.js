@@ -12,6 +12,9 @@ import logger from 'redux-logger';
 import {
   userReducer
 } from './reducers/userReducer';
+import {
+  sessionsReducer
+} from './reducers/sessionsReducer';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/index';
 import {
@@ -22,19 +25,13 @@ export const history = createHistory();
 const routerMiddle = routerMiddleware(history);
 
 const sagaMiddleware = createSagaMiddleware({
-  // sagaMonitor: {
-  //   effectResolved: (effectId, result) => {
-  //     if (result.type === types.LOGIN_USER_RESOLVED) {
-  //       store.dispatch(push())
-  //     }
-  //   }
-  // }
   sagaMonitor,
 });
 
 const reducer = combineReducers({
   user: userReducer,
   route: routerReducer,
+  sessions: sessionsReducer,
 });
 
 export const store = createStore(
