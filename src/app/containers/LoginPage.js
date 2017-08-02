@@ -3,14 +3,14 @@ import {
   connect
 } from 'react-redux';
 import {
-<<<<<<< HEAD
+  push
+} from 'react-router-redux';
+import {
   Button
-} from 'material-ui'
-=======
-  Grid
 } from 'material-ui';
-
->>>>>>> 9b2e497549b6a87a301ad8b257457caa65c23c1f
+import {
+  loginUser
+} from '../redux/actions/userActions';
 import './styles/LoginPageStyles.css';
 
 class LoginPage extends React.Component {
@@ -24,6 +24,12 @@ class LoginPage extends React.Component {
     };
   }
 
+  _handleInputChange = (field, value) => {
+      this.setState({
+        [field]: value,
+      })
+  }
+
   render() {
     return (
       <div className="login-page-wrapper">
@@ -35,18 +41,42 @@ class LoginPage extends React.Component {
             type="text"
             className="login-page-login-input"
             placeholder="Email"
+            onChange={(event) =>
+              this._handleInputChange('username', event.target.value)
+            }
           />
           <input
             type="password"
             className="login-page-login-input"
             placeholder="Password"
+            onChange={(event) =>
+              this._handleInputChange('password', event.target.value)
+            }
           />
-          <Button
-            raised
-            className="login-page-submit-button"
+          <div className="login-page-buttons-wrapper">
+            <Button
+              raised
+              className="login-page-button"
+              onClick={() => this.props.onLogin(
+                this.state.username, this.state.password,
+              )}
+            >
+              Login
+            </Button>
+            <Button
+              raised
+              className="login-page-button"
+              onClick={() => this.props.goToSignUp()}
+            >
+              Sign Up
+            </Button>
+          </div>
+          <span
+            className="login-page-forgot-text"
+            onClick={() => this.props.goToForgotPassword()}
           >
-            Test
-          </Button>
+            Forgot your password?
+          </span>
         </form>
       </div>
     );
@@ -55,7 +85,11 @@ class LoginPage extends React.Component {
 
 const mapDispatchToProps = dispatch => (
   {
-    dispatch
+    goToSignUp: () => dispatch(push(`/signup`)),
+    goToForgotPassword: () => dispatch(push('/forgot_password')),
+    onLogin: (username, password) => {
+      dispatch(loginUser(username, password));
+    }
   }
 );
 

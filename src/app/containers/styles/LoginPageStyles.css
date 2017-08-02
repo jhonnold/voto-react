@@ -31,7 +31,7 @@
   box-sizing: border-box;
   border-bottom: 2px solid #ada8a5;
   color: #ada8a5;
-  width: 65%;
+  width: 80%;
   outline: none;
   background: none;
   margin: 0.5rem 0;
@@ -45,6 +45,20 @@
   width: 100%;
 }
 
-.login-page-submit-button {
+.login-page-buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  margin: 1rem 0;
+}
 
+.login-page-button {
+  color: #fff !important;
+  background-color: #3185db !important;
+}
+
+.login-page-forgot-text {
+  color: #ada8a5;
+  cursor: pointer;
 }

@@ -3,8 +3,11 @@ import {
   connect
 } from 'react-redux';
 import {
-  push
+  push,
 } from 'react-router-redux';
+import {
+  withRouter,
+} from 'react-router';
 import SideNav, {
   Nav,
   NavIcon,
@@ -26,7 +29,7 @@ const VotoSideNav = (props) => {
       <SideNav
         highlightColor="#fff"
         highlightBgColor="#31383e"
-        defaultSelected={props.path.substring(1)}
+        defaultSelected={props.location.pathname.substring(1)}
         onItemSelection={(i, p) =>
           props.dispatch(push(`/${i}`))
         }
@@ -56,16 +59,10 @@ const VotoSideNav = (props) => {
   )
 };
 
-const mapStateToProps = state => {
-  return {
-    path: state.location.pathname,
-  }
-};
-
 const mapDispatchToProps = dispatch => {
   return {
     dispatch
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(VotoSideNav);
+export default withRouter(connect(null, mapDispatchToProps)(VotoSideNav));
