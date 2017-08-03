@@ -35,7 +35,13 @@ class SignupPage extends React.Component {
   render() {
     return (
       <div className="signup-page-wrapper">
-        <form className="signup-page-container">
+        <form
+          className="signup-page-container"
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.props.onSignup(this.state)
+          }}
+        >
           <span className="signup-page-form-header">
             Voto
           </span>
@@ -70,6 +76,10 @@ class SignupPage extends React.Component {
             onChange={(event) =>
               this._handleInputChange('password', event.target.value)
             }
+          />
+          <input
+            type="submit"
+            style={{ display: 'none' }}
           />
           <div className="signup-page-buttons-wrapper">
             <Button
