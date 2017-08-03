@@ -12,6 +12,9 @@ import {
 import {
   Add as AddIcon,
 } from 'material-ui-icons';
+import {
+  newSession
+} from '../redux/actions/sessionsActions';
 import NewSessionModal from '../components/NewSessionModal';
 import SessionCard from '../components/SessionCard';
 
@@ -29,7 +32,16 @@ class SessionListPage extends React.Component {
     this.setState({
       modalOpen: true,
     })
-    //this.props.goToNewSession();
+  }
+
+  _handleNewSessionSubmitted = (className, title, desc) => {
+    this.props.createSession(className, title, desc);
+  }
+
+  _handleNewSessionCanceled = () => {
+    this.setState({
+      modalOpen: false,
+    })
   }
 
   render() {
@@ -40,7 +52,12 @@ class SessionListPage extends React.Component {
 
     return (
       <div className="session-list-container">
-        {modalOpen && <NewSessionModal />}
+        {modalOpen &&
+          <NewSessionModal
+            onCancel={this._handleNewSessionCanceled}
+            onSubmit={this._handleNewSessionSubmitted}
+          />
+        }
         <Grid container gutter={8} style={blur}>
           {sessions.map((l, i) => (
             <SessionCard
@@ -71,6 +88,9 @@ const mapDispatchToProps = dispatch => (
   {
     goToNewSession: () => {
       dispatch(push(`/sessions/new`))
+    },
+    createSession: (className, title, description) => {
+      dispatch(newSession(className, title, description))
     }
   }
 );

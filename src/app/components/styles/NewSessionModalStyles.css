@@ -89,3 +89,9 @@
   width: 88px;
   align-self: center;
 }
+
+.new-session-modal-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

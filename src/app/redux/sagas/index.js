@@ -5,7 +5,8 @@ import {
   signupUserSaga
 } from './signupSaga';
 import {
-  fetchSessionsSaga
+  fetchSessionsSaga,
+  createSessionSaga,
 } from './sessionsSaga';
 import {
   fork
@@ -16,5 +17,6 @@ export default function* rootSaga() {
     fork(loginUserSaga),
     fork(signupUserSaga),
     fork(fetchSessionsSaga),
+    fork(createSessionSaga),
   ]
 }

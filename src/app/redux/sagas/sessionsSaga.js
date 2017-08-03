@@ -10,6 +10,8 @@ import {
 import {
   getSessionsSuccess,
   getSessionsFail,
+  newSessionSuccess,
+  newSessionFail,
 } from '../actions/sessionsActions';
 
 function* fetchSessions(action) {
@@ -23,4 +25,17 @@ function* fetchSessions(action) {
 
 export function* fetchSessionsSaga() {
   yield takeEvery(types.SESSIONS_REQUESTED, fetchSessions);
+}
+
+function* createSession(action) {
+  try {
+    const response = yield call(DataApi.createSession, action.payload);
+    yield put(newSessionSuccess(response));
+  } catch (err) {
+    yield put(newSessionFail(err));
+  }
+}
+
+export function* createSessionSaga() {
+  yield takeEvery(types.NEW_SESSION_REQUESTED, createSession);
 }

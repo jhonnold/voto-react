@@ -62,7 +62,6 @@ class LoginPage extends React.Component {
           <input
             type="submit"
             style={{ display: 'none' }}
-            onSubmit={(e) => e.preventDefault()}
           />
           <div className="login-page-buttons-wrapper">
             <Button

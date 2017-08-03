@@ -19,3 +19,28 @@ export const getSessionsFail = (err) => {
     payload: err,
   }
 }
+
+export const newSession = (className, title, description) => {
+  return {
+    type: types.NEW_SESSION_REQUESTED,
+    payload: {
+      class: className,
+      title,
+      description,
+    }
+  }
+}
+
+export const newSessionSuccess = (response) => {
+  return {
+    type: types.NEW_SESSION_RESOLVED,
+    payload: response,
+  }
+}
+
+export const newSessionFail = (err) => {
+  return {
+    type: types.NEW_SESSION_REJECTED,
+    payload: err,
+  }
+}

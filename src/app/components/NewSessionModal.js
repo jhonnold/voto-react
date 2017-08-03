@@ -11,7 +11,7 @@ export default class NewSessionModal extends React.Component {
     super(props);
 
     this.state = {
-      class: '',
+      className: '',
       title: '',
       description: '',
       fading_in: true,
@@ -29,12 +29,23 @@ export default class NewSessionModal extends React.Component {
   }
 
   render() {
-    const { fading_in } = this.state;
+    const {
+      fading_in,
+      className,
+      title,
+      description
+    } = this.state;
 
     return (
       <div className={`new-session-modal-wrapper
         ${fading_in ? 'fade-in' : ''}`}>
-        <form className="new-session-modal-container">
+        <form
+          className="new-session-modal-container"
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.props.onSubmit(className, title, description)
+          }}
+        >
           <span className="new-session-modal-header">
             Create A New Session
           </span>
@@ -43,7 +54,7 @@ export default class NewSessionModal extends React.Component {
             className="new-session-modal-input"
             placeholder="Class"
             onChange={(e) =>
-              this._handleInputChange('class', e.target.value)}
+              this._handleInputChange('className', e.target.value)}
           />
           <input
             type="text"
@@ -59,12 +70,24 @@ export default class NewSessionModal extends React.Component {
             onChange={(e) =>
               this._handleInputChange('description', e.target.value)}
           />
-          <Button
-            raised
-            className="new-session-modal-button"
-          >
-            Submit
-          </Button>
+          <input type="submit" style={{display: 'none'}} />
+          <div className="new-session-modal-button-wrapper">
+            <Button
+              raised
+              className="new-session-modal-button"
+              onClick={() =>
+                this.props.onSubmit(className, title, description)}
+            >
+              Submit
+            </Button>
+            <Button
+              raised
+              className="new-session-modal-button"
+              onClick={this.props.onCancel}
+            >
+              Cancel
+            </Button>
+          </div>
         </form>
       </div>
     );
