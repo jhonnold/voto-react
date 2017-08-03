@@ -1,14 +1,14 @@
 import * as types from '../actions/types';
 
-export const sessionsReducer = (state = {}, action) => {
-  const { type } = action;
+export const sessionsReducer = (state = [], action) => {
+  const { type, payload } = action;
 
   switch (type) {
     case types.SESSIONS_RESOLVED:
-      return {...state};
+      return payload.data.sessions;
     case types.SESSIONS_REJECTED:
-      return {...state};
+      return state.slice();
     default:
-      return {...state};
+      return state.slice();
   }
 }

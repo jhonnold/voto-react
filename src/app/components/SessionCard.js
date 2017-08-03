@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import {
   Card,
   Avatar,
@@ -43,6 +44,7 @@ export default class SessionCard extends React.Component {
 
   render() {
     const { expanded } = this.state;
+    const { title, timeStamp } = this.props.data;
 
     return (
       <Grid item xs={12} lg={6}>
@@ -50,11 +52,11 @@ export default class SessionCard extends React.Component {
           <div className="session-card-top-container">
             <div className="session-card-title-wrapper">
               <Avatar className="session-card-avatar">
-                C
+                {title.charAt(0).toUpperCase()}
               </Avatar>
               <div className="session-card-header-wrapper">
                 <span className="session-card-title">
-                  CS3141-R15
+                  {title}
                 </span>
                 <span className="session-card-description-text">
                   Agile Development
@@ -112,7 +114,7 @@ export default class SessionCard extends React.Component {
           <div className="session-card-subtitle-caption">
             <div className="session-card-description-wrapper">
               <span className="session-card-description-text">
-                Jan. 15
+                {`Created on ${moment(timeStamp * 1000).format('MMM Do')}`}
               </span>
               <span className="session-card-description-text">
                 Used 4 times
