@@ -4,7 +4,11 @@ import {
 } from 'react-redux';
 import {
   Grid,
+  Button,
 } from 'material-ui';
+import {
+  Add as AddIcon,
+} from 'material-ui-icons';
 import SessionCard from '../components/SessionCard';
 
 import './styles/SessionListPageStyles.css';
@@ -23,6 +27,9 @@ class SessionListPage extends React.Component {
             />
           ))}
         </Grid>
+        <Button fab className="session-list-fab">
+          <AddIcon />
+        </Button>
       </div>
     );
   }
