@@ -3,6 +3,9 @@ import {
   connect
 } from 'react-redux';
 import {
+  push
+} from 'react-router-redux';
+import {
   Grid,
   Button,
 } from 'material-ui';
@@ -14,6 +17,10 @@ import SessionCard from '../components/SessionCard';
 import './styles/SessionListPageStyles.css';
 
 class SessionListPage extends React.Component {
+  _handleNewSessionClicked = () => {
+    this.props.goToNewSession();
+  }
+
   render() {
     const { sessions } = this.props;
 
@@ -27,7 +34,11 @@ class SessionListPage extends React.Component {
             />
           ))}
         </Grid>
-        <Button fab className="session-list-fab">
+        <Button
+          fab
+          className="session-list-fab"
+          onClick={this._handleNewSessionClicked}
+        >
           <AddIcon />
         </Button>
       </div>
@@ -41,4 +52,15 @@ const mapStateToProps = ({ sessions }) => (
   }
 );
 
-export default connect(mapStateToProps)(SessionListPage);
+const mapDispatchToProps = dispatch => (
+  {
+    goToNewSession: () => {
+      dispatch(push(`/sessions/new`))
+    }
+  }
+);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SessionListPage);

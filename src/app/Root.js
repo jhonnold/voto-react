@@ -9,7 +9,7 @@ import {
   CSSTransition
 } from 'react-transition-group';
 import VotoNavWrapper from './containers/VotoNavWrapper';
-import SessionListPage from './containers/SessionListPage';
+import SessionsRouter from './routers/SessionsRouter';
 import LoginPage from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
 
@@ -88,10 +88,13 @@ class Root extends React.Component{
                 flexDirection: 'column',
               }}
             >
+              <Route exact path="/" render={() => (
+                <Redirect to="/login" />
+              )} />
               <Switch location={props.location}>
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/signup" component={SignupPage} />
-                <Route exact path="/sessions" component={SessionListPage} />
+                <Route path="/sessions" component={SessionsRouter} />
                 <Route component={Blank}/>
               </Switch>
             </section>
