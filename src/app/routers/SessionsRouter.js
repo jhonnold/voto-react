@@ -5,12 +5,16 @@ import {
   Redirect
 } from 'react-router';
 import SessionListPage from '../containers/SessionListPage';
+import SessionEditPage from '../containers/SessionEditPage';
 
 const SessionsRouter = (props) => {
   return (
     <Switch>
       <Route exact path={props.match.path} component={SessionListPage} />
-      <Route exact path={`${props.match.path}/new`} component={SessionListPage} />
+      <Route exact
+        path={`${props.match.path}/:sessionId/edit`}
+        component={SessionEditPage} 
+      />
       <Route render={() => (
         <Redirect to={props.match.path} />
       )} />

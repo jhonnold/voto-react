@@ -16,6 +16,10 @@ export const sagaMonitor = {
       store.dispatch(getSessions());
     } else if (result.type === types.SIGNUP_USER_RESOLVED) {
       store.dispatch(push(`/dashboard`));
+    } else if (result.type === types.NEW_SESSION_RESOLVED) {
+      store.dispatch(
+        push(`/sessions/${result.payload.data.sessionId}/edit`)
+      )
     }
   }
 }
