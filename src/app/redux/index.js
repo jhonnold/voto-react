@@ -15,10 +15,13 @@ import {
 import {
   sessionsReducer
 } from './reducers/sessionsReducer';
+import {
+  questionsReducer
+} from './reducers/questionsReducer';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/index';
 import {
-  sagaMonitor
+sagaMonitor
 } from './sagas/sagaMonitor';
 
 export const history = createHistory();
@@ -32,6 +35,7 @@ const reducer = combineReducers({
   user: userReducer,
   route: routerReducer,
   sessions: sessionsReducer,
+  questions: questionsReducer
 });
 
 export const store = createStore(

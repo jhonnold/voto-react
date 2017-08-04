@@ -44,7 +44,7 @@ export default class SessionCard extends React.Component {
 
   render() {
     const { expanded } = this.state;
-    const { title, timeStamp } = this.props.data;
+    const { title, timeStamp, className } = this.props.data;
 
     return (
       <Grid item xs={12} lg={6}>
@@ -52,14 +52,14 @@ export default class SessionCard extends React.Component {
           <div className="session-card-top-container">
             <div className="session-card-title-wrapper">
               <Avatar className="session-card-avatar">
-                {title.charAt(0).toUpperCase()}
+                {className.charAt(0).toUpperCase()}
               </Avatar>
               <div className="session-card-header-wrapper">
                 <span className="session-card-title">
-                  {title}
+                  {className}
                 </span>
                 <span className="session-card-description-text">
-                  Agile Development
+                  {title}
                 </span>
               </div>
             </div>

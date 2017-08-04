@@ -24,7 +24,7 @@ export const newSession = (className, title, description) => {
   return {
     type: types.NEW_SESSION_REQUESTED,
     payload: {
-      class: className,
+      className,
       title,
       description,
     }
