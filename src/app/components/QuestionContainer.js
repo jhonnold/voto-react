@@ -7,6 +7,11 @@ import {
   DragDropContext
 } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+// import {
+//   default as TouchBackend
+// } from 'react-dnd-touch-backend';
+// import MultiBackend from 'react-dnd-multi-backend';
+// import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch';
 import Question from './Question';
 
 import './styles/QuestionContainerStyles.css';

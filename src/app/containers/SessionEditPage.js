@@ -18,9 +18,11 @@ class SessionEditPage extends React.Component {
 
   render() {
     return (
-      <Scrollbars style={{height: '100%', width: '20rem'}}>
+      <div style={{display: 'flex', width: '100%', height: '100%', flexDirection: 'row-reverse'}}>
+      <Scrollbars style={{height: '100%', width: '30%'  }}>
         <QuestionContainer questions={this.props.questions} />
       </Scrollbars>
+      </div>
     );
   }
 }

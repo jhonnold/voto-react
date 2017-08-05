@@ -1,4 +1,4 @@
 .question-slide-preview {
-    width: 100%;
-    margin: 0.5rem 0;
+    width: calc(100% - 1rem);
+    margin: 0.5rem;
 }
