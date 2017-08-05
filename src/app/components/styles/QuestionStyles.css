@@ -1,4 +1,9 @@
 .question-slide-preview {
-    width: calc(100% - 1rem);
-    margin: 0.5rem;
+    height: calc(100% - 1rem);
+    margin: 0 0.5rem;
+    cursor: pointer;
+}
+
+.question-slide-preview:first-of-type {
+    margin-left: 0;
 }

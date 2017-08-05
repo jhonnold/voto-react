@@ -44,3 +44,10 @@ export const newSessionFail = (err) => {
     payload: err,
   }
 }
+
+export const setSelectedSession = (data) => {
+  return {
+    type: types.SESSION_SELECTED,
+    payload: data,
+  }
+};

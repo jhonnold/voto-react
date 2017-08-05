@@ -18,6 +18,9 @@ import {
 import {
   questionsReducer
 } from './reducers/questionsReducer';
+import {
+  selecterReducer
+} from './reducers/selecterReducer';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/index';
 import {
@@ -35,7 +38,8 @@ const reducer = combineReducers({
   user: userReducer,
   route: routerReducer,
   sessions: sessionsReducer,
-  questions: questionsReducer
+  questions: questionsReducer,
+  selectedSession: selecterReducer,
 });
 
 export const store = createStore(

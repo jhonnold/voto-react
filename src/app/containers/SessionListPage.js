@@ -91,7 +91,7 @@ const mapDispatchToProps = dispatch => (
     },
     createSession: (className, title, description) => {
       dispatch(newSession(className, title, description))
-    }
+    },
   }
 );
 

@@ -8,7 +8,6 @@ export const DataApi = {
     return axios.post('/sessions/saveNewSession', params);
   },
   fetchQuestions: (params) => {
-    console.log(params);
     return axios.get('/sessions/sessionQuestions', { params });
   }
 };

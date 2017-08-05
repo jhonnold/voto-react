@@ -44,7 +44,7 @@ class Question extends React.Component {
 
   render() {
 
-    const { img, isDragging, connectDragSource, connectDropTarget } = this.props;
+    const { img, isDragging, connectDragSource, connectDropTarget, id } = this.props;
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
@@ -53,6 +53,7 @@ class Question extends React.Component {
         alt='Slide Preview'
         className="question-slide-preview"
         style={{opacity}}
+        onClick={() => this.props.onClick(id)}
       />
     ));
   }

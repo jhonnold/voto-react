@@ -4,7 +4,7 @@ import {
 } from 'react-redux';
 import {
   DropTarget,
-  DragDropContext
+  DragDropContext,
 } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 // import {
@@ -12,6 +12,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 // } from 'react-dnd-touch-backend';
 // import MultiBackend from 'react-dnd-multi-backend';
 // import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch';
+
 import Question from './Question';
 
 import './styles/QuestionContainerStyles.css';
@@ -53,6 +54,7 @@ class QuestionContainer extends React.Component {
             img={question.img}
             moveQuestion={this.moveQuestion}
             findQuestion={this.findQuestion}
+            onClick={this.props.onSelect}
           />
         ))}
       </div>

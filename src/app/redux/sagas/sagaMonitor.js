@@ -5,7 +5,8 @@ import {
   push
 } from 'react-router-redux';
 import {
-  getSessions
+  getSessions,
+  setSelectedSession,
 } from '../actions/sessionsActions.js';
 import * as types from '../actions/types';
 
@@ -18,8 +19,11 @@ export const sagaMonitor = {
       store.dispatch(push(`/dashboard`));
     } else if (result.type === types.NEW_SESSION_RESOLVED) {
       store.dispatch(
+        setSelectedSession(result.payload.data)
+      );
+      store.dispatch(
         push(`/sessions/${result.payload.data.sessionId}/edit`)
-      )
+      );
     }
   }
 }
