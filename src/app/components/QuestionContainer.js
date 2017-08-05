@@ -7,7 +7,6 @@ import {
   DragDropContext
 } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import flow from 'lodash/flow';
 import Question from './Question';
 
 const QUESTION = 'question';
@@ -39,12 +38,12 @@ class QuestionContainer extends React.Component {
     const {connectDropTarget, questions} = this.props;
 
     return connectDropTarget(
-      <div>
+      <div style={{display: 'flex', flexDirection: 'column', width: '10rem'}}>
         {questions.map((question, i) => (
           <Question
             key={question.id}
             id={question.id}
-            text={question.text}
+            img={question.img}
             moveQuestion={this.moveQuestion}
             findQuestion={this.findQuestion}
           />
@@ -73,13 +72,6 @@ QuestionContainer = connect(null, mapDispatchToProps)(QuestionContainer);
 QuestionContainer = DropTarget(QUESTION, questionTarget, connect => ({
                       connectDropTarget: connect.dropTarget(),
                     }))(QuestionContainer);
-export default DragDropContext(HTML5Backend)(QuestionContainer);
 
-// export default flow(
-//   DragDropContext(HTML5Backend),
-//   DropTarget(QUESTION, questionTarget, connect => ({
-//     connectDropTarget: connect.dropTarget(),
-//   })),
-//   connect(null, mapDispatchToProps),
-// )(QuestionContainer);
+export default DragDropContext(HTML5Backend)(QuestionContainer);
 
