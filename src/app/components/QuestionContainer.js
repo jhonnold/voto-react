@@ -9,6 +9,8 @@ import {
 import HTML5Backend from 'react-dnd-html5-backend';
 import Question from './Question';
 
+import './styles/QuestionContainerStyles.css';
+
 const QUESTION = 'question';
 
 const questionTarget = {
@@ -38,7 +40,7 @@ class QuestionContainer extends React.Component {
     const {connectDropTarget, questions} = this.props;
 
     return connectDropTarget(
-      <div style={{display: 'flex', flexDirection: 'column', width: '10rem'}}>
+      <div className="question-container">
         {questions.map((question, i) => (
           <Question
             key={question.id}

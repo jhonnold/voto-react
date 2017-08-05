@@ -3,6 +3,9 @@ import {
   connect
 } from 'react-redux';
 import {
+  Scrollbars
+} from 'react-custom-scrollbars';
+import {
   getSessionQuestions
 } from '../redux/actions/questionActions';
 import QuestionContainer from '../components/QuestionContainer';
@@ -15,9 +18,9 @@ class SessionEditPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <Scrollbars style={{height: '100%', width: '20rem'}}>
         <QuestionContainer questions={this.props.questions} />
-      </div>
+      </Scrollbars>
     );
   }
 }

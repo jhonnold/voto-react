@@ -4,6 +4,8 @@ import {
   DropTarget,
 } from 'react-dnd';
 
+import './styles/QuestionStyles.css';
+
 const QUESTION = 'question';
 
 const questionSource = {
@@ -46,7 +48,12 @@ class Question extends React.Component {
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
-      <img src={img} style={{width: '100%', opacity}} alt='test' />
+      <img
+        src={img}
+        alt='Slide Preview'
+        className="question-slide-preview"
+        style={{opacity}}
+      />
     ));
   }
 }
