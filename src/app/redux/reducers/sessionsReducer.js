@@ -8,6 +8,10 @@ export const sessionsReducer = (state = [], action) => {
       return payload.data.sessions;
     case types.SESSIONS_REJECTED:
       return state.slice();
+    case types.NEW_SESSION_RESOLVED:
+      let newState = state.slice();
+      newState.splice(0, 0, payload.data);
+      return newState;
     default:
       return state.slice();
   }

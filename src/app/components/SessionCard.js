@@ -101,7 +101,9 @@ export default class SessionCard extends React.Component {
                 <IconButton>
                   <Favorite />
                 </IconButton>
-                <IconButton>
+                <IconButton
+                  onClick={() => this.props.onEditClick(this.props.data)}
+                >
                   <Edit />
                 </IconButton>
                 <IconButton>

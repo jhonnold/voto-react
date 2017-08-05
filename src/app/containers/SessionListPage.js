@@ -13,7 +13,8 @@ import {
   Add as AddIcon,
 } from 'material-ui-icons';
 import {
-  newSession
+  getSessions,
+  newSession, setSelectedSession
 } from '../redux/actions/sessionsActions';
 import NewSessionModal from '../components/NewSessionModal';
 import SessionCard from '../components/SessionCard';
@@ -25,6 +26,12 @@ class SessionListPage extends React.Component {
     super(props);
     this.state = {
       modalOpen: false,
+    }
+  }
+
+  componentWillMount() {
+    if (this.props.sessions.length === 0) {
+      this.props.requestSessions();
     }
   }
 
@@ -42,6 +49,10 @@ class SessionListPage extends React.Component {
     this.setState({
       modalOpen: false,
     })
+  }
+
+  _handleEditClick = (session) => {
+    this.props.goToEdit(session);
   }
 
   render() {
@@ -63,6 +74,7 @@ class SessionListPage extends React.Component {
             <SessionCard
               key={i}
               data={l}
+              onEditClick={this._handleEditClick}
             />
           ))}
         </Grid>
@@ -86,11 +98,15 @@ const mapStateToProps = ({ sessions }) => (
 
 const mapDispatchToProps = dispatch => (
   {
-    goToNewSession: () => {
-      dispatch(push(`/sessions/new`))
+    requestSessions: () => {
+      dispatch(getSessions())
     },
     createSession: (className, title, description) => {
       dispatch(newSession(className, title, description))
+    },
+    goToEdit: (session) => {
+      dispatch(setSelectedSession(session));
+      dispatch(push(`/sessions/${session.sessionId}/edit`))
     },
   }
 );

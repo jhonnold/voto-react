@@ -3,6 +3,9 @@ import {
   connect
 } from 'react-redux';
 import {
+  goBack,
+} from 'react-router-redux';
+import {
   Grid,
   Divider,
 } from 'material-ui';
@@ -26,8 +29,13 @@ class SessionEditPage extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.props.getQuestions(this.props.match.params.sessionId);
+  componentWillMount() {
+    if (!this.props.session.sessionId) {
+      this.props.goBack();
+      return;
+    }
+
+    this.props.getQuestions(this.props.session.sessionId);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -76,7 +84,7 @@ class SessionEditPage extends React.Component {
         </div>
 
         <Grid container gutter={0} style={{flex: 1}}>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} md={6}>
             { questions.length &&
               <img
                 src={src}
@@ -86,7 +94,7 @@ class SessionEditPage extends React.Component {
             }
           </Grid>
 
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} md={6}>
 
           </Grid>
         </Grid>
@@ -98,7 +106,7 @@ class SessionEditPage extends React.Component {
           <Scrollbars
             autoHide={false}
             renderThumbHorizontal={this._renderThumb}
-            style={{height: '12rem'}}
+            style={{height: '100%'}}
           >
             <QuestionContainer
               questions={this.props.questions}
@@ -123,6 +131,9 @@ const mapDispatchToProps = dispatch => (
   {
     getQuestions: (sessionId) => {
       dispatch(getSessionQuestions(sessionId))
+    },
+    goBack: () => {
+      dispatch(goBack())
     }
   }
 );
