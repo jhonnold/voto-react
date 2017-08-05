@@ -5,6 +5,7 @@ import {
 import {
   getSessionQuestions
 } from '../redux/actions/questionActions';
+import QuestionContainer from '../components/QuestionContainer';
 
 class SessionEditPage extends React.Component {
 
@@ -15,11 +16,17 @@ class SessionEditPage extends React.Component {
   render() {
     return (
       <div>
-        <span>EditPage</span>
+        <QuestionContainer questions={this.props.questions} />
       </div>
     );
   }
 }
+
+const mapStateToProps = ({ questions }) => (
+  {
+    questions,
+  }
+);
 
 const mapDispatchToProps = dispatch => (
   {
@@ -27,6 +34,8 @@ const mapDispatchToProps = dispatch => (
       dispatch(getSessionQuestions(sessionId))
     }
   }
-)
+);
 
-export default connect(null, mapDispatchToProps)(SessionEditPage);
+export default connect(
+  mapStateToProps, mapDispatchToProps
+)(SessionEditPage);
