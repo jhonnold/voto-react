@@ -1,6 +1,4 @@
 import * as types from './types';
-import {SUBMIT_SESSION_RESOLVED} from './types';
-import {SUBMIT_SESSION_REJECTED} from './types';
 
 export const getSessions = () => {
   return {
@@ -68,14 +66,14 @@ export const submitSession = (values, session) => {
 
 export const submitSessionSuccess = (response) => {
   return {
-    type: SUBMIT_SESSION_RESOLVED,
+    type: types.SUBMIT_SESSION_RESOLVED,
     payload: response,
   }
 };
 
 export const submitSessionFail = (err) => {
   return {
-    type: SUBMIT_SESSION_REJECTED,
+    type: types.SUBMIT_SESSION_REJECTED,
     payload: err,
   }
 };
