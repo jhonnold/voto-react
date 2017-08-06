@@ -27,7 +27,6 @@ const questionTarget = {
 class QuestionContainer extends React.Component {
   moveQuestion = (id, atIndex) => {
     const { question, index } = this.findQuestion(id);
-    // TODO add an action to dispatch to store to move card
     this.props.dispatchMoveQuestion(index, atIndex, question);
     //console.log('MOVED');
   }

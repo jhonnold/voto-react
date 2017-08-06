@@ -15,9 +15,18 @@ import {
 import {
   getSessionQuestions
 } from '../redux/actions/questionActions';
+import {
+  IconButton,
+  Button
+} from 'material-ui';
+import {
+  ArrowForward,
+  ArrowBack,
+  Delete as DeleteIcon,
+} from 'material-ui-icons'
 import QuestionContainer from '../components/QuestionContainer';
 
-import "./styles/SessionEditPageStyles.css"
+import './styles/SessionEditPageStyles.css'
 
 class SessionEditPage extends React.Component {
 
@@ -46,11 +55,45 @@ class SessionEditPage extends React.Component {
     }
   }
 
+  moveQuestion = (id, atIndex) => {
+    const { question, index } = this.findQuestion(id);
+    this.props.dispatchMoveQuestion(index, atIndex, question);
+  }
+
+  findQuestion = (id) => {
+    const { questions } = this.props;
+    const question = questions.filter(q => q.id === id)[0];
+
+    return {
+      question,
+      index: questions.indexOf(question),
+    }
+  }
+
   _onImageSelect = (id) => {
     this.setState({
       id
     })
   };
+
+  _onLeftArrow = () => {
+    const { id } = this.state;
+    const { question, index } = this.findQuestion(id);
+
+    if (index > 0) {
+      this.props.dispatchMoveQuestion(index, index - 1, question);
+    }
+  }
+
+  _onRightArrow = () => {
+    const { questions } = this.props;
+    const { id } = this.state;
+    const { question, index } = this.findQuestion(id);
+
+    if (index < questions.length - 1) {
+      this.props.dispatchMoveQuestion(index, index + 1, question);
+    }
+  }
 
   _renderThumb = ({style, ...props}) => {
     const thumbStyle = {
@@ -58,6 +101,7 @@ class SessionEditPage extends React.Component {
       opacity: 1,
       height: '1rem',
       cursor: 'pointer',
+      minHeight: 'min-content',
     };
 
     return (
@@ -79,12 +123,48 @@ class SessionEditPage extends React.Component {
 
     return (
       <div className="session-edit-page-wrapper">
+      <div className="session-edit-page-container">
         <div className="session-edit-header-wrapper">
           <span className="session-edit-header">{session.className}</span>
         </div>
 
-        <Grid container gutter={0} style={{flex: 1}}>
-          <Grid item xs={12} md={6} justify="center" style={{display: 'flex', flexDirection: 'column'}}>
+        <form className="session-edit-session-form" >
+          <Grid container gutter={8}>
+            <Grid item xs={12} md={4} className="session-edit-input-wrapper">
+              <input
+                type="text"
+                value={session.className}
+                className="session-edit-input"
+              />
+              <span className="session-edit-subtitle">
+                Class Name
+              </span>
+            </Grid>
+            <Grid item xs={12} md={4} className="session-edit-input-wrapper">
+              <input
+                type="text"
+                value={session.title}
+                className="session-edit-input"
+              />
+              <span className="session-edit-subtitle">
+                Title
+              </span>
+            </Grid>
+            <Grid item xs={12} md={4} className="session-edit-input-wrapper">
+              <input
+                type="text"
+                value={session.description}
+                className="session-edit-input"
+              />
+              <span className="session-edit-subtitle" style={{width: '85%'}}>
+                Description
+              </span>
+            </Grid>
+          </Grid>
+        </form>
+
+        <Grid container gutter={0} className="session-edit-center-container" justify="center">
+          <Grid item xs={12} md={8} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
             { questions.length &&
               <img
                 src={src}
@@ -92,17 +172,49 @@ class SessionEditPage extends React.Component {
                 className="session-edit-selected-image"
               />
             }
+            <Divider style={{margin: '0 .5rem .3rem .5rem'}} />
+            <span className="session-edit-subtitle">
+              Click the arrows to move this question within the Session
+            </span>
             <div className="session-edit-button-container">
-
+              <IconButton onClick={this._onLeftArrow}>
+                <ArrowBack />
+              </IconButton>
+              <IconButton>
+                <DeleteIcon />
+              </IconButton>
+              <IconButton onClick={this._onRightArrow}>
+                <ArrowForward />
+              </IconButton>
             </div>
+            <Divider style={{margin: '0 .5rem .3rem .5rem'}} />
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
 
           </Grid>
         </Grid>
 
+        <div className="session-edit-finalize-container">
+          <Button
+            raised
+            className="session-edit-button"
+          >
+            Save
+          </Button>
+          <Button
+            raised
+            className="session-edit-button"
+          >
+            Cancel
+          </Button>
+        </div>
+
         <Divider style={{margin: '0 .5rem .3rem .5rem'}} />
+
+
+
+      </div>
 
         <div className="session-edit-image-preview-container">
           {/*TODO - GET THIS TO SCROLL WITHOUT SHIFT KEY*/}
@@ -137,7 +249,17 @@ const mapDispatchToProps = dispatch => (
     },
     goBack: () => {
       dispatch(goBack())
-    }
+    },
+    dispatchMoveQuestion: (index, atIndex, question) => {
+      dispatch({
+        type: 'QUESTION_CARD_MOVED',
+        payload: {
+          index,
+          atIndex,
+          question,
+        }
+      })
+    },
   }
 );
 
