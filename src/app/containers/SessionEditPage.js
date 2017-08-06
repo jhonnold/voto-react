@@ -84,7 +84,7 @@ class SessionEditPage extends React.Component {
         </div>
 
         <Grid container gutter={0} style={{flex: 1}}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} justify="center" style={{display: 'flex', flexDirection: 'column'}}>
             { questions.length &&
               <img
                 src={src}
@@ -92,6 +92,9 @@ class SessionEditPage extends React.Component {
                 className="session-edit-selected-image"
               />
             }
+            <div className="session-edit-button-container">
+
+            </div>
           </Grid>
 
           <Grid item xs={12} md={6}>
