@@ -27,7 +27,8 @@ import QuestionContainer from '../components/QuestionContainer';
 import SessionEditForm from '../components/SessionEditForm';
 
 import './styles/SessionEditPageStyles.css'
-import {submitSession} from '../redux/actions/sessionsActions';
+import { submitSession } from '../redux/actions/sessionsActions';
+import QuestionImageDrop from '../components/QuestionImageDrop';
 
 class SessionEditPage extends React.Component {
 
@@ -126,12 +127,17 @@ class SessionEditPage extends React.Component {
     const { questions, session } = this.props;
 
     let src;
-    if (questions.length && this.state.id > 0) {
-      src = questions.filter(q => q.id === id)[0].img;
+    if (questions.length && this.state.id >= 0) {
+      const question = questions.filter(q => q.id === id)[0];
+      src = (question.url ? question.url : question.uri);
     }
 
     return (
       <div className="session-edit-page-wrapper">
+        <QuestionImageDrop
+          addQuestion={(file) =>
+            this.props.addQuestion(file, session.sessionId, questions.length)}
+        />
         <div className="session-edit-page-container">
           <div className="session-edit-header-wrapper">
             <span className="session-edit-header">{session.className}</span>
@@ -228,6 +234,16 @@ const mapDispatchToProps = dispatch => (
     },
     submitForm: (values, session) => {
       dispatch(submitSession(values, session))
+    },
+    addQuestion: (file, sessionId, id,) => {
+      dispatch({
+        type: 'QUESTION_ADDED',
+        payload: {
+          sessionId: sessionId,
+          uri: file,
+          id,
+        }
+      })
     }
   }
 );

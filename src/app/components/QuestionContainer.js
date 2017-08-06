@@ -46,11 +46,12 @@ class QuestionContainer extends React.Component {
 
     return connectDropTarget(
       <div className="question-container">
-        {questions.map((question, i) => (
+        {
+          questions.map((question, i) => (
           <Question
             key={question.id}
             id={question.id}
-            img={question.img}
+            img={(question.url ? question.url : question.uri)}
             moveQuestion={this.moveQuestion}
             findQuestion={this.findQuestion}
             onClick={this.props.onSelect}
