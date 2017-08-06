@@ -1,0 +1,57 @@
+.session-edit-session-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0.5rem;
+    min-height: min-content;
+}
+
+.session-edit-input {
+    flex: 1;
+    transition: .3s ease all;
+    border: 0;
+    box-sizing: border-box;
+    border-bottom: 2px solid #ada8a5;
+    color: #ada8a5;
+    outline: none;
+    background: none;
+    margin: 0.5rem 1rem;
+    width: 85%;
+    font-size: 1.25rem;
+}
+
+.session-edit-input:focus {
+    border-bottom: 2px solid #0D47A1;
+    color: #3d464d;
+    outline: none;
+    font-size: 1.75rem;
+    margin-bottom: 0;
+    width: 95%;
+}
+
+.session-edit-input-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.session-edit-subtitle {
+    color: #3d464d;
+    font-weight: 100;
+    font-style: italic;
+    align-self: center;
+    text-align: center;
+}
+
+.session-edit-finalize-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 1rem;
+    min-height: min-content;
+}
+
+.session-edit-button {
+    color: #fff !important;
+    background-color: #3185db !important;
+}

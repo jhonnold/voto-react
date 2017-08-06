@@ -2,10 +2,10 @@ import {
   store
 } from '../index';
 import {
-  push
+  push,
+  goBack
 } from 'react-router-redux';
 import {
-  getSessions,
   setSelectedSession,
 } from '../actions/sessionsActions.js';
 import * as types from '../actions/types';
@@ -23,6 +23,8 @@ export const sagaMonitor = {
       store.dispatch(
         push(`/sessions/${result.payload.data.sessionId}/edit`)
       );
+    } else if (result.type === types.SUBMIT_SESSION_RESOLVED) {
+      store.dispatch(goBack());
     }
   }
 }

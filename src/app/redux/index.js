@@ -10,6 +10,9 @@ import {
 } from 'react-router-redux';
 import logger from 'redux-logger';
 import {
+  reducer as formReducer
+} from 'redux-form';
+import {
   userReducer
 } from './reducers/userReducer';
 import {
@@ -40,6 +43,7 @@ const reducer = combineReducers({
   sessions: sessionsReducer,
   questions: questionsReducer,
   selectedSession: selecterReducer,
+  form: formReducer,
 });
 
 export const store = createStore(

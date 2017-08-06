@@ -12,7 +12,10 @@ import {
   getSessionsFail,
   newSessionSuccess,
   newSessionFail,
+  submitSessionSuccess,
+  submitSessionFail,
 } from '../actions/sessionsActions';
+
 
 function* fetchSessions(action) {
   try {
@@ -38,4 +41,17 @@ function* createSession(action) {
 
 export function* createSessionSaga() {
   yield takeEvery(types.NEW_SESSION_REQUESTED, createSession);
+}
+
+function* updateSession(action) {
+  try {
+    const response = yield call(DataApi.updateSession, action.payload);
+    yield put(submitSessionSuccess(response));
+  } catch (err) {
+    yield put(submitSessionFail(err));
+  }
+}
+
+export function* updateSessionSaga() {
+  yield takeEvery(types.SUBMIT_SESSION_REQUESTED, updateSession);
 }

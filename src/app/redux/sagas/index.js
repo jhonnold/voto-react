@@ -7,6 +7,7 @@ import {
 import {
   fetchSessionsSaga,
   createSessionSaga,
+  updateSessionSaga,
 } from './sessionsSaga';
 import {
   fetchQuestionsSaga
@@ -22,5 +23,6 @@ export default function* rootSaga() {
     fork(fetchSessionsSaga),
     fork(createSessionSaga),
     fork(fetchQuestionsSaga),
+    fork(updateSessionSaga),
   ]
 }
