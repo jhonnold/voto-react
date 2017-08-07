@@ -2,11 +2,12 @@ import * as types from '../actions/types';
 
 const initialState = {
   questions: [],
+  pushingImageCount: 0,
 };
 
 export const selecterReducer = (state = initialState, action) => {
   const { type, payload } = action;
-  let newList;
+  let newList, pushingCount;
 
   switch (type) {
     case types.SESSION_QUESTIONS_RESOLVED:
@@ -50,13 +51,18 @@ export const selecterReducer = (state = initialState, action) => {
       newList[index].url = payload.url;
       return {...state, questions: newList };
 
+    case types.IS_PUSHING_NEW_IMAGE:
+      pushingCount = (state.pushingImageCount ? state.pushingImageCount : 0) + 1;
+      return {...state, pushingImageCount: pushingCount};
+
     case types.NEW_IMAGE_RESOLVED:
+      pushingCount = state.pushingImageCount - 1;
       newList = state.questions.slice();
       newList.push({
         ...payload.data,
         id: newList.length,
       });
-      return {...state, questions: newList};
+      return {...state, pushingImageCount: pushingCount, questions: newList};
     default:
       return state;
 

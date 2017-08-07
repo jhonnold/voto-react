@@ -45,7 +45,16 @@ class QuestionContainer extends React.Component {
   }
 
   render() {
-    const {connectDropTarget, questions} = this.props;
+    const {connectDropTarget, questions, pushingImageCount } = this.props;
+
+    let loaders = [];
+    for (let i = 0; i < pushingImageCount; i++) {
+      loaders.push(
+        <div className="question-image-progress-loader">
+          <CircularProgress size={60} />
+        </div>
+      );
+    }
 
     return connectDropTarget(
       <div className="question-container">
@@ -63,14 +72,9 @@ class QuestionContainer extends React.Component {
                   onClick={this.props.onSelect}
                 />
               );
-            } else {
-              return (
-                <div className="question-image-progress-loader">
-                  <CircularProgress size={60} />
-                </div>
-              );
             }
           })}
+        {loaders}
       </div>
     );
   }

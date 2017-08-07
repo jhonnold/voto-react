@@ -15,6 +15,7 @@ import {
 import {
   getSessionQuestions,
   onNewImage,
+  isPushingNewImage,
 } from '../redux/actions/questionActions';
 import {
   submitSession
@@ -197,6 +198,7 @@ class SessionEditPage extends React.Component {
             <QuestionContainer
               questions={this.props.questions}
               onSelect={this._onImageSelect}
+              pushingImageCount={this.props.session.pushingImageCount}
             />
           </Scrollbars>
         </div>
@@ -249,6 +251,7 @@ const mapDispatchToProps = dispatch => (
       })
     },
     onNewImage: (formData) => {
+      dispatch(isPushingNewImage());
       dispatch(onNewImage(formData));
     }
   }

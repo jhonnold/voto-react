@@ -66,3 +66,9 @@ export const onNewImageFail = (err) => {
     payload: err,
   }
 };
+
+export const isPushingNewImage = () => {
+  return {
+    type: types.IS_PUSHING_NEW_IMAGE,
+  }
+};
