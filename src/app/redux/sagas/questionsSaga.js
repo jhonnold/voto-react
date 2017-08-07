@@ -10,6 +10,8 @@ import {
 import {
   getSessionQuestionsSuccess,
   getSessionQuestionsFail,
+  getQuestionUrlSuccess,
+  getQuestionUrlFail, onNewImageSuccess, onNewImageFail,
 } from '../actions/questionActions';
 
 function* fetchQuestions(action) {
@@ -23,4 +25,30 @@ function* fetchQuestions(action) {
 
 export function* fetchQuestionsSaga() {
   yield takeEvery(types.SESSION_QUESTIONS_REQUESTED, fetchQuestions);
+}
+
+function* getQuestionUrl(action) {
+  try {
+    const response = yield call(DataApi.getQuestionUrl, action.payload);
+    yield put(getQuestionUrlSuccess({...response.data, imgFileName: action.payload.imgFileName}));
+  } catch (err) {
+    yield put(getQuestionUrlFail(err));
+  }
+}
+
+export function* getQuestionUrlSaga() {
+  yield takeEvery(types.QUESTION_URL_REQUESTED, getQuestionUrl);
+}
+
+function* newImageUpload(action) {
+  try {
+    const response = yield call(DataApi.newImageUpload, action.payload);
+    yield put(onNewImageSuccess(response));
+  } catch (err) {
+    yield put(onNewImageFail(err));
+  }
+}
+
+export function* newImageUploadSaga() {
+  yield takeEvery(types.NEW_IMAGE_REQUESTED, newImageUpload);
 }

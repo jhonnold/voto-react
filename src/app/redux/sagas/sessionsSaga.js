@@ -48,7 +48,7 @@ function* updateSession(action) {
     const response = yield call(DataApi.updateSession, action.payload);
     yield put(submitSessionSuccess(response));
     const response2 = yield call(DataApi.updateQuestions, action.payload.questions);
-    console.log(response2);
+    yield put({type: 'UPDATE_QUESTIONS_RESOLVED'});
   } catch (err) {
     yield put(submitSessionFail(err));
   }

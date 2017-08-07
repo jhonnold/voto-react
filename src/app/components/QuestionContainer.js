@@ -12,6 +12,9 @@ import HTML5Backend from 'react-dnd-html5-backend';
 // } from 'react-dnd-touch-backend';
 // import MultiBackend from 'react-dnd-multi-backend';
 // import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch';
+import {
+  CircularProgress
+} from 'material-ui/Progress';
 
 import Question from './Question';
 
@@ -47,16 +50,27 @@ class QuestionContainer extends React.Component {
     return connectDropTarget(
       <div className="question-container">
         {
-          questions.map((question, i) => (
-          <Question
-            key={question.id}
-            id={question.id}
-            img={(question.url ? question.url : question.uri)}
-            moveQuestion={this.moveQuestion}
-            findQuestion={this.findQuestion}
-            onClick={this.props.onSelect}
-          />
-        ))}
+          questions.map((question, i) => {
+
+            if (question.url) {
+              return (
+                <Question
+                  img={question.url}
+                  key={question.id}
+                  id={question.id}
+                  moveQuestion={this.moveQuestion}
+                  findQuestion={this.findQuestion}
+                  onClick={this.props.onSelect}
+                />
+              );
+            } else {
+              return (
+                <div className="question-image-progress-loader">
+                  <CircularProgress size={60} />
+                </div>
+              );
+            }
+          })}
       </div>
     );
   }

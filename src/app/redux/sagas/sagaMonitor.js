@@ -8,7 +8,11 @@ import {
 import {
   setSelectedSession,
 } from '../actions/sessionsActions.js';
+import {
+  getQuestionUrl
+} from '../actions/questionActions';
 import * as types from '../actions/types';
+
 
 export const sagaMonitor = {
   effectResolved: (effectId, result) => {
@@ -24,7 +28,12 @@ export const sagaMonitor = {
         push(`/sessions/${result.payload.data.sessionId}/edit`)
       );
     } else if (result.type === types.SUBMIT_SESSION_RESOLVED) {
-      store.dispatch(goBack());
+      //store.dispatch(goBack());
+    } else if (result.type === types.SESSION_QUESTIONS_RESOLVED) {
+      const { data } = result.payload;
+      data.map((question) => {
+        store.dispatch(getQuestionUrl(question.imgFileName));
+      })
     }
   }
 }

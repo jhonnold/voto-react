@@ -13,8 +13,12 @@ import {
   Scrollbars
 } from 'react-custom-scrollbars';
 import {
-  getSessionQuestions
+  getSessionQuestions,
+  onNewImage,
 } from '../redux/actions/questionActions';
+import {
+  submitSession
+} from '../redux/actions/sessionsActions';
 import {
   IconButton,
 } from 'material-ui';
@@ -27,7 +31,7 @@ import QuestionContainer from '../components/QuestionContainer';
 import SessionEditForm from '../components/SessionEditForm';
 
 import './styles/SessionEditPageStyles.css'
-import { submitSession } from '../redux/actions/sessionsActions';
+
 import QuestionImageDrop from '../components/QuestionImageDrop';
 
 class SessionEditPage extends React.Component {
@@ -135,8 +139,7 @@ class SessionEditPage extends React.Component {
     return (
       <div className="session-edit-page-wrapper">
         <QuestionImageDrop
-          addQuestion={(file) =>
-            this.props.addQuestion(file, session.sessionId, questions.length)}
+          onNewImage={this.props.onNewImage}
         />
         <div className="session-edit-page-container">
           <div className="session-edit-header-wrapper">
@@ -244,6 +247,9 @@ const mapDispatchToProps = dispatch => (
           id,
         }
       })
+    },
+    onNewImage: (formData) => {
+      dispatch(onNewImage(formData));
     }
   }
 );

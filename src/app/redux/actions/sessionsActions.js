@@ -53,10 +53,21 @@ export const setSelectedSession = (data) => {
 };
 
 export const submitSession = (values, session) => {
+
+  //FORMAT ALL THE QUESTIONS
+  let formattedQuestions = session.questions.map((question, index) => {
+    return {
+      ...question,
+      orderNum: index,
+      sessionId: session.sessionId,
+    }
+  });
+
   return {
     type: types.SUBMIT_SESSION_REQUESTED,
     payload: {
       ...session,
+      questions: formattedQuestions,
       className: values.sessionClassName,
       title: values.sessionTitle,
       description: values.sessionDescription,

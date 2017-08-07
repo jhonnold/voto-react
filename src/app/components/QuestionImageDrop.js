@@ -8,10 +8,6 @@ import {
 
 class QuestionImageDrop extends React.Component {
 
-  _handleReaderLoaded = (e) => {
-    console.log(e);
-  }
-
   _photoSelected = (e) => {
 
     const { files } = e.target;
@@ -19,11 +15,9 @@ class QuestionImageDrop extends React.Component {
     for (let i = 0; i < files.length; i++) {
 
       ((file) => {
-        let reader = new FileReader();
-        reader.onload = (e) => {
-          this.props.addQuestion(e.target.result);
-        };
-        reader.readAsDataURL(file);
+        let formData = new FormData();
+        formData.append('image', file);
+        this.props.onNewImage(formData);
       })(files[i])
 
     }

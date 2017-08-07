@@ -10,7 +10,9 @@ import {
   updateSessionSaga,
 } from './sessionsSaga';
 import {
-  fetchQuestionsSaga
+  fetchQuestionsSaga,
+  getQuestionUrlSaga,
+  newImageUploadSaga
 } from './questionsSaga';
 import {
 fork
@@ -24,5 +26,7 @@ export default function* rootSaga() {
     fork(createSessionSaga),
     fork(fetchQuestionsSaga),
     fork(updateSessionSaga),
+    fork(getQuestionUrlSaga),
+    fork(newImageUploadSaga),
   ]
 }

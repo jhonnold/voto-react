@@ -17,7 +17,12 @@ export const DataApi = {
     return axios.get('/api/sessions/sessionQuestions', { params });
   },
   updateQuestions: (params) => {
-    console.log(params);
     return axios.post('/api/sessions/saveSessionQuestions', {questions: params} );
+  },
+  getQuestionUrl: (params) => {
+    return axios.get('/api/sessions/questionImageUrl', { params });
+  },
+  newImageUpload: (params) => {
+    return axios.post('/api/sessions/uploadImageFile', params);
   }
 };
