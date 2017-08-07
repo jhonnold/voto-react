@@ -11,7 +11,10 @@ import {
   getSessionQuestionsSuccess,
   getSessionQuestionsFail,
   getQuestionUrlSuccess,
-  getQuestionUrlFail, onNewImageSuccess, onNewImageFail,
+  getQuestionUrlFail,
+  onNewImageSuccess,
+  onNewImageFail,
+  isPushingNewImage,
 } from '../actions/questionActions';
 
 function* fetchQuestions(action) {
@@ -42,6 +45,7 @@ export function* getQuestionUrlSaga() {
 
 function* newImageUpload(action) {
   try {
+    yield put(isPushingNewImage());
     const response = yield call(DataApi.newImageUpload, action.payload);
     yield put(onNewImageSuccess(response));
   } catch (err) {

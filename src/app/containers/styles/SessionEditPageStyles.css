@@ -20,10 +20,13 @@
 }
 
 .session-edit-selected-image {
-    background-size: cover !important;
     margin: .5rem;
     width: calc(100% - 1rem);
+    height: 30rem;
     box-shadow: 0 0 5px 1px #3d464d;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .session-edit-header {
@@ -58,5 +61,13 @@
 
 .session-edit-center-container {
     min-height: min-content;
+}
+
+.session-edit-drag-here {
+    background: #eeeeee;
+    outline: dashed 2px #0D47A1;
+    text-align: center;
+    padding: 1rem;
+    margin: 1rem 0;
 }
 

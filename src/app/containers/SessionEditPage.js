@@ -155,13 +155,23 @@ class SessionEditPage extends React.Component {
 
             <Grid container gutter={0} className="session-edit-center-container" justify="center">
               <Grid item xs={12} md={8} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-                { questions.length &&
-                  <img
-                    src={src}
+                { questions.length > 0 &&
+                  <div
+                    //src={src}
+                    style={{
+                      backgroundImage: `url(${src}`
+                    }}
                     alt="Select a slide to edit"
                     className="session-edit-selected-image"
                   />
                 }
+
+                <div className="session-edit-drag-here">
+                  <span className="session-edit-subtitle" style={{cursor: 'pointer'}}>
+                    Click Here or Drag Images to Upload!
+                  </span>
+                </div>
+
                 <Divider style={{margin: '0 .5rem .3rem .5rem'}} />
                 <span className="session-edit-subtitle">
                   Click the arrows to move this question within the Session
@@ -180,9 +190,6 @@ class SessionEditPage extends React.Component {
                 <Divider style={{margin: '0 .5rem .3rem .5rem'}} />
               </Grid>
 
-              <Grid item xs={12} md={6} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-
-              </Grid>
             </Grid>
           </SessionEditForm>
           <Divider style={{margin: '0 .5rem .3rem .5rem'}} />
@@ -251,7 +258,6 @@ const mapDispatchToProps = dispatch => (
       })
     },
     onNewImage: (formData) => {
-      dispatch(isPushingNewImage());
       dispatch(onNewImage(formData));
     }
   }
