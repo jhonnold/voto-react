@@ -65,7 +65,7 @@ class QuestionContainer extends React.Component {
               );
             } else {
               return (
-                <div key={i} className="question-image-progress-loader">
+                <div className="question-image-progress-loader">
                   <CircularProgress size={60} />
                 </div>
               );

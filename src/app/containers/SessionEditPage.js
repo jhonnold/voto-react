@@ -139,7 +139,7 @@ class SessionEditPage extends React.Component {
     return (
       <div className="session-edit-page-wrapper">
         <QuestionImageDrop
-          onNewImage={(formData) => this.props.onNewImage(formData, questions.length)}
+          onNewImage={this.props.onNewImage}
         />
         <div className="session-edit-page-container">
           <div className="session-edit-header-wrapper">
@@ -248,12 +248,8 @@ const mapDispatchToProps = dispatch => (
         }
       })
     },
-    onNewImage: (formData, id) => {
-      dispatch({
-        type: 'QUESTION_ADDED',
-        payload: id,
-      });
-      dispatch(onNewImage(formData, id));
+    onNewImage: (formData) => {
+      dispatch(onNewImage(formData));
     }
   }
 );

@@ -6,7 +6,7 @@ const initialState = {
 
 export const selecterReducer = (state = initialState, action) => {
   const { type, payload } = action;
-  let newList, index;
+  let newList;
 
   switch (type) {
     case types.SESSION_QUESTIONS_RESOLVED:
@@ -40,21 +40,22 @@ export const selecterReducer = (state = initialState, action) => {
 
     case 'QUESTION_ADDED':
       newList = state.questions.slice();
-      newList.push({
-        id: payload.id,
-      });
+      newList.push(payload);
       return {...state, questions: newList};
 
     case types.QUESTION_URL_RESOLVED:
       newList = state.questions.slice();
-      index = newList.findIndex(q => q.imgFileName === payload.imgFileName);
+      const index = newList.findIndex(q => q.imgFileName === payload.imgFileName);
+      console.log(index);
       newList[index].url = payload.url;
       return {...state, questions: newList };
 
     case types.NEW_IMAGE_RESOLVED:
       newList = state.questions.slice();
-      index = newList.findIndex(q => q.id === payload.id);
-      newList[index] = payload.data;
+      newList.push({
+        ...payload.data,
+        id: newList.length,
+      });
       return {...state, questions: newList};
     default:
       return state;
