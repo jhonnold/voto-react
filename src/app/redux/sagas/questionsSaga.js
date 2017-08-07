@@ -43,7 +43,7 @@ export function* getQuestionUrlSaga() {
 function* newImageUpload(action) {
   try {
     const response = yield call(DataApi.newImageUpload, action.payload);
-    yield put(onNewImageSuccess(response));
+    yield put(onNewImageSuccess(response, action.payload.id));
   } catch (err) {
     yield put(onNewImageFail(err));
   }

@@ -46,17 +46,23 @@ export const getQuestionUrlFail = (err) => {
   }
 };
 
-export const onNewImage = (formData) => {
+export const onNewImage = (formData, id) => {
   return {
     type: types.NEW_IMAGE_REQUESTED,
-    payload: formData,
+    payload: {
+      ...formData,
+      id,
+    }
   }
 };
 
-export const onNewImageSuccess = (response) => {
+export const onNewImageSuccess = (response, id) => {
   return {
     type: types.NEW_IMAGE_RESOLVED,
-    payload: response,
+    payload: {
+      ...response,
+      id,
+    }
   }
 };
 
