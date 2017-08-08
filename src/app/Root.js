@@ -8,12 +8,16 @@ import {
   TransitionGroup,
   CSSTransition
 } from 'react-transition-group';
+import {
+  connect
+} from 'react-redux';
 import VotoNavWrapper from './containers/VotoNavWrapper';
 import SessionsRouter from './routers/SessionsRouter';
 import LoginPage from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
 
 import './styles/RootStyles.css';
+import { resize } from './redux/actions/containerActions';
 
 
 const Fade = (props) => (
@@ -53,16 +57,14 @@ class Root extends React.Component{
   }
 
   _handleResize() {
-    this.setState({
-      navShowing: (window.innerWidth >= 750),
-    })
+    this.props.handleResize(window.innerWidth);
   }
 
   render() {
     const { props } = this;
 
     return (
-      <VotoNavWrapper drawSideNav={this.state.navShowing}>
+      <VotoNavWrapper drawSideNav={this.props.containerWidth > 750}>
         <Route exact path="/" render={() => {
 
           if (props.user) {
@@ -82,7 +84,7 @@ class Root extends React.Component{
                 position: 'fixed',
                 top: '4rem',
                 bottom: 0,
-                width: (this.state.navShowing ? 'calc(100% - 256px'
+                width: (this.props.containerWidth > 750 ? 'calc(100% - 256px)'
                                               : '100%'),
                 display: 'flex',
                 flexDirection: 'column',
@@ -105,4 +107,18 @@ class Root extends React.Component{
   }
 };
 
-export default Root;
+const mapStateToProps = ({ container }) => (
+  {
+    containerWidth: container.width,
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    handleResize: (width) => {
+      dispatch(resize(width));
+    }
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Root);

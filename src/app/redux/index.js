@@ -22,6 +22,9 @@ import {
   questionsReducer
 } from './reducers/questionsReducer';
 import {
+  containerReducer
+} from './reducers/containerReducer'
+import {
   selecterReducer
 } from './reducers/selecterReducer';
 import createSagaMiddleware from 'redux-saga';
@@ -44,6 +47,7 @@ const reducer = combineReducers({
   questions: questionsReducer,
   selectedSession: selecterReducer,
   form: formReducer,
+  container: containerReducer,
 });
 
 export const store = createStore(

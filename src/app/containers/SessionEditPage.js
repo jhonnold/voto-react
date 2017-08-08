@@ -129,7 +129,10 @@ class SessionEditPage extends React.Component {
 
   render() {
     const { id } = this.state;
-    const { questions, session } = this.props;
+    const { questions, session, containerWidth } = this.props;
+
+    const width = (containerWidth > 750 ? containerWidth - 264 : containerWidth - 8);
+    const height = width * 9 / 16;
 
     let src;
     if (questions.length && this.state.id >= 0) {
@@ -159,7 +162,11 @@ class SessionEditPage extends React.Component {
                   <div
                     //src={src}
                     style={{
-                      backgroundImage: `url(${src}`
+                      backgroundImage: `url(${src})`,
+                      width,
+                      height,
+                      maxHeight: '27rem',
+                      maxWidth: 'calc(100% - 1rem)',
                     }}
                     alt="Select a slide to edit"
                     className="session-edit-selected-image"
@@ -195,7 +202,7 @@ class SessionEditPage extends React.Component {
           <Divider style={{margin: '0 .5rem .3rem .5rem'}} />
         </div>
 
-        <div className="session-edit-image-preview-container">
+        <div className="session-edit-image-preview-container" style={{ height: height / 2 }}>
           {/*TODO - GET THIS TO SCROLL WITHOUT SHIFT KEY*/}
           <Scrollbars
             autoHide={false}
@@ -214,7 +221,7 @@ class SessionEditPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ selectedSession }) => (
+const mapStateToProps = ({ selectedSession, container }) => (
   {
     session: selectedSession,
     questions: selectedSession.questions,
@@ -222,7 +229,8 @@ const mapStateToProps = ({ selectedSession }) => (
       sessionClassName: selectedSession.className,
       sessionTitle: selectedSession.title,
       sessionDescription: selectedSession.description,
-    }
+    },
+    containerWidth: container.width,
   }
 );
 
