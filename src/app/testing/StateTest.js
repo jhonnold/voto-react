@@ -32,7 +32,7 @@ export default class StateTest extends React.Component {
   }
 
   render() {
-    const { data, index } = this.state
+    const { data, index } = this.state;
 
     return (
       <div>

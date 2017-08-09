@@ -16,7 +16,7 @@ class QuestionImageDrop extends React.Component {
 
     }
 
-  }
+  };
 
   render() {
     return (

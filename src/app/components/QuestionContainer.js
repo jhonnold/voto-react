@@ -32,7 +32,7 @@ class QuestionContainer extends React.Component {
     const { question, index } = this.findQuestion(id);
     this.props.dispatchMoveQuestion(index, atIndex, question);
     //console.log('MOVED');
-  }
+  };
 
   findQuestion = (id) => {
     const { questions } = this.props;
@@ -42,7 +42,7 @@ class QuestionContainer extends React.Component {
       question,
       index: questions.indexOf(question),
     }
-  }
+  };
 
   render() {
     const {connectDropTarget, questions, pushingImageCount } = this.props;

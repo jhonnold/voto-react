@@ -65,7 +65,7 @@ class SessionEditPage extends React.Component {
   moveQuestion = (id, atIndex) => {
     const { question, index } = this.findQuestion(id);
     this.props.dispatchMoveQuestion(index, atIndex, question);
-  }
+  };
 
   findQuestion = (id) => {
     const { questions } = this.props;
@@ -75,7 +75,7 @@ class SessionEditPage extends React.Component {
       question,
       index: questions.indexOf(question),
     }
-  }
+  };
 
   _onImageSelect = (id) => {
     this.setState({
@@ -90,7 +90,7 @@ class SessionEditPage extends React.Component {
     if (index > 0) {
       this.props.dispatchMoveQuestion(index, index - 1, question);
     }
-  }
+  };
 
   _onRightArrow = () => {
     const { questions } = this.props;
@@ -100,7 +100,7 @@ class SessionEditPage extends React.Component {
     if (index < questions.length - 1) {
       this.props.dispatchMoveQuestion(index, index + 1, question);
     }
-  }
+  };
 
   _renderThumb = ({style, ...props}) => {
     const thumbStyle = {
@@ -121,7 +121,7 @@ class SessionEditPage extends React.Component {
 
   _handleSubmit = (values) => {
     this.props.submitForm(values, this.props.session);
-  }
+  };
 
   _handleCancel = () => {
     this.props.goBack();

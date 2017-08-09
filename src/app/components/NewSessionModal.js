@@ -26,7 +26,7 @@ export default class NewSessionModal extends React.Component {
     this.setState({
       [field]: value,
     })
-  }
+  };
 
   render() {
     const {

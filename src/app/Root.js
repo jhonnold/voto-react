@@ -36,7 +36,7 @@ const Blank = props => {
       <span>Blank</span>
     </div>
   );
-}
+};
 
 class Root extends React.Component{
 
@@ -105,7 +105,7 @@ class Root extends React.Component{
       </VotoNavWrapper>
     );
   }
-};
+}
 
 const mapStateToProps = ({ container }) => (
   {

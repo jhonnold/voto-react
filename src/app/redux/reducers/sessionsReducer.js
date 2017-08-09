@@ -20,4 +20,4 @@ export const sessionsReducer = (state = [], action) => {
     default:
       return state.slice();
   }
-}
+};

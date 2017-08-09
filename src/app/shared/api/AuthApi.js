@@ -7,4 +7,4 @@ export const AuthApi = {
   createUser: (params) => {
     return axios.post('/api/database/createUser', params);
   },
-}
+};

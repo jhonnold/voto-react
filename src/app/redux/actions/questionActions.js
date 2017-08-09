@@ -107,4 +107,4 @@ export const deleteImageFail = (err) => {
     type: types.DELETE_QUESTION_REJECTED,
     payload: err
   }
-}
+};

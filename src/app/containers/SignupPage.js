@@ -30,7 +30,7 @@ class SignupPage extends React.Component {
     this.setState({
       [field]: value,
     })
-  }
+  };
 
   render() {
     return (

@@ -6,7 +6,7 @@ export const containerReducer = (state = {}, action) => {
 
   switch (type) {
     case types.CONTAINER_RESIZE:
-      return {...state, width: payload}
+      return {...state, width: payload};
     default:
       return state;
   }
