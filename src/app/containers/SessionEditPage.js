@@ -142,9 +142,6 @@ class SessionEditPage extends React.Component {
 
     return (
       <div className="session-edit-page-wrapper">
-        <QuestionImageDrop
-          onNewImage={this.props.onNewImage}
-        />
         <div className="session-edit-page-container">
           <div className="session-edit-header-wrapper">
             <span className="session-edit-header">{session.className}</span>
@@ -173,11 +170,9 @@ class SessionEditPage extends React.Component {
                   />
                 }
 
-                <div className="session-edit-drag-here">
-                  <span className="session-edit-subtitle" style={{cursor: 'pointer'}}>
-                    Click Here or Drag Images to Upload!
-                  </span>
-                </div>
+                <QuestionImageDrop
+                  onNewImage={this.props.onNewImage}
+                />
 
                 <Divider style={{margin: '0 .5rem .3rem .5rem'}} />
                 <span className="session-edit-subtitle">

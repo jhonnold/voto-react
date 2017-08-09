@@ -5,12 +5,13 @@ import HTML5Backend, {
 import {
   DragDropContext
 } from 'react-dnd';
+import DropZone from 'react-dropzone';
+import QuestionImageDropTarget from './QuestionImageDropTarget';
+import './styles/QuestionImageDropStyles.css';
 
 class QuestionImageDrop extends React.Component {
 
-  _photoSelected = (e) => {
-
-    const { files } = e.target;
+  _photoSelected = (files) => {
 
     for (let i = 0; i < files.length; i++) {
 
@@ -26,14 +27,33 @@ class QuestionImageDrop extends React.Component {
 
   render() {
     return (
-      <div>
-        <input
-          type="file"
-          ref="imgUploader"
-          onChange={this._photoSelected}
-          multiple="multiple"
-        />
-      </div>
+      <DropZone
+        className="image-drag-here"
+        onDrop={this._photoSelected}
+        style={{cursor: 'pointer'}}
+      >
+        {({ isDragActive }) => {
+          if (!isDragActive) {
+            return (
+              <span
+                className="image-drag-here-text"
+              >
+                Click Here or Drag Images to Upload!
+              </span>
+            );
+          } else {
+            return (
+              <span
+                className="image-drag-here-text"
+                style={{margin: '5rem 0'}}
+                onClick={this.props.onClick}
+              >
+                Drag Here!
+              </span>
+            )
+          }
+        }}
+      </DropZone>
     )
   }
 }

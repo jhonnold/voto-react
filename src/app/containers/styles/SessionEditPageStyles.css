@@ -61,13 +61,3 @@
     min-height: min-content;
 }
 
-.session-edit-drag-here {
-    background: #eeeeee;
-    outline: dashed 2px #0D47A1;
-    text-align: center;
-    padding: 1rem 0;
-    margin: 1rem 0;
-    align-self: center;
-    width: 95%;
-}
-
