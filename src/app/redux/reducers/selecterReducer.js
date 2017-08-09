@@ -7,7 +7,7 @@ const initialState = {
 
 export const selecterReducer = (state = initialState, action) => {
   const { type, payload } = action;
-  let newList, pushingCount;
+  let newList, pushingCount, index;
 
   switch (type) {
     case types.SESSION_QUESTIONS_RESOLVED:
@@ -46,8 +46,7 @@ export const selecterReducer = (state = initialState, action) => {
 
     case types.QUESTION_URL_RESOLVED:
       newList = state.questions.slice();
-      const index = newList.findIndex(q => q.imgFileName === payload.imgFileName);
-      console.log(index);
+      index = newList.findIndex(q => q.imgFileName === payload.imgFileName);
       newList[index].url = payload.url;
       return {...state, questions: newList };
 
@@ -63,6 +62,13 @@ export const selecterReducer = (state = initialState, action) => {
         id: newList.length,
       });
       return {...state, pushingImageCount: pushingCount, questions: newList};
+
+    case types.DELETE_QUESTION_RESOLVED:
+      newList = state.questions.slice();
+      index = newList.findIndex(q => q.id === payload.id);
+      newList.splice(index, 1);
+      return {...state, questions: newList};
+
     default:
       return state;
 

@@ -24,5 +24,8 @@ export const DataApi = {
   },
   newImageUpload: (params) => {
     return axios.post('/api/sessions/uploadImageFile', params);
+  },
+  deleteQuestion: (params) => {
+    return axios.delete(`/api/sessions/deleteQuestion`, params);
   }
 };

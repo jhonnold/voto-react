@@ -59,8 +59,7 @@ class QuestionContainer extends React.Component {
     return connectDropTarget(
       <div className="question-container">
         {
-          questions.map((question, i) => {
-
+          questions.map((question) => {
             if (question.url) {
               return (
                 <Question
@@ -72,6 +71,8 @@ class QuestionContainer extends React.Component {
                   onClick={this.props.onSelect}
                 />
               );
+            } else {
+              return null;
             }
           })}
         {loaders}

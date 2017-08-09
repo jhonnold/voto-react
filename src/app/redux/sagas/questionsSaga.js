@@ -14,7 +14,7 @@ import {
   getQuestionUrlFail,
   onNewImageSuccess,
   onNewImageFail,
-  isPushingNewImage,
+  isPushingNewImage, deleteImageSuccess, deleteImageFail,
 } from '../actions/questionActions';
 
 function* fetchQuestions(action) {
@@ -55,4 +55,17 @@ function* newImageUpload(action) {
 
 export function* newImageUploadSaga() {
   yield takeEvery(types.NEW_IMAGE_REQUESTED, newImageUpload);
+}
+
+function* deleteQuestion(action) {
+  try {
+    const response = yield call(DataApi.deleteQuestion, action.payload);
+    yield put(deleteImageSuccess(response, action.payload.id));
+  } catch (err) {
+    yield put(deleteImageFail(err));
+  }
+}
+
+export function* deleteQuestionSaga() {
+  yield takeEvery(types.DELETE_QUESTION_REQUESTED, deleteQuestion);
 }

@@ -72,3 +72,39 @@ export const isPushingNewImage = () => {
     type: types.IS_PUSHING_NEW_IMAGE,
   }
 };
+
+export const deleteImage = (question) => {
+  let payload = {
+    imgFileName: question.imgFileName,
+    id: question.id,
+  };
+
+  if (question.questionId) {
+    payload = {
+      ...payload,
+      questionId: question.questionId,
+    }
+  }
+
+  return {
+    type: types.DELETE_QUESTION_REQUESTED,
+    payload,
+  }
+};
+
+export const deleteImageSuccess = (response, id) => {
+  return {
+    type: types.DELETE_QUESTION_RESOLVED,
+    payload: {
+      response,
+      id,
+    }
+  }
+};
+
+export const deleteImageFail = (err) => {
+  return {
+    type: types.DELETE_QUESTION_REJECTED,
+    payload: err
+  }
+}

@@ -15,7 +15,7 @@ import {
 import {
   getSessionQuestions,
   onNewImage,
-  isPushingNewImage,
+  deleteImage,
 } from '../redux/actions/questionActions';
 import {
   submitSession
@@ -127,6 +127,12 @@ class SessionEditPage extends React.Component {
     this.props.goBack();
   };
 
+  _onDelete = () => {
+    const question = this.props.questions.filter(q => q.id === this.state.id)[0];
+
+    this.props.deleteQuestion(question);
+  };
+
   render() {
     const { id } = this.state;
     const { questions, session, containerWidth } = this.props;
@@ -182,7 +188,7 @@ class SessionEditPage extends React.Component {
                   <IconButton onClick={this._onLeftArrow}>
                     <ArrowBack />
                   </IconButton>
-                  <IconButton>
+                  <IconButton onClick={this._onDelete}>
                     <DeleteIcon />
                   </IconButton>
                   <IconButton onClick={this._onRightArrow}>
@@ -250,18 +256,11 @@ const mapDispatchToProps = dispatch => (
     submitForm: (values, session) => {
       dispatch(submitSession(values, session))
     },
-    addQuestion: (file, sessionId, id,) => {
-      dispatch({
-        type: 'QUESTION_ADDED',
-        payload: {
-          sessionId: sessionId,
-          uri: file,
-          id,
-        }
-      })
-    },
     onNewImage: (formData) => {
       dispatch(onNewImage(formData));
+    },
+    deleteQuestion: (question) => {
+      dispatch(deleteImage(question));
     }
   }
 );

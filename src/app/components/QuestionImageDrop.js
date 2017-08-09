@@ -1,12 +1,5 @@
 import React from 'react';
-import HTML5Backend, {
-  NativeTypes
-} from 'react-dnd-html5-backend';
-import {
-  DragDropContext
-} from 'react-dnd';
 import DropZone from 'react-dropzone';
-import QuestionImageDropTarget from './QuestionImageDropTarget';
 import './styles/QuestionImageDropStyles.css';
 
 class QuestionImageDrop extends React.Component {
