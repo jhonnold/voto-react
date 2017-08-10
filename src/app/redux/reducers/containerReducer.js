@@ -1,6 +1,6 @@
 import * as types from '../actions/types';
 
-export const containerReducer = (state = {}, action) => {
+const containerReducer = (state = {}, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -10,3 +10,5 @@ export const containerReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export default containerReducer;

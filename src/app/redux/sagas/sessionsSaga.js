@@ -4,9 +4,7 @@ import {
   takeEvery,
 } from 'redux-saga/effects';
 import * as types from '../actions/types';
-import {
-  DataApi,
-} from '../../shared/api/DataApi';
+import DataApi from '../../shared/api/DataApi';
 import {
   getSessionsSuccess,
   getSessionsFail,

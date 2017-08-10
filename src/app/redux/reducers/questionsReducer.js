@@ -1,6 +1,6 @@
 // import * as types from '../actions/types';
 
-export const questionsReducer = (state = [], action) => {
+const questionsReducer = (state = [], action) => {
   const { type } = action;
   // let newState = state.slice();
 
@@ -22,3 +22,5 @@ export const questionsReducer = (state = [], action) => {
       return state;
   }
 };
+
+export default questionsReducer;

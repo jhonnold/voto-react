@@ -1,6 +1,6 @@
+/* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
 import {
   Provider,
 } from 'react-redux';
@@ -11,13 +11,14 @@ import {
   Route,
 } from 'react-router';
 import {
+  MuiThemeProvider,
+} from 'material-ui/styles';
+import {
   history,
   store,
 } from './app/redux';
-import {
-  MuiThemeProvider,
-} from 'material-ui/styles';
 import Root from './app/Root';
+import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
 const App = () => (

@@ -1,19 +1,18 @@
 import {
-  store,
-} from '../index';
-import {
   push,
 } from 'react-router-redux';
 import {
+  store,
+} from '../index';
+import {
   setSelectedSession,
-} from '../actions/sessionsActions.js';
+} from '../actions/sessionsActions';
 import {
   getQuestionUrl,
 } from '../actions/questionActions';
 import * as types from '../actions/types';
 
-
-export const sagaMonitor = {
+const sagaMonitor = {
   effectResolved: (effectId, result) => {
     if (result.type === types.LOGIN_USER_RESOLVED) {
       store.dispatch(push('/dashboard'));
@@ -37,3 +36,5 @@ export const sagaMonitor = {
     }
   },
 };
+
+export default sagaMonitor;

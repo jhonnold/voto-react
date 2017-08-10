@@ -4,9 +4,7 @@ import {
   takeEvery,
 } from 'redux-saga/effects';
 import * as types from '../actions/types';
-import {
-  AuthApi,
-} from '../../shared/api/AuthApi';
+import AuthApi from '../../shared/api/AuthApi';
 import {
   signupSuccess,
   signupFail,
@@ -21,6 +19,6 @@ function* signupUser(action) {
   }
 }
 
-export function* signupUserSaga() {
+export default function* signupUserSaga() {
   yield takeEvery(types.SIGNUP_USER_REQUESTED, signupUser);
 }

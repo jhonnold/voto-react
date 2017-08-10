@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Route,
   Switch,
@@ -11,13 +12,13 @@ import {
 import {
   connect,
 } from 'react-redux';
+import resize from './redux/actions/containerActions';
 import VotoNavWrapper from './containers/VotoNavWrapper';
 import SessionsRouter from './routers/SessionsRouter';
 import LoginPage from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
 
 import './styles/RootStyles.css';
-import { resize } from './redux/actions/containerActions';
 
 
 const Fade = props => (
@@ -30,7 +31,7 @@ const Fade = props => (
   />
 );
 
-const Blank = props => (
+const Blank = () => (
   <div>
     <span>Blank</span>
   </div>
@@ -42,18 +43,20 @@ class Root extends React.Component {
     this.state = {
       navShowing: true,
     };
+
+    this.handleResize = this.handleResize.bind(this);
   }
 
   componentDidMount() {
-    this._handleResize();
-    window.addEventListener('resize', this._handleResize.bind(this));
+    this.handleResize();
+    window.addEventListener('resize', this.handleResize);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this._handleResize.bind(this));
+    window.removeEventListener('resize', this.handleResize);
   }
 
-  _handleResize() {
+  handleResize() {
     this.props.handleResize(window.innerWidth);
   }
 
@@ -123,5 +126,10 @@ const mapDispatchToProps = dispatch => (
     },
   }
 );
+
+Root.propTypes = {
+  containerWidth: PropTypes.number,
+  handleResize: PropTypes.func,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Root);

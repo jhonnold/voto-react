@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const DataApi = {
-  fetchSessions: params => axios.get('/api/sessions'),
+const DataApi = {
+  fetchSessions: () => axios.get('/api/sessions'),
   createSession: params => axios.post('/api/sessions/saveNewSession', params),
   updateSession: (params) => {
     const { questions, ...rest } = params;
@@ -14,3 +14,5 @@ export const DataApi = {
   newImageUpload: params => axios.post('/api/sessions/uploadImageFile', params),
   deleteQuestion: params => axios.delete('/api/sessions/deleteQuestion', params),
 };
+
+export default DataApi;
