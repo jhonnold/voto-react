@@ -5,4 +5,4 @@ notifications:
   email:
   - jayhonnold@gmail.com
 script:
-- npm start
+- npm run build

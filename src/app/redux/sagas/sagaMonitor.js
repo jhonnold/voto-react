@@ -3,7 +3,6 @@ import {
 } from '../index';
 import {
   push,
-  goBack
 } from 'react-router-redux';
 import {
   setSelectedSession,
@@ -27,8 +26,8 @@ export const sagaMonitor = {
       store.dispatch(
         push(`/sessions/${result.payload.data.sessionId}/edit`)
       );
-    } else if (result.type === types.SUBMIT_SESSION_RESOLVED) {
-      //store.dispatch(goBack());
+    // } else if (result.type === types.SUBMIT_SESSION_RESOLVED) {
+    //    store.dispatch(goBack());
     } else if (result.type === types.SESSION_QUESTIONS_RESOLVED) {
       const { data } = result.payload;
       data.map((question) => {
