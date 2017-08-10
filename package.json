@@ -6,12 +6,12 @@
     "axios": "^0.16.2",
     "chart.js": "^2.6.0",
     "eslint-plugin-flowtype": "^2.35.0",
-    "eslint-plugin-react": "^7.1.0",
     "history": "^4.6.3",
     "lodash": "^4.17.4",
     "material-ui": "^1.0.0-alpha.22",
     "material-ui-icons": "^1.0.0-alpha.19",
     "moment": "^2.18.1",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-chartjs-2": "^2.5.5",
     "react-custom-scrollbars": "^4.1.2",
@@ -38,13 +38,19 @@
     "typeface-roboto": "0.0.31"
   },
   "devDependencies": {
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.2.0",
     "redux-logger": "^3.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build": "npm install && npm run lintnofix && react-scripts build",
+    "lint": "eslint . --ext .js,.jsx --fix",
+    "lintnofix": "eslint . --ext .js,.jsx"
   },
   "proxy": "http://localhost:8080"
 }

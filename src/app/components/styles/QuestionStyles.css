@@ -1,9 +1,13 @@
-.question-slide-preview {
+.question-slide-preview-wrapper {
     height: calc(100% - 1rem);
     margin: 0 0.5rem;
     cursor: pointer;
 }
 
-.question-slide-preview:first-of-type {
+.question-slide-preview-wrapper:first-of-type {
     margin-left: 0;
+}
+
+.question-slide-preview {
+    height: 100%;
 }

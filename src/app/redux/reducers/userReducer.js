@@ -5,14 +5,14 @@ export const userReducer = (state = {}, action) => {
 
   switch (type) {
     case types.LOGIN_USER_RESOLVED:
-      return {...state};
+      return { ...state };
     case types.LOGIN_USER_REJECTED:
-      return {...state};
+      return { ...state };
     case types.SIGNUP_USER_RESOLVED:
-      return {...state};
+      return { ...state };
     case types.SIGNUP_USER_REJECTED:
-      return {...state};
+      return { ...state };
     default:
-      return {...state};
+      return { ...state };
   }
 };

@@ -1,7 +1,7 @@
-//import * as types from '../actions/types';
+// import * as types from '../actions/types';
 
 export const questionsReducer = (state = [], action) => {
-   const { type } = action;
+  const { type } = action;
   // let newState = state.slice();
 
   switch (type) {

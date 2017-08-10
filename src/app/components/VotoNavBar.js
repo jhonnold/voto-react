@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   AppBar,
   Toolbar,
@@ -12,34 +13,31 @@ import VotoNavDrawer from './VotoNavDrawer';
 import './styles/VotoNavBarStyles.css';
 
 export default class VotoNavBar extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       open: false,
-      drawNavHeader: this.props.drawNavHeader,
     };
+
+    this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
+    this.handleDrawerClose = this.handleDrawerClose.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(nextProps);
-  }
-
-  _handleDrawerOpen() {
+  handleDrawerOpen() {
     this.setState({
       open: true,
     });
   }
 
-  _handleDrawerClose() {
+  handleDrawerClose() {
     this.setState({
       open: false,
-    })
+    });
   }
 
   render() {
-    const { drawNavHeader } = this.state;
+    const { drawNavHeader } = this.props;
 
     return (
       <div className="nav-bar-container">
@@ -47,7 +45,7 @@ export default class VotoNavBar extends React.Component {
           position="static"
           className="nav-bar-app"
         >
-          <Toolbar className="no-padding" style={{height: '4rem'}}>
+          <Toolbar className="no-padding" style={{ height: '4rem' }}>
             {drawNavHeader &&
               <div className="nav-bar-side-nav-header">
                 <span className="nav-bar-side-nav-header-text">
@@ -56,7 +54,7 @@ export default class VotoNavBar extends React.Component {
               </div>
             }
             {!drawNavHeader &&
-              <IconButton onClick={this._handleDrawerOpen.bind(this)}>
+              <IconButton onClick={this.handleDrawerOpen}>
                 <MenuIcon />
               </IconButton>
             }
@@ -64,10 +62,14 @@ export default class VotoNavBar extends React.Component {
         </AppBar>
         <VotoNavDrawer
           open={this.state.open}
-          onRequestClose={this._handleDrawerClose.bind(this)}
-          onClick={this._handleDrawerClose.bind(this)}
+          onRequestClose={this.handleDrawerClose}
+          onClick={this.handleDrawerClose}
         />
       </div>
     );
   }
 }
+
+VotoNavBar.propTypes = {
+  drawNavHeader: PropTypes.bool.isRequired,
+};

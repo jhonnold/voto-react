@@ -2,7 +2,7 @@ import * as types from '../actions/types';
 
 export const sessionsReducer = (state = [], action) => {
   const { type, payload } = action;
-  let newState = state.slice();
+  const newState = state.slice();
 
   switch (type) {
     case types.SESSIONS_RESOLVED:

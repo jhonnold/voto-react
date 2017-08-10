@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import {
   Card,
@@ -13,38 +14,42 @@ import {
   Delete,
   Edit,
   Slideshow,
-  Favorite
+  Favorite,
 } from 'material-ui-icons';
 
 import slide from '../images/sampleslide.png';
 
 import './styles/SessionCardStyles.css';
 
-const SessionCardSlide = (props) => (
-  <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
-    <img src={slide} className="session-card-slide" alt="session-slide" />
-  </Grid>
-);
+function SessionCardSlide() {
+  return (
+    <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
+      <img src={slide} className="session-card-slide" alt="session-slide" />
+    </Grid>
+  );
+}
 
 export default class SessionCard extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       expanded: false,
-    }
+    };
+
+    this.handleExpandClick = this.handleExpandClick.bind(this);
   }
 
-  _handleExpandClick = () => {
+  handleExpandClick() {
     this.setState({
       expanded: !this.state.expanded,
-    })
-  };
+    });
+  }
 
   render() {
     const { expanded } = this.state;
-    const { title, timeStamp, className } = this.props.data;
+    const { onEditClick, data } = this.props;
+    const { title, timeStamp, className } = data;
 
     return (
       <Grid item xs={12} lg={6}>
@@ -63,15 +68,15 @@ export default class SessionCard extends React.Component {
                 </span>
               </div>
             </div>
-            <div style={{flex: 1}} />
+            <div style={{ flex: 1 }} />
             <div className="session-card-actions-wrapper">
               <IconButton>
                 <Slideshow />
               </IconButton>
             </div>
             <IconButton
-              className={expanded ? "rotate180" : ''}
-              onClick={this._handleExpandClick}
+              className={expanded ? 'rotate180' : ''}
+              onClick={this.handleExpandClick}
             >
               <ExpandMore />
             </IconButton>
@@ -82,7 +87,7 @@ export default class SessionCard extends React.Component {
             unmountOnExit
             className="test"
           >
-            <Divider style={{margin: '.5rem 0'}} />
+            <Divider style={{ margin: '.5rem 0' }} />
             <div className="session-card-image-slider">
               <Grid container gutter={8} wrap="nowrap">
                 <SessionCardSlide />
@@ -95,14 +100,14 @@ export default class SessionCard extends React.Component {
                 <SessionCardSlide />
               </Grid>
             </div>
-            <Divider style={{margin: '.5rem 0'}} />
+            <Divider style={{ margin: '.5rem 0' }} />
             <div className="session-card-buttons-wrapper">
               <div className="session-card-buttons-container">
                 <IconButton>
                   <Favorite />
                 </IconButton>
                 <IconButton
-                  onClick={() => this.props.onEditClick(this.props.data)}
+                  onClick={() => onEditClick(data)}
                 >
                   <Edit />
                 </IconButton>
@@ -112,7 +117,7 @@ export default class SessionCard extends React.Component {
               </div>
             </div>
           </Collapse>
-          <Divider style={{margin: '.5rem 0'}} />
+          <Divider style={{ margin: '.5rem 0' }} />
           <div className="session-card-subtitle-caption">
             <div className="session-card-description-wrapper">
               <span className="session-card-description-text">
@@ -128,3 +133,12 @@ export default class SessionCard extends React.Component {
     );
   }
 }
+
+SessionCard.propTypes = {
+  onEditClick: PropTypes.func,
+  data: PropTypes.shape({
+    title: PropTypes.string,
+    timeStamp: PropTypes.number,
+    className: PropTypes.string,
+  }),
+};

@@ -1,5 +1,5 @@
 import {
-  store
+  store,
 } from '../index';
 import {
   push,
@@ -8,7 +8,7 @@ import {
   setSelectedSession,
 } from '../actions/sessionsActions.js';
 import {
-  getQuestionUrl
+  getQuestionUrl,
 } from '../actions/questionActions';
 import * as types from '../actions/types';
 
@@ -16,15 +16,15 @@ import * as types from '../actions/types';
 export const sagaMonitor = {
   effectResolved: (effectId, result) => {
     if (result.type === types.LOGIN_USER_RESOLVED) {
-      store.dispatch(push(`/dashboard`));
+      store.dispatch(push('/dashboard'));
     } else if (result.type === types.SIGNUP_USER_RESOLVED) {
-      store.dispatch(push(`/dashboard`));
+      store.dispatch(push('/dashboard'));
     } else if (result.type === types.NEW_SESSION_RESOLVED) {
       store.dispatch(
-        setSelectedSession(result.payload.data)
+        setSelectedSession(result.payload.data),
       );
       store.dispatch(
-        push(`/sessions/${result.payload.data.sessionId}/edit`)
+        push(`/sessions/${result.payload.data.sessionId}/edit`),
       );
     // } else if (result.type === types.SUBMIT_SESSION_RESOLVED) {
     //    store.dispatch(goBack());
@@ -32,7 +32,8 @@ export const sagaMonitor = {
       const { data } = result.payload;
       data.map((question) => {
         store.dispatch(getQuestionUrl(question.imgFileName));
-      })
+        return 0;
+      });
     }
-  }
+  },
 };

@@ -2,7 +2,7 @@ import createHistory from 'history/createBrowserHistory';
 import {
   createStore,
   combineReducers,
-  applyMiddleware
+  applyMiddleware,
 } from 'redux';
 import {
   routerReducer,
@@ -10,27 +10,27 @@ import {
 } from 'react-router-redux';
 import logger from 'redux-logger';
 import {
-  reducer as formReducer
+  reducer as formReducer,
 } from 'redux-form';
 import {
-  userReducer
+  userReducer,
 } from './reducers/userReducer';
 import {
-  sessionsReducer
+  sessionsReducer,
 } from './reducers/sessionsReducer';
 import {
-  questionsReducer
+  questionsReducer,
 } from './reducers/questionsReducer';
 import {
-  containerReducer
-} from './reducers/containerReducer'
+  containerReducer,
+} from './reducers/containerReducer';
 import {
-  selecterReducer
+  selecterReducer,
 } from './reducers/selecterReducer';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/index';
 import {
-sagaMonitor
+  sagaMonitor,
 } from './sagas/sagaMonitor';
 
 export const history = createHistory();

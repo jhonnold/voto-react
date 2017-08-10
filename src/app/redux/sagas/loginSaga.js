@@ -1,11 +1,11 @@
 import {
   call,
   put,
-  takeEvery ,
+  takeEvery,
 } from 'redux-saga/effects';
 import * as types from '../actions/types';
 import {
-  AuthApi
+  AuthApi,
 } from '../../shared/api/AuthApi';
 import {
   loginSuccess,

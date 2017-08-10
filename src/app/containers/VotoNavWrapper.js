@@ -6,19 +6,18 @@ import './styles/VotoNavWrapperStyles.css';
 
 
 export default class VotoNavWrapper extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       drawSideNav: this.props.drawSideNav,
-    }
+    };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      ...nextProps
-    })
+      ...nextProps,
+    });
   }
 
   render() {

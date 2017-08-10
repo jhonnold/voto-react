@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import {
-  Provider
+  Provider,
 } from 'react-redux';
 import {
   ConnectedRouter,

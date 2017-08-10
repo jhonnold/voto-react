@@ -1,8 +1,8 @@
 import {
-  loginUserSaga
+  loginUserSaga,
 } from './loginSaga';
 import {
-  signupUserSaga
+  signupUserSaga,
 } from './signupSaga';
 import {
   fetchSessionsSaga,
@@ -13,10 +13,10 @@ import {
   deleteQuestionSaga,
   fetchQuestionsSaga,
   getQuestionUrlSaga,
-  newImageUploadSaga
+  newImageUploadSaga,
 } from './questionsSaga';
 import {
-fork
+  fork,
 } from 'redux-saga/effects';
 
 export default function* rootSaga() {
@@ -30,5 +30,5 @@ export default function* rootSaga() {
     fork(getQuestionUrlSaga),
     fork(newImageUploadSaga),
     fork(deleteQuestionSaga),
-  ]
+  ];
 }

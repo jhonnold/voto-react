@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  connect
+  connect,
 } from 'react-redux';
 import {
   push,
@@ -23,15 +24,15 @@ import {
 
 import './styles/VotoSideNavStyles.css';
 
-const VotoSideNav = (props) => {
+function VotoSideNav(props) {
   return (
     <div className="side-nav-container">
       <SideNav
         highlightColor="#fff"
         highlightBgColor="#31383e"
         defaultSelected={props.location.pathname.substring(1)}
-        onItemSelection={(i, p) =>
-          props.dispatch(push(`/${i}`))
+        onItemSelection={i =>
+          props.navigateTo(`/${i}`)
         }
       >
         <Nav id="dashboard">
@@ -56,13 +57,20 @@ const VotoSideNav = (props) => {
         </Nav>
       </SideNav>
     </div>
-  )
-};
+  );
+}
 
-const mapDispatchToProps = dispatch => {
-  return {
-    dispatch
-  }
+const mapDispatchToProps = dispatch => ({
+  navigateTo: (route) => {
+    dispatch(push(route));
+  },
+});
+
+VotoSideNav.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }).isRequired,
+  navigateTo: PropTypes.func.isRequired,
 };
 
 export default withRouter(connect(null, mapDispatchToProps)(VotoSideNav));

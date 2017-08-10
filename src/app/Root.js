@@ -6,10 +6,10 @@ import {
 } from 'react-router';
 import {
   TransitionGroup,
-  CSSTransition
+  CSSTransition,
 } from 'react-transition-group';
 import {
-  connect
+  connect,
 } from 'react-redux';
 import VotoNavWrapper from './containers/VotoNavWrapper';
 import SessionsRouter from './routers/SessionsRouter';
@@ -20,31 +20,28 @@ import './styles/RootStyles.css';
 import { resize } from './redux/actions/containerActions';
 
 
-const Fade = (props) => (
+const Fade = props => (
   <CSSTransition
     {...props}
     classNames="fade"
     timeout={450}
-    mountOnEnter={true}
-    unmountOnExit={true}
+    mountOnEnter
+    unmountOnExit
   />
 );
 
-const Blank = props => {
-  return (
-    <div>
-      <span>Blank</span>
-    </div>
-  );
-};
+const Blank = props => (
+  <div>
+    <span>Blank</span>
+  </div>
+);
 
-class Root extends React.Component{
-
+class Root extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       navShowing: true,
-    }
+    };
   }
 
   componentDidMount() {
@@ -65,18 +62,20 @@ class Root extends React.Component{
 
     return (
       <VotoNavWrapper drawSideNav={this.props.containerWidth > 750}>
-        <Route exact path="/" render={() => {
-
-          if (props.user) {
+        <Route
+          exact
+          path="/"
+          render={() => {
+            if (props.user) {
+              return (
+                <Redirect to="/dashboard" />
+              );
+            }
             return (
-              <Redirect to="/dashboard"/>
+              <Redirect to="/login" />
             );
-          } else {
-            return (
-              <Redirect to="/login"/>
-            );
-          }
-        }}/>
+          }}
+        />
         <TransitionGroup>
           <Fade key={props.location.pathname}>
             <section
@@ -85,19 +84,23 @@ class Root extends React.Component{
                 top: '4rem',
                 bottom: 0,
                 width: (this.props.containerWidth > 750 ? 'calc(100% - 256px)'
-                                              : '100%'),
+                  : '100%'),
                 display: 'flex',
                 flexDirection: 'column',
               }}
             >
-              <Route exact path="/" render={() => (
-                <Redirect to="/login" />
-              )} />
+              <Route
+                exact
+                path="/"
+                render={() => (
+                  <Redirect to="/login" />
+                )}
+              />
               <Switch location={props.location}>
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/signup" component={SignupPage} />
                 <Route path="/sessions" component={SessionsRouter} />
-                <Route component={Blank}/>
+                <Route component={Blank} />
               </Switch>
             </section>
           </Fade>
@@ -117,7 +120,7 @@ const mapDispatchToProps = dispatch => (
   {
     handleResize: (width) => {
       dispatch(resize(width));
-    }
+    },
   }
 );
 

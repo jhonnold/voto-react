@@ -10,25 +10,24 @@ import {
 import {
   Grid,
   Card,
-  IconButton
+  IconButton,
 } from 'material-ui';
 import {
-  Image
+  Image,
 } from 'material-ui-icons';
 
 class IconTest extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       width: 0,
-    }
+    };
   }
 
   _updateWidth() {
     this.setState({
       width: window.innerWidth,
-    })
+    });
   }
 
   componentDidMount() {
@@ -42,149 +41,149 @@ class IconTest extends React.Component {
 
   render() {
     return (
-    <Grid
-      container
-    >
-    <div style={{display: 'flex', width: this.state.width}}>
-    <div style={{display: 'flex', flex: 1, overflowX: 'auto', flexDirection: 'row'}}>
-      <Grid item xs={6} sm={4} md={3}>
-        <Card>
-          <CardActions>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-          </CardActions>
-        </Card>
+      <Grid
+        container
+      >
+        <div style={{ display: 'flex', width: this.state.width }}>
+          <div style={{ display: 'flex', flex: 1, overflowX: 'auto', flexDirection: 'row' }}>
+            <Grid item xs={6} sm={4} md={3}>
+              <Card>
+                <CardActions>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={6} sm={4} md={3}>
+              <Card>
+                <CardActions>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={6} sm={4} md={3}>
+              <Card>
+                <CardActions>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={6} sm={4} md={3}>
+              <Card>
+                <CardActions>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={6} sm={4} md={3}>
+              <Card>
+                <CardActions>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={6} sm={4} md={3}>
+              <Card>
+                <CardActions>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={6} sm={4} md={3}>
+              <Card>
+                <CardActions>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={6} sm={4} md={3}>
+              <Card>
+                <CardActions>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={6} sm={4} md={3}>
+              <Card>
+                <CardActions>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                  <IconButton>
+                    <Image />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+          </div>
+        </div>
       </Grid>
-      <Grid item xs={6} sm={4} md={3}>
-        <Card>
-          <CardActions>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-          </CardActions>
-        </Card>
-      </Grid>
-      <Grid item xs={6} sm={4} md={3}>
-        <Card>
-          <CardActions>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-          </CardActions>
-        </Card>
-      </Grid>
-      <Grid item xs={6} sm={4} md={3}>
-        <Card>
-          <CardActions>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-          </CardActions>
-        </Card>
-      </Grid>
-      <Grid item xs={6} sm={4} md={3}>
-        <Card>
-          <CardActions>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-          </CardActions>
-        </Card>
-      </Grid>
-      <Grid item xs={6} sm={4} md={3}>
-        <Card>
-          <CardActions>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-          </CardActions>
-        </Card>
-      </Grid>
-      <Grid item xs={6} sm={4} md={3}>
-        <Card>
-          <CardActions>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-          </CardActions>
-        </Card>
-      </Grid>
-      <Grid item xs={6} sm={4} md={3}>
-        <Card>
-          <CardActions>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-          </CardActions>
-        </Card>
-      </Grid>
-      <Grid item xs={6} sm={4} md={3}>
-        <Card>
-          <CardActions>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-            <IconButton>
-              <Image />
-            </IconButton>
-          </CardActions>
-        </Card>
-      </Grid>
-      </div>
-      </div>
-    </Grid>
     );
   }
 }

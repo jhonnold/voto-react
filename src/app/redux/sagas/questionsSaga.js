@@ -5,7 +5,7 @@ import {
 } from 'redux-saga/effects';
 import * as types from '../actions/types';
 import {
-  DataApi
+  DataApi,
 } from '../../shared/api/DataApi';
 import {
   getSessionQuestionsSuccess,
@@ -33,7 +33,7 @@ export function* fetchQuestionsSaga() {
 function* getQuestionUrl(action) {
   try {
     const response = yield call(DataApi.getQuestionUrl, action.payload);
-    yield put(getQuestionUrlSuccess({...response.data, imgFileName: action.payload.imgFileName}));
+    yield put(getQuestionUrlSuccess({ ...response.data, imgFileName: action.payload.imgFileName }));
   } catch (err) {
     yield put(getQuestionUrlFail(err));
   }
@@ -59,7 +59,7 @@ export function* newImageUploadSaga() {
 
 function* deleteQuestion(action) {
   try {
-    const response = yield call(DataApi.deleteQuestion, {params: action.payload});
+    const response = yield call(DataApi.deleteQuestion, { params: action.payload });
     yield put(deleteImageSuccess(response, action.payload.id));
   } catch (err) {
     yield put(deleteImageFail(err));

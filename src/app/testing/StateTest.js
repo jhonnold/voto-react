@@ -1,10 +1,9 @@
 import React from 'react';
 import {
-  Button
+  Button,
 } from 'material-ui';
 
 export default class StateTest extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -16,7 +15,7 @@ export default class StateTest extends React.Component {
         'Fourth',
       ],
       index: 0,
-    }
+    };
   }
 
   _handleButton() {

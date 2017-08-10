@@ -1,77 +1,57 @@
 import * as types from './types';
 
-export const getSessionQuestions = (sessionId) => {
-  return {
-    type: types.SESSION_QUESTIONS_REQUESTED,
-    payload: {
-      sessionId,
-    }
-  }
-};
+export const getSessionQuestions = sessionId => ({
+  type: types.SESSION_QUESTIONS_REQUESTED,
+  payload: {
+    sessionId,
+  },
+});
 
-export const getSessionQuestionsSuccess = (response) => {
-  return {
-    type: types.SESSION_QUESTIONS_RESOLVED,
-    payload: response,
-  }
-};
+export const getSessionQuestionsSuccess = response => ({
+  type: types.SESSION_QUESTIONS_RESOLVED,
+  payload: response,
+});
 
-export const getSessionQuestionsFail = (err) => {
-  return {
-    type: types.SESSION_QUESTIONS_REJECTED,
-    payload: err,
-  }
-};
+export const getSessionQuestionsFail = err => ({
+  type: types.SESSION_QUESTIONS_REJECTED,
+  payload: err,
+});
 
-export const getQuestionUrl = (filename) => {
-  return {
-    type: types.QUESTION_URL_REQUESTED,
-    payload: {
-      imgFileName: filename,
-    }
-  }
-};
+export const getQuestionUrl = filename => ({
+  type: types.QUESTION_URL_REQUESTED,
+  payload: {
+    imgFileName: filename,
+  },
+});
 
-export const getQuestionUrlSuccess = (response) => {
-  return {
-    type: types.QUESTION_URL_RESOLVED,
-    payload: response,
-  }
-};
+export const getQuestionUrlSuccess = response => ({
+  type: types.QUESTION_URL_RESOLVED,
+  payload: response,
+});
 
-export const getQuestionUrlFail = (err) => {
-  return {
-    type: types.QUESTION_URL_REJECTED,
-    payload: err,
-  }
-};
+export const getQuestionUrlFail = err => ({
+  type: types.QUESTION_URL_REJECTED,
+  payload: err,
+});
 
-export const onNewImage = (formData) => {
-  return {
-    type: types.NEW_IMAGE_REQUESTED,
-    payload: formData,
-  }
-};
+export const onNewImage = formData => ({
+  type: types.NEW_IMAGE_REQUESTED,
+  payload: formData,
+});
 
-export const onNewImageSuccess = (response) => {
-  return {
-    type: types.NEW_IMAGE_RESOLVED,
-    payload: response,
-  }
-};
+export const onNewImageSuccess = response => ({
+  type: types.NEW_IMAGE_RESOLVED,
+  payload: response,
+});
 
-export const onNewImageFail = (err) => {
-  return {
-    type: types.NEW_IMAGE_REJECTED,
-    payload: err,
-  }
-};
+export const onNewImageFail = err => ({
+  type: types.NEW_IMAGE_REJECTED,
+  payload: err,
+});
 
-export const isPushingNewImage = () => {
-  return {
-    type: types.IS_PUSHING_NEW_IMAGE,
-  }
-};
+export const isPushingNewImage = () => ({
+  type: types.IS_PUSHING_NEW_IMAGE,
+});
 
 export const deleteImage = (question) => {
   let payload = {
@@ -83,28 +63,24 @@ export const deleteImage = (question) => {
     payload = {
       ...payload,
       questionId: question.questionId,
-    }
+    };
   }
 
   return {
     type: types.DELETE_QUESTION_REQUESTED,
     payload,
-  }
+  };
 };
 
-export const deleteImageSuccess = (response, id) => {
-  return {
-    type: types.DELETE_QUESTION_RESOLVED,
-    payload: {
-      response,
-      id,
-    }
-  }
-};
+export const deleteImageSuccess = (response, id) => ({
+  type: types.DELETE_QUESTION_RESOLVED,
+  payload: {
+    response,
+    id,
+  },
+});
 
-export const deleteImageFail = (err) => {
-  return {
-    type: types.DELETE_QUESTION_REJECTED,
-    payload: err
-  }
-};
+export const deleteImageFail = err => ({
+  type: types.DELETE_QUESTION_REJECTED,
+  payload: err,
+});

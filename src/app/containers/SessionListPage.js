@@ -41,8 +41,8 @@ class SessionListPage extends React.Component {
     })
   };
 
-  _handleNewSessionSubmitted = (className, title, desc) => {
-    this.props.createSession(className, title, desc);
+  _handleNewSessionSubmitted = ({ className, title, description }) => {
+    this.props.createSession(className, title, description);
   };
 
   _handleNewSessionCanceled = () => {

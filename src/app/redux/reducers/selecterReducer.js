@@ -7,52 +7,52 @@ const initialState = {
 
 export const selecterReducer = (state = initialState, action) => {
   const { type, payload } = action;
-  let newList, pushingCount, index;
+  let newList,
+    pushingCount,
+    index;
 
   switch (type) {
     case types.SESSION_QUESTIONS_RESOLVED:
-      const frontEndReady = payload.data.map((question, index) => {
-        return {
-          ...question,
-          id: index,
-        }
-      });
+      const frontEndReady = payload.data.map((question, index) => ({
+        ...question,
+        id: index,
+      }));
 
-      return {...state, questions: frontEndReady};
-      //return {...state, questions: fakeImages};
+      return { ...state, questions: frontEndReady };
+      // return {...state, questions: fakeImages};
 
     case types.SESSION_QUESTIONS_REJECTED:
       return state;
-      //return {...state, questions: fakeImages, title: 'NO TITLE', className: 'NO CLASS'};
+      // return {...state, questions: fakeImages, title: 'NO TITLE', className: 'NO CLASS'};
 
     case types.QUESTION_CARD_MOVED:
       newList = state.questions.slice();
       newList.splice(payload.index, 1);
       newList.splice(payload.atIndex, 0, payload.question);
-      return {...state, questions: newList};
+      return { ...state, questions: newList };
 
     case types.QUESTION_CARD_ADDED:
       newList = state.questions.slice();
       newList.push(payload);
-      return {...state, questions: newList};
+      return { ...state, questions: newList };
 
     case types.SESSION_SELECTED:
-      return {...payload, questions: []};
+      return { ...payload, questions: [] };
 
     case 'QUESTION_ADDED':
       newList = state.questions.slice();
       newList.push(payload);
-      return {...state, questions: newList};
+      return { ...state, questions: newList };
 
     case types.QUESTION_URL_RESOLVED:
       newList = state.questions.slice();
       index = newList.findIndex(q => q.imgFileName === payload.imgFileName);
       newList[index].url = payload.url;
-      return {...state, questions: newList };
+      return { ...state, questions: newList };
 
     case types.IS_PUSHING_NEW_IMAGE:
       pushingCount = (state.pushingImageCount ? state.pushingImageCount : 0) + 1;
-      return {...state, pushingImageCount: pushingCount};
+      return { ...state, pushingImageCount: pushingCount };
 
     case types.NEW_IMAGE_RESOLVED:
       pushingCount = state.pushingImageCount - 1;
@@ -61,16 +61,15 @@ export const selecterReducer = (state = initialState, action) => {
         ...payload.data,
         id: newList.length,
       });
-      return {...state, pushingImageCount: pushingCount, questions: newList};
+      return { ...state, pushingImageCount: pushingCount, questions: newList };
 
     case types.DELETE_QUESTION_RESOLVED:
       newList = state.questions.slice();
       index = newList.findIndex(q => q.id === payload.id);
       newList.splice(index, 1);
-      return {...state, questions: newList};
+      return { ...state, questions: newList };
 
     default:
       return state;
-
   }
 };

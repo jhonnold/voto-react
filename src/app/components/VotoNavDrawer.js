@@ -7,7 +7,7 @@ import {
 import {
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
 } from 'material-ui/List';
 import {
   Home as HomeIcon,
@@ -16,29 +16,27 @@ import {
   // FolderOpen as FolderOpenIcon,
   // FolderSpecial,
 } from 'material-ui-icons';
-export default class VotoNavDrawer extends React.Component {
 
-  render() {
-    const listItems = (
-      <div>
-        <ListItem button>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-        </ListItem>
-      </div>
-    );
+export default function VotoNavDrawer(props) {
+  const listItems = (
+    <div>
+      <ListItem button>
+        <ListItemIcon>
+          <HomeIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItem>
+    </div>
+  );
 
-    return (
-      <div>
-        <Drawer
-          anchor="left"
-          {...this.props}
-        >
-          {listItems}
-        </Drawer>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Drawer
+        anchor="left"
+        {...props}
+      >
+        {listItems}
+      </Drawer>
+    </div>
+  );
 }

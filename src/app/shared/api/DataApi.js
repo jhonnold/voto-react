@@ -1,31 +1,16 @@
 import axios from 'axios';
 
 export const DataApi = {
-  fetchSessions: (params) => {
-    return axios.get('/api/sessions');
-  },
-  createSession: (params) => {
-    return axios.post('/api/sessions/saveNewSession', params);
-  },
+  fetchSessions: params => axios.get('/api/sessions'),
+  createSession: params => axios.post('/api/sessions/saveNewSession', params),
   updateSession: (params) => {
-
-    const {questions, ...rest} = params;
+    const { questions, ...rest } = params;
 
     return axios.post('/api/sessions/updateSession', rest);
   },
-  fetchQuestions: (params) => {
-    return axios.get('/api/sessions/sessionQuestions', { params });
-  },
-  updateQuestions: (params) => {
-    return axios.post('/api/sessions/saveSessionQuestions', {questions: params} );
-  },
-  getQuestionUrl: (params) => {
-    return axios.get('/api/sessions/questionImageUrl', { params });
-  },
-  newImageUpload: (params) => {
-    return axios.post('/api/sessions/uploadImageFile', params);
-  },
-  deleteQuestion: (params) => {
-    return axios.delete(`/api/sessions/deleteQuestion`, params);
-  }
+  fetchQuestions: params => axios.get('/api/sessions/sessionQuestions', { params }),
+  updateQuestions: params => axios.post('/api/sessions/saveSessionQuestions', { questions: params }),
+  getQuestionUrl: params => axios.get('/api/sessions/questionImageUrl', { params }),
+  newImageUpload: params => axios.post('/api/sessions/uploadImageFile', params),
+  deleteQuestion: params => axios.delete('/api/sessions/deleteQuestion', params),
 };
