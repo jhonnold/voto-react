@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Field,
-  reduxForm,
-} from 'redux-form';
-import {
-  Grid,
-  Button,
-} from 'material-ui';
+import { Field, reduxForm } from 'redux-form';
+import { Grid, Button } from 'material-ui';
 
 import './styles/SessionEditFormStyles.css';
 
@@ -25,9 +19,7 @@ function SessionEditForm(props) {
               component="input"
               className="session-edit-input"
             />
-            <span className="session-edit-subtitle">
-              Class Name
-            </span>
+            <span className="session-edit-subtitle">Class Name</span>
           </Grid>
           <Grid item xs={12} md={4} className="session-edit-input-wrapper">
             <Field
@@ -36,9 +28,7 @@ function SessionEditForm(props) {
               component="input"
               className="session-edit-input"
             />
-            <span className="session-edit-subtitle">
-              Title
-            </span>
+            <span className="session-edit-subtitle">Title</span>
           </Grid>
           <Grid item xs={12} md={4} className="session-edit-input-wrapper">
             <Field
@@ -57,18 +47,10 @@ function SessionEditForm(props) {
       {props.children}
 
       <div className="session-edit-finalize-container">
-        <Button
-          raised
-          className="session-edit-button"
-          type="submit"
-        >
+        <Button raised className="session-edit-button" type="submit">
           Save
         </Button>
-        <Button
-          raised
-          className="session-edit-button"
-          onClick={handleCancel}
-        >
+        <Button raised className="session-edit-button" onClick={handleCancel}>
           Cancel
         </Button>
       </div>

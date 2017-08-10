@@ -1,18 +1,9 @@
 import createHistory from 'history/createBrowserHistory';
-import {
-  createStore,
-  combineReducers,
-  applyMiddleware,
-} from 'redux';
-import {
-  routerReducer,
-  routerMiddleware,
-} from 'react-router-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { routerReducer, routerMiddleware } from 'react-router-redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
-import {
-  reducer as formReducer,
-} from 'redux-form';
+import { reducer as formReducer } from 'redux-form';
 import userReducer from './reducers/userReducer';
 import sessionsReducer from './reducers/sessionsReducer';
 import questionsReducer from './reducers/questionsReducer';

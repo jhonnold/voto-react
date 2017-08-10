@@ -1,17 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router';
-import {
-  TransitionGroup,
-  CSSTransition,
-} from 'react-transition-group';
-import {
-  connect,
-} from 'react-redux';
+import { Route, Switch, Redirect } from 'react-router';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
 import resize from './redux/actions/containerActions';
 import VotoNavWrapper from './containers/VotoNavWrapper';
 import SessionsRouter from './routers/SessionsRouter';
@@ -20,22 +11,19 @@ import SignupPage from './containers/SignupPage';
 
 import './styles/RootStyles.css';
 
-
-const Fade = props => (
-  <CSSTransition
+const Fade = props =>
+  (<CSSTransition
     {...props}
     classNames="fade"
     timeout={450}
     mountOnEnter
     unmountOnExit
-  />
-);
+  />);
 
-const Blank = () => (
-  <div>
+const Blank = () =>
+  (<div>
     <span>Blank</span>
-  </div>
-);
+  </div>);
 
 class Root extends React.Component {
   constructor(props) {
@@ -70,13 +58,9 @@ class Root extends React.Component {
           path="/"
           render={() => {
             if (props.user) {
-              return (
-                <Redirect to="/dashboard" />
-              );
+              return <Redirect to="/dashboard" />;
             }
-            return (
-              <Redirect to="/login" />
-            );
+            return <Redirect to="/login" />;
           }}
         />
         <TransitionGroup>
@@ -86,19 +70,15 @@ class Root extends React.Component {
                 position: 'fixed',
                 top: '4rem',
                 bottom: 0,
-                width: (this.props.containerWidth > 750 ? 'calc(100% - 256px)'
-                  : '100%'),
+                width:
+                  this.props.containerWidth > 750
+                    ? 'calc(100% - 256px)'
+                    : '100%',
                 display: 'flex',
                 flexDirection: 'column',
               }}
             >
-              <Route
-                exact
-                path="/"
-                render={() => (
-                  <Redirect to="/login" />
-                )}
-              />
+              <Route exact path="/" render={() => <Redirect to="/login" />} />
               <Switch location={props.location}>
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/signup" component={SignupPage} />
@@ -113,19 +93,15 @@ class Root extends React.Component {
   }
 }
 
-const mapStateToProps = ({ container }) => (
-  {
-    containerWidth: container.width,
-  }
-);
+const mapStateToProps = ({ container }) => ({
+  containerWidth: container.width,
+});
 
-const mapDispatchToProps = dispatch => (
-  {
-    handleResize: (width) => {
-      dispatch(resize(width));
-    },
-  }
-);
+const mapDispatchToProps = dispatch => ({
+  handleResize: (width) => {
+    dispatch(resize(width));
+  },
+});
 
 Root.propTypes = {
   containerWidth: PropTypes.number,

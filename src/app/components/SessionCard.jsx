@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import {
-  Card,
-  Avatar,
-  IconButton,
-  Grid,
-  Divider,
-} from 'material-ui';
+import { Card, Avatar, IconButton, Grid, Divider } from 'material-ui';
 import Collapse from 'material-ui/transitions/Collapse';
 import {
   ExpandMore,
@@ -106,9 +100,7 @@ export default class SessionCard extends React.Component {
                 <IconButton>
                   <Favorite />
                 </IconButton>
-                <IconButton
-                  onClick={() => onEditClick(data)}
-                >
+                <IconButton onClick={() => onEditClick(data)}>
                   <Edit />
                 </IconButton>
                 <IconButton>

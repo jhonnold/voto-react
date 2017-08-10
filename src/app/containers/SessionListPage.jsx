@@ -1,21 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  connect,
-} from 'react-redux';
-import {
-  push,
-} from 'react-router-redux';
-import {
-  Grid,
-  Button,
-} from 'material-ui';
-import {
-  Add as AddIcon,
-} from 'material-ui-icons';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import { Grid, Button } from 'material-ui';
+import { Add as AddIcon } from 'material-ui-icons';
 import {
   getSessions,
-  newSession, setSelectedSession,
+  newSession,
+  setSelectedSession,
 } from '../redux/actions/sessionsActions';
 import NewSessionModal from '../components/NewSessionModal';
 import SessionCard from '../components/SessionCard';
@@ -73,16 +65,15 @@ class SessionListPage extends React.Component {
           <NewSessionModal
             onCancel={this.handleNewSessionCanceled}
             onSubmit={this.handleNewSessionSubmitted}
-          />
-        }
+          />}
         <Grid container gutter={8} style={blur}>
-          {sessions.map(l => (
-            <SessionCard
+          {sessions.map(l =>
+            (<SessionCard
               key={l.sessionId}
               data={l}
               onEditClick={this.handleEditClick}
-            />
-          ))}
+            />),
+          )}
         </Grid>
         <Button
           fab
@@ -96,26 +87,22 @@ class SessionListPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ sessions }) => (
-  {
-    sessions,
-  }
-);
+const mapStateToProps = ({ sessions }) => ({
+  sessions,
+});
 
-const mapDispatchToProps = dispatch => (
-  {
-    requestSessions: () => {
-      dispatch(getSessions());
-    },
-    createSession: (className, title, description) => {
-      dispatch(newSession(className, title, description));
-    },
-    goToEdit: (session) => {
-      dispatch(setSelectedSession(session));
-      dispatch(push(`/sessions/${session.sessionId}/edit`));
-    },
-  }
-);
+const mapDispatchToProps = dispatch => ({
+  requestSessions: () => {
+    dispatch(getSessions());
+  },
+  createSession: (className, title, description) => {
+    dispatch(newSession(className, title, description));
+  },
+  goToEdit: (session) => {
+    dispatch(setSelectedSession(session));
+    dispatch(push(`/sessions/${session.sessionId}/edit`));
+  },
+});
 
 SessionListPage.propTypes = {
   sessions: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -124,7 +111,4 @@ SessionListPage.propTypes = {
   goToEdit: PropTypes.func.isRequired,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SessionListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SessionListPage);

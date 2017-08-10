@@ -17,7 +17,9 @@ const sessionsReducer = (state = [], action) => {
     }
     case types.SUBMIT_SESSION_RESOLVED: {
       const { sessionId } = payload.data;
-      const index = newState.findIndex(session => session.sessionId === sessionId);
+      const index = newState.findIndex(
+        session => session.sessionId === sessionId,
+      );
       newState[index] = payload.data;
       return newState;
     }

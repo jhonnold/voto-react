@@ -15,10 +15,7 @@ export default function QuestionImageDrop(props) {
   };
 
   return (
-    <DropZone
-      className="image-drag-here"
-      onDrop={onDrop}
-    >
+    <DropZone className="image-drag-here" onDrop={onDrop}>
       <span className="image-drag-here-text">
         Click Here or Drag Images to Upload!
       </span>

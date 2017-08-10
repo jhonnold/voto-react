@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
 import SessionListPage from '../containers/SessionListPage';
 import SessionEditPage from '../containers/SessionEditPage';
 
@@ -17,10 +13,7 @@ export default function SessionsRouter(props) {
         path={`${props.match.path}/:sessionId/edit`}
         component={SessionEditPage}
       />
-      <Route render={() => (
-        <Redirect to={props.match.path} />
-      )}
-      />
+      <Route render={() => <Redirect to={props.match.path} />} />
     </Switch>
   );
 }
@@ -30,4 +23,3 @@ SessionsRouter.propTypes = {
     path: PropTypes.string,
   }).isRequired,
 };
-

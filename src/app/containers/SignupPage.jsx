@@ -1,14 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  connect,
-} from 'react-redux';
-import {
-  push,
-} from 'react-router-redux';
-import {
-  signupUser,
-} from '../redux/actions/userActions';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import { signupUser } from '../redux/actions/userActions';
 import SignupForm from '../components/SignupForm';
 import './styles/SignupPageStyles.css';
 
@@ -26,20 +20,15 @@ function SignupPage(props) {
 
   return (
     <div className="signup-page-wrapper">
-      <SignupForm
-        onSubmit={handleSubmit}
-        goToLogin={goToLogin}
-      />
+      <SignupForm onSubmit={handleSubmit} goToLogin={goToLogin} />
     </div>
   );
 }
 
-const mapDispatchToProps = dispatch => (
-  {
-    goToLogin: () => dispatch(push('/login')),
-    onSignup: params => dispatch(signupUser(params)),
-  }
-);
+const mapDispatchToProps = dispatch => ({
+  goToLogin: () => dispatch(push('/login')),
+  onSignup: params => dispatch(signupUser(params)),
+});
 
 SignupPage.propTypes = {
   onSignup: PropTypes.func.isRequired,
@@ -47,4 +36,3 @@ SignupPage.propTypes = {
 };
 
 export default connect(null, mapDispatchToProps)(SignupPage);
-

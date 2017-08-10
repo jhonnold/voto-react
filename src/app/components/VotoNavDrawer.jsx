@@ -4,11 +4,7 @@ import {
   // Button,
   // Divider,
 } from 'material-ui';
-import {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from 'material-ui/List';
+import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import {
   Home as HomeIcon,
   // DataUsage,
@@ -31,10 +27,7 @@ export default function VotoNavDrawer(props) {
 
   return (
     <div>
-      <Drawer
-        anchor="left"
-        {...props}
-      >
+      <Drawer anchor="left" {...props}>
         {listItems}
       </Drawer>
     </div>

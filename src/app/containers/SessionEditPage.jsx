@@ -1,19 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  connect,
-} from 'react-redux';
-import {
-  goBack,
-} from 'react-router-redux';
-import {
-  Scrollbars,
-} from 'react-custom-scrollbars';
-import {
-  Grid,
-  Divider,
-  IconButton,
-} from 'material-ui';
+import { connect } from 'react-redux';
+import { goBack } from 'react-router-redux';
+import { Scrollbars } from 'react-custom-scrollbars';
+import { Grid, Divider, IconButton } from 'material-ui';
 import {
   ArrowForward,
   ArrowBack,
@@ -24,9 +14,7 @@ import {
   onNewImage,
   deleteImage,
 } from '../redux/actions/questionActions';
-import {
-  submitSession,
-} from '../redux/actions/sessionsActions';
+import { submitSession } from '../redux/actions/sessionsActions';
 import QuestionContainer from '../components/QuestionContainer';
 import SessionEditForm from '../components/SessionEditForm';
 import QuestionImageDrop from '../components/QuestionImageDrop';
@@ -42,12 +30,7 @@ function renderThumb({ style, ...props }) {
     minHeight: 'min-content',
   };
 
-  return (
-    <div
-      style={{ ...style, ...thumbStyle }}
-      {...props}
-    />
-  );
+  return <div style={{ ...style, ...thumbStyle }} {...props} />;
 }
 
 class SessionEditPage extends React.Component {
@@ -111,7 +94,9 @@ class SessionEditPage extends React.Component {
   }
 
   onDelete() {
-    const question = this.props.questions.filter(q => q.id === this.state.id)[0];
+    const question = this.props.questions.filter(
+      q => q.id === this.state.id,
+    )[0];
 
     this.props.deleteQuestion(question);
   }
@@ -141,22 +126,31 @@ class SessionEditPage extends React.Component {
 
   render() {
     const { id } = this.state;
-    const { questions, session, containerWidth, initialValues, handleNewImage } = this.props;
+    const {
+      questions,
+      session,
+      containerWidth,
+      initialValues,
+      handleNewImage,
+    } = this.props;
 
-    const width = (containerWidth > 750 ? containerWidth - 264 : containerWidth - 8);
+    const width =
+      containerWidth > 750 ? containerWidth - 264 : containerWidth - 8;
     const height = width * 0.5625; // --9/16
 
     let src;
     if (questions.length && this.state.id >= 0) {
       const question = questions.filter(q => q.id === id)[0];
-      src = (question.url ? question.url : question.uri);
+      src = question.url ? question.url : question.uri;
     }
 
     return (
       <div className="session-edit-page-wrapper">
         <div className="session-edit-page-container">
           <div className="session-edit-header-wrapper">
-            <span className="session-edit-header">{session.className}</span>
+            <span className="session-edit-header">
+              {session.className}
+            </span>
           </div>
 
           <SessionEditForm
@@ -164,10 +158,23 @@ class SessionEditPage extends React.Component {
             handleCancel={this.handleCancel}
             initialValues={initialValues}
           >
-
-            <Grid container gutter={0} className="session-edit-center-container" justify="center">
-              <Grid item xs={12} md={8} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                { questions.length > 0 &&
+            <Grid
+              container
+              gutter={0}
+              className="session-edit-center-container"
+              justify="center"
+            >
+              <Grid
+                item
+                xs={12}
+                md={8}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+              >
+                {questions.length > 0 &&
                   <div
                     // src={src}
                     style={{
@@ -179,12 +186,9 @@ class SessionEditPage extends React.Component {
                     }}
                     alt="Select a slide to edit"
                     className="session-edit-selected-image"
-                  />
-                }
+                  />}
 
-                <QuestionImageDrop
-                  onNewImage={handleNewImage}
-                />
+                <QuestionImageDrop onNewImage={handleNewImage} />
 
                 <Divider style={{ margin: '0 .5rem .3rem .5rem' }} />
                 <span className="session-edit-subtitle">
@@ -203,13 +207,15 @@ class SessionEditPage extends React.Component {
                 </div>
                 <Divider style={{ margin: '0 .5rem .3rem .5rem' }} />
               </Grid>
-
             </Grid>
           </SessionEditForm>
           <Divider style={{ margin: '0 .5rem .3rem .5rem' }} />
         </div>
 
-        <div className="session-edit-image-preview-container" style={{ height: height / 2 }}>
+        <div
+          className="session-edit-image-preview-container"
+          style={{ height: height / 2 }}
+        >
           {/* TODO - GET THIS TO SCROLL WITHOUT SHIFT KEY */}
           <Scrollbars
             autoHide={false}
@@ -228,48 +234,44 @@ class SessionEditPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ selectedSession, container }) => (
-  {
-    session: selectedSession,
-    questions: selectedSession.questions,
-    initialValues: {
-      sessionClassName: selectedSession.className,
-      sessionTitle: selectedSession.title,
-      sessionDescription: selectedSession.description,
-    },
-    containerWidth: container.width,
-  }
-);
+const mapStateToProps = ({ selectedSession, container }) => ({
+  session: selectedSession,
+  questions: selectedSession.questions,
+  initialValues: {
+    sessionClassName: selectedSession.className,
+    sessionTitle: selectedSession.title,
+    sessionDescription: selectedSession.description,
+  },
+  containerWidth: container.width,
+});
 
-const mapDispatchToProps = dispatch => (
-  {
-    getQuestions: (sessionId) => {
-      dispatch(getSessionQuestions(sessionId));
-    },
-    goBack: () => {
-      dispatch(goBack());
-    },
-    dispatchMoveQuestion: (index, atIndex, question) => {
-      dispatch({
-        type: 'QUESTION_CARD_MOVED',
-        payload: {
-          index,
-          atIndex,
-          question,
-        },
-      });
-    },
-    submitForm: (values, session) => {
-      dispatch(submitSession(values, session));
-    },
-    handleNewImage: (formData) => {
-      dispatch(onNewImage(formData));
-    },
-    deleteQuestion: (question) => {
-      dispatch(deleteImage(question));
-    },
-  }
-);
+const mapDispatchToProps = dispatch => ({
+  getQuestions: (sessionId) => {
+    dispatch(getSessionQuestions(sessionId));
+  },
+  goBack: () => {
+    dispatch(goBack());
+  },
+  dispatchMoveQuestion: (index, atIndex, question) => {
+    dispatch({
+      type: 'QUESTION_CARD_MOVED',
+      payload: {
+        index,
+        atIndex,
+        question,
+      },
+    });
+  },
+  submitForm: (values, session) => {
+    dispatch(submitSession(values, session));
+  },
+  handleNewImage: (formData) => {
+    dispatch(onNewImage(formData));
+  },
+  deleteQuestion: (question) => {
+    dispatch(deleteImage(question));
+  },
+});
 
 renderThumb.propTypes = {
   style: PropTypes.objectOf(PropTypes.string).isRequired,
@@ -295,6 +297,4 @@ SessionEditPage.propTypes = {
   handleNewImage: PropTypes.func.isRequired,
 };
 
-export default connect(
-  mapStateToProps, mapDispatchToProps,
-)(SessionEditPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SessionEditPage);

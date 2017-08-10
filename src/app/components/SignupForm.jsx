@@ -1,24 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Field,
-  reduxForm,
-} from 'redux-form';
-import {
-  Button,
-} from 'material-ui';
+import { Field, reduxForm } from 'redux-form';
+import { Button } from 'material-ui';
 
 function SignupForm(props) {
   const { handleSubmit, goToLogin } = props;
 
   return (
-    <form
-      className="signup-page-container"
-      onSubmit={handleSubmit}
-    >
-      <span className="signup-page-form-header">
-        Voto
-      </span>
+    <form className="signup-page-container" onSubmit={handleSubmit}>
+      <span className="signup-page-form-header">Voto</span>
       <Field
         type="text"
         className="signup-page-login-input"
@@ -47,16 +37,9 @@ function SignupForm(props) {
         component="input"
         name="password"
       />
-      <input
-        type="submit"
-        style={{ display: 'none' }}
-      />
+      <input type="submit" style={{ display: 'none' }} />
       <div className="signup-page-buttons-wrapper">
-        <Button
-          raised
-          className="signup-page-button"
-          type="submit"
-        >
+        <Button raised className="signup-page-button" type="submit">
           Sign Up
         </Button>
       </div>

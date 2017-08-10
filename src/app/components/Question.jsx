@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  DragSource,
-  DropTarget,
-} from 'react-dnd';
+import { DragSource, DropTarget } from 'react-dnd';
 
 import './styles/QuestionStyles.css';
 
@@ -45,20 +42,22 @@ function Question(props) {
   const { img, isDragging, connectDragSource, connectDropTarget, id } = props;
   const opacity = isDragging ? 0 : 1;
 
-  return connectDragSource(connectDropTarget(
-    <div
-      className="question-slide-preview-wrapper"
-      onClick={() => props.onClick(id)}
-      role="presentation"
-    >
-      <img
-        className="question-slide-preview"
-        src={img}
-        alt="Slide Preview"
-        style={{ opacity }}
-      />,
-    </div>,
-  ));
+  return connectDragSource(
+    connectDropTarget(
+      <div
+        className="question-slide-preview-wrapper"
+        onClick={() => props.onClick(id)}
+        role="presentation"
+      >
+        <img
+          className="question-slide-preview"
+          src={img}
+          alt="Slide Preview"
+          style={{ opacity }}
+        />,
+      </div>,
+    ),
+  );
 }
 
 Question.propTypes = {
@@ -70,10 +69,11 @@ Question.propTypes = {
   onClick: PropTypes.func,
 };
 
-export default
-DragSource(QUESTION, questionSource, (connect, monitor) => ({
+export default DragSource(QUESTION, questionSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging(),
-}))(DropTarget(QUESTION, questionTarget, connect => ({
-  connectDropTarget: connect.dropTarget(),
-}))(Question));
+}))(
+  DropTarget(QUESTION, questionTarget, connect => ({
+    connectDropTarget: connect.dropTarget(),
+  }))(Question),
+);

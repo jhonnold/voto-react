@@ -1,16 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  connect,
-} from 'react-redux';
-import {
-  DropTarget,
-  DragDropContext,
-} from 'react-dnd';
+import { connect } from 'react-redux';
+import { DropTarget, DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import {
-  CircularProgress,
-} from 'material-ui/Progress';
+import { CircularProgress } from 'material-ui/Progress';
 import Question from './Question';
 
 import './styles/QuestionContainerStyles.css';
@@ -18,8 +11,7 @@ import './styles/QuestionContainerStyles.css';
 const QUESTION = 'question';
 
 const questionTarget = {
-  drop() {
-  },
+  drop() {},
 };
 
 function QuestionContainer(props) {
@@ -52,22 +44,21 @@ function QuestionContainer(props) {
 
   return connectDropTarget(
     <div className="question-container">
-      {
-        questions.map((question) => {
-          if (question.url) {
-            return (
-              <Question
-                img={question.url}
-                key={question.id}
-                id={question.id}
-                moveQuestion={moveQuestion}
-                findQuestion={findQuestion}
-                onClick={onSelect}
-              />
-            );
-          }
-          return null;
-        })}
+      {questions.map((question) => {
+        if (question.url) {
+          return (
+            <Question
+              img={question.url}
+              key={question.id}
+              id={question.id}
+              moveQuestion={moveQuestion}
+              findQuestion={findQuestion}
+              onClick={onSelect}
+            />
+          );
+        }
+        return null;
+      })}
       {loaders}
     </div>,
   );
@@ -93,9 +84,8 @@ QuestionContainer.propTypes = {
   onSelect: PropTypes.func,
 };
 
-
 export default DragDropContext(HTML5Backend)(
   DropTarget(QUESTION, questionTarget, connecter => ({
     connectDropTarget: connecter.dropTarget(),
-  }))(connect(null, mapDispatchToProps)(QuestionContainer)));
-
+  }))(connect(null, mapDispatchToProps)(QuestionContainer)),
+);

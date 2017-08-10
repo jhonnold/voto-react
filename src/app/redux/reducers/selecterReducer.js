@@ -51,7 +51,8 @@ const selecterReducer = (state = initialState, action) => {
       return { ...state, questions: newList };
     }
     case types.IS_PUSHING_NEW_IMAGE: {
-      pushingCount = (state.pushingImageCount ? state.pushingImageCount : 0) + 1;
+      pushingCount =
+        (state.pushingImageCount ? state.pushingImageCount : 0) + 1;
       return { ...state, pushingImageCount: pushingCount };
     }
     case types.NEW_IMAGE_RESOLVED: {

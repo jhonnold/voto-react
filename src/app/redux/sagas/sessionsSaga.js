@@ -1,8 +1,4 @@
-import {
-  call,
-  put,
-  takeEvery,
-} from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import * as types from '../actions/types';
 import DataApi from '../../shared/api/DataApi';
 import {
@@ -13,7 +9,6 @@ import {
   submitSessionSuccess,
   submitSessionFail,
 } from '../actions/sessionsActions';
-
 
 function* fetchSessions(action) {
   try {

@@ -5,7 +5,6 @@ import VotoSideNav from '../components/VotoSideNav';
 
 import './styles/VotoNavWrapperStyles.css';
 
-
 export default function VotoNavWrapper(props) {
   const { drawSideNav } = props;
 
@@ -13,13 +12,9 @@ export default function VotoNavWrapper(props) {
     <div className="nav-wrapper">
       <VotoNavBar drawNavHeader={drawSideNav} />
       <div className="nav-bottom-wrapper">
-        {drawSideNav &&
-          <VotoSideNav />
-        }
+        {drawSideNav && <VotoSideNav />}
         <div className="app-wrapper">
-          {
-            props.children
-          }
+          {props.children}
         </div>
       </div>
     </div>

@@ -1,6 +1,4 @@
-import {
-  fork,
-} from 'redux-saga/effects';
+import { fork } from 'redux-saga/effects';
 import loginUserSaga from './loginSaga';
 import signupUserSaga from './signupSaga';
 import {

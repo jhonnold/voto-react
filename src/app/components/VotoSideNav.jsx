@@ -1,19 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  connect,
-} from 'react-redux';
-import {
-  push,
-} from 'react-router-redux';
-import {
-  withRouter,
-} from 'react-router';
-import SideNav, {
-  Nav,
-  NavIcon,
-  NavText,
-} from 'react-sidenav';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import { withRouter } from 'react-router';
+import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
 import {
   Home as HomeIcon,
   DataUsage,
@@ -31,28 +21,36 @@ function VotoSideNav(props) {
         highlightColor="#fff"
         highlightBgColor="#31383e"
         defaultSelected={props.location.pathname.substring(1)}
-        onItemSelection={i =>
-          props.navigateTo(`/${i}`)
-        }
+        onItemSelection={i => props.navigateTo(`/${i}`)}
       >
         <Nav id="dashboard">
-          <NavIcon><HomeIcon /></NavIcon>
+          <NavIcon>
+            <HomeIcon />
+          </NavIcon>
           <NavText>Dashboard</NavText>
         </Nav>
         <Nav id="sessions">
-          <NavIcon><FolderIcon /></NavIcon>
+          <NavIcon>
+            <FolderIcon />
+          </NavIcon>
           <NavText>Sessions</NavText>
         </Nav>
         <Nav id="sessions/favorite">
-          <NavIcon><FolderSpecial /></NavIcon>
+          <NavIcon>
+            <FolderSpecial />
+          </NavIcon>
           <NavText>Favorite Sessions</NavText>
         </Nav>
         <Nav id="prev_sessions">
-          <NavIcon><FolderOpenIcon /></NavIcon>
+          <NavIcon>
+            <FolderOpenIcon />
+          </NavIcon>
           <NavText>Past Sessions</NavText>
         </Nav>
         <Nav id="data">
-          <NavIcon><DataUsage /></NavIcon>
+          <NavIcon>
+            <DataUsage />
+          </NavIcon>
           <NavText>Data</NavText>
         </Nav>
       </SideNav>
