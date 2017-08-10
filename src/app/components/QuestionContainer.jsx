@@ -38,7 +38,7 @@ function QuestionContainer(props) {
     loaders.fill(
       <div className="question-image-progress-loader">
         <CircularProgress size={60} />
-      </div>,
+      </div>
     );
   }
 
