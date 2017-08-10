@@ -1,8 +1,8 @@
-import * as types from '../actions/types';
+import * as types from "../actions/types";
 
 const initialState = {
   questions: [],
-  pushingImageCount: 0,
+  pushingImageCount: 0
 };
 
 const selecterReducer = (state = initialState, action) => {
@@ -15,7 +15,7 @@ const selecterReducer = (state = initialState, action) => {
     case types.SESSION_QUESTIONS_RESOLVED: {
       const frontEndReady = payload.data.map((question, i) => ({
         ...question,
-        id: i,
+        id: i
       }));
 
       return { ...state, questions: frontEndReady };
@@ -39,11 +39,6 @@ const selecterReducer = (state = initialState, action) => {
     case types.SESSION_SELECTED: {
       return { ...payload, questions: [] };
     }
-    case 'QUESTION_ADDED': {
-      newList = state.questions.slice();
-      newList.push(payload);
-      return { ...state, questions: newList };
-    }
     case types.QUESTION_URL_RESOLVED: {
       newList = state.questions.slice();
       index = newList.findIndex(q => q.imgFileName === payload.imgFileName);
@@ -60,14 +55,16 @@ const selecterReducer = (state = initialState, action) => {
       newList = state.questions.slice();
       newList.push({
         ...payload.data,
-        id: newList.length,
+        id: newList.length
       });
       return { ...state, pushingImageCount: pushingCount, questions: newList };
     }
     case types.DELETE_QUESTION_RESOLVED: {
-      newList = state.questions.slice();
-      index = newList.findIndex(q => q.id === payload.id);
-      newList.splice(index, 1);
+      newList = state.questions.filter(question => question.id !== payload.id);
+      newList = newList.map((question, i) => ({
+        ...question,
+        id: i
+      }));
       return { ...state, questions: newList };
     }
     default: {

@@ -141,7 +141,7 @@ class SessionEditPage extends React.Component {
     let src;
     if (questions.length && this.state.id >= 0) {
       const question = questions.filter(q => q.id === id)[0];
-      src = question.url ? question.url : question.uri;
+      src = (question ? question.url : questions[0].url);
     }
 
     return (
