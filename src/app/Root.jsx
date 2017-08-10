@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Route, Switch, Redirect } from 'react-router';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { connect } from 'react-redux';
-import resize from './redux/actions/containerActions';
-import VotoNavWrapper from './containers/VotoNavWrapper';
-import SessionsRouter from './routers/SessionsRouter';
-import LoginPage from './containers/LoginPage';
-import SignupPage from './containers/SignupPage';
+import React from "react";
+import PropTypes from "prop-types";
+import { Route, Switch, Redirect } from "react-router";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { connect } from "react-redux";
+import resize from "./redux/actions/containerActions";
+import VotoNavWrapper from "./containers/VotoNavWrapper";
+import SessionsRouter from "./routers/SessionsRouter";
+import LoginPage from "./containers/LoginPage";
+import SignupPage from "./containers/SignupPage";
 
-import './styles/RootStyles.css';
+import "./styles/RootStyles.css";
 
 const Fade = props =>
   (<CSSTransition
@@ -37,11 +37,11 @@ class Root extends React.Component {
 
   componentDidMount() {
     this.handleResize();
-    window.addEventListener('resize', this.handleResize);
+    window.addEventListener("resize", this.handleResize);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener("resize", this.handleResize);
   }
 
   handleResize() {
@@ -67,15 +67,15 @@ class Root extends React.Component {
           <Fade key={props.location.pathname}>
             <section
               style={{
-                position: 'fixed',
-                top: '4rem',
+                position: "fixed",
+                top: "4rem",
                 bottom: 0,
                 width:
                   this.props.containerWidth > 750
-                    ? 'calc(100% - 256px)'
-                    : '100%',
-                display: 'flex',
-                flexDirection: 'column',
+                    ? "calc(100% - 256px)"
+                    : "100%",
+                display: "flex",
+                flexDirection: "column",
               }}
             >
               <Route exact path="/" render={() => <Redirect to="/login" />} />

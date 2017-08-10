@@ -1,33 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { goBack } from 'react-router-redux';
-import { Scrollbars } from 'react-custom-scrollbars';
-import { Grid, Divider, IconButton } from 'material-ui';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { goBack } from "react-router-redux";
+import { Scrollbars } from "react-custom-scrollbars";
+import { Grid, Divider, IconButton } from "material-ui";
 import {
   ArrowForward,
   ArrowBack,
   Delete as DeleteIcon,
-} from 'material-ui-icons';
+} from "material-ui-icons";
 import {
   getSessionQuestions,
   onNewImage,
   deleteImage,
-} from '../redux/actions/questionActions';
-import { submitSession } from '../redux/actions/sessionsActions';
-import QuestionContainer from '../components/QuestionContainer';
-import SessionEditForm from '../components/SessionEditForm';
-import QuestionImageDrop from '../components/QuestionImageDrop';
+} from "../redux/actions/questionActions";
+import { submitSession } from "../redux/actions/sessionsActions";
+import QuestionContainer from "../components/QuestionContainer";
+import SessionEditForm from "../components/SessionEditForm";
+import QuestionImageDrop from "../components/QuestionImageDrop";
 
-import './styles/SessionEditPageStyles.css';
+import "./styles/SessionEditPageStyles.css";
 
 function renderThumb({ style, ...props }) {
   const thumbStyle = {
-    backgroundColor: '#3f51b5',
+    backgroundColor: "#3f51b5",
     opacity: 1,
-    height: '1rem',
-    cursor: 'pointer',
-    minHeight: 'min-content',
+    height: "1rem",
+    cursor: "pointer",
+    minHeight: "min-content",
   };
 
   return <div style={{ ...style, ...thumbStyle }} {...props} />;
@@ -169,9 +169,9 @@ class SessionEditPage extends React.Component {
                 xs={12}
                 md={8}
                 style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
                 }}
               >
                 {questions.length > 0 &&
@@ -181,8 +181,8 @@ class SessionEditPage extends React.Component {
                       backgroundImage: `url(${src})`,
                       width,
                       height,
-                      maxHeight: '27rem',
-                      maxWidth: 'calc(100% - 1rem)',
+                      maxHeight: "27rem",
+                      maxWidth: "calc(100% - 1rem)",
                     }}
                     alt="Select a slide to edit"
                     className="session-edit-selected-image"
@@ -190,7 +190,7 @@ class SessionEditPage extends React.Component {
 
                 <QuestionImageDrop onNewImage={handleNewImage} />
 
-                <Divider style={{ margin: '0 .5rem .3rem .5rem' }} />
+                <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
                 <span className="session-edit-subtitle">
                   Click the arrows to move this question within the Session
                 </span>
@@ -205,11 +205,11 @@ class SessionEditPage extends React.Component {
                     <ArrowForward />
                   </IconButton>
                 </div>
-                <Divider style={{ margin: '0 .5rem .3rem .5rem' }} />
+                <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
               </Grid>
             </Grid>
           </SessionEditForm>
-          <Divider style={{ margin: '0 .5rem .3rem .5rem' }} />
+          <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
         </div>
 
         <div
@@ -220,7 +220,7 @@ class SessionEditPage extends React.Component {
           <Scrollbars
             autoHide={false}
             renderThumbHorizontal={renderThumb}
-            style={{ height: '100%' }}
+            style={{ height: "100%" }}
           >
             <QuestionContainer
               questions={this.props.questions}
@@ -254,7 +254,7 @@ const mapDispatchToProps = dispatch => ({
   },
   dispatchMoveQuestion: (index, atIndex, question) => {
     dispatch({
-      type: 'QUESTION_CARD_MOVED',
+      type: "QUESTION_CARD_MOVED",
       payload: {
         index,
         atIndex,

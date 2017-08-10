@@ -1,17 +1,17 @@
-import { fork } from 'redux-saga/effects';
-import loginUserSaga from './loginSaga';
-import signupUserSaga from './signupSaga';
+import { fork } from "redux-saga/effects";
+import loginUserSaga from "./loginSaga";
+import signupUserSaga from "./signupSaga";
 import {
   fetchSessionsSaga,
   createSessionSaga,
   updateSessionSaga,
-} from './sessionsSaga';
+} from "./sessionsSaga";
 import {
   deleteQuestionSaga,
   fetchQuestionsSaga,
   getQuestionUrlSaga,
   newImageUploadSaga,
-} from './questionsSaga';
+} from "./questionsSaga";
 
 export default function* rootSaga() {
   yield [

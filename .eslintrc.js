@@ -11,9 +11,9 @@ module.exports = {
     "serviceworker": true,
   },
   "rules": {
-    "max-len": ["error", { "code": 180, "ignoreTemplateLiterals": true, "ignoreStrings": true }],
-    "no-shadow": 1,
+    "max-len": ["error", { "code": 80, "ignoreTemplateLiterals": true, "ignoreStrings": true }],
     "no-return-assign": 1,
+    "quotes": ["error", "double"],
     "no-mixed-operators": ["error", {
       "allowSamePrecedence": true
     }],

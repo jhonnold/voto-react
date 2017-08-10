@@ -2,7 +2,7 @@ import * as types from "../actions/types";
 
 const initialState = {
   questions: [],
-  pushingImageCount: 0
+  pushingImageCount: 0,
 };
 
 const selecterReducer = (state = initialState, action) => {
@@ -15,7 +15,7 @@ const selecterReducer = (state = initialState, action) => {
     case types.SESSION_QUESTIONS_RESOLVED: {
       const frontEndReady = payload.data.map((question, i) => ({
         ...question,
-        id: i
+        id: i,
       }));
 
       return { ...state, questions: frontEndReady };
@@ -23,7 +23,6 @@ const selecterReducer = (state = initialState, action) => {
     }
     case types.SESSION_QUESTIONS_REJECTED: {
       return state;
-      // return {...state, questions: fakeImages, title: 'NO TITLE', className: 'NO CLASS'};
     }
     case types.QUESTION_CARD_MOVED: {
       newList = state.questions.slice();
@@ -55,7 +54,7 @@ const selecterReducer = (state = initialState, action) => {
       newList = state.questions.slice();
       newList.push({
         ...payload.data,
-        id: newList.length
+        id: newList.length,
       });
       return { ...state, pushingImageCount: pushingCount, questions: newList };
     }
@@ -63,7 +62,7 @@ const selecterReducer = (state = initialState, action) => {
       newList = state.questions.filter(question => question.id !== payload.id);
       newList = newList.map((question, i) => ({
         ...question,
-        id: i
+        id: i,
       }));
       return { ...state, questions: newList };
     }

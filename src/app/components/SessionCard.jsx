@@ -1,19 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import moment from 'moment';
-import { Card, Avatar, IconButton, Grid, Divider } from 'material-ui';
-import Collapse from 'material-ui/transitions/Collapse';
+import React from "react";
+import PropTypes from "prop-types";
+import moment from "moment";
+import { Card, Avatar, IconButton, Grid, Divider } from "material-ui";
+import Collapse from "material-ui/transitions/Collapse";
 import {
   ExpandMore,
   Delete,
   Edit,
   Slideshow,
   Favorite,
-} from 'material-ui-icons';
+} from "material-ui-icons";
 
-import slide from '../images/sampleslide.png';
+import slide from "../images/sampleslide.png";
 
-import './styles/SessionCardStyles.css';
+import "./styles/SessionCardStyles.css";
 
 function SessionCardSlide() {
   return (
@@ -69,7 +69,7 @@ export default class SessionCard extends React.Component {
               </IconButton>
             </div>
             <IconButton
-              className={expanded ? 'rotate180' : ''}
+              className={expanded ? "rotate180" : ""}
               onClick={this.handleExpandClick}
             >
               <ExpandMore />
@@ -81,7 +81,7 @@ export default class SessionCard extends React.Component {
             unmountOnExit
             className="test"
           >
-            <Divider style={{ margin: '.5rem 0' }} />
+            <Divider style={{ margin: ".5rem 0" }} />
             <div className="session-card-image-slider">
               <Grid container gutter={8} wrap="nowrap">
                 <SessionCardSlide />
@@ -94,7 +94,7 @@ export default class SessionCard extends React.Component {
                 <SessionCardSlide />
               </Grid>
             </div>
-            <Divider style={{ margin: '.5rem 0' }} />
+            <Divider style={{ margin: ".5rem 0" }} />
             <div className="session-card-buttons-wrapper">
               <div className="session-card-buttons-container">
                 <IconButton>
@@ -109,11 +109,11 @@ export default class SessionCard extends React.Component {
               </div>
             </div>
           </Collapse>
-          <Divider style={{ margin: '.5rem 0' }} />
+          <Divider style={{ margin: ".5rem 0" }} />
           <div className="session-card-subtitle-caption">
             <div className="session-card-description-wrapper">
               <span className="session-card-description-text">
-                {`Created on ${moment(timeStamp * 1000).format('MMM Do')}`}
+                {`Created on ${moment(timeStamp * 1000).format("MMM Do")}`}
               </span>
               <span className="session-card-description-text">
                 Used 4 times

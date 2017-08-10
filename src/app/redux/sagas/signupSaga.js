@@ -1,7 +1,7 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
-import * as types from '../actions/types';
-import AuthApi from '../../shared/api/AuthApi';
-import { signupSuccess, signupFail } from '../actions/userActions';
+import { call, put, takeEvery } from "redux-saga/effects";
+import * as types from "../actions/types";
+import AuthApi from "../../shared/api/AuthApi";
+import { signupSuccess, signupFail } from "../actions/userActions";
 
 function* signupUser(action) {
   try {

@@ -10,7 +10,7 @@ const questionSource = {
   beginDrag(props) {
     return {
       id: props.id,
-      originalIndex: props.findQuestion(props.id).index
+      originalIndex: props.findQuestion(props.id).index,
     };
   },
   endDrag(props, monitor) {
@@ -20,7 +20,7 @@ const questionSource = {
     if (!didDrop) {
       props.moveQuestion(droppedId, originalIndex);
     }
-  }
+  },
 };
 
 const questionTarget = {
@@ -35,7 +35,7 @@ const questionTarget = {
       const { index: overIndex } = props.findQuestion(overId);
       props.moveQuestion(draggedId, overIndex);
     }
-  }
+  },
 };
 
 function Question(props) {
@@ -55,8 +55,8 @@ function Question(props) {
           alt="Slide Preview"
           style={{ opacity }}
         />
-      </div>
-    )
+      </div>,
+    ),
   );
 }
 
@@ -66,14 +66,14 @@ Question.propTypes = {
   connectDragSource: PropTypes.func,
   connectDropTarget: PropTypes.func,
   id: PropTypes.number,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export default DragSource(QUESTION, questionSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
+  isDragging: monitor.isDragging(),
 }))(
   DropTarget(QUESTION, questionTarget, connect => ({
-    connectDropTarget: connect.dropTarget()
-  }))(Question)
+    connectDropTarget: connect.dropTarget(),
+  }))(Question),
 );

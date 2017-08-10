@@ -1,6 +1,6 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
-import * as types from '../actions/types';
-import DataApi from '../../shared/api/DataApi';
+import { call, put, takeEvery } from "redux-saga/effects";
+import * as types from "../actions/types";
+import DataApi from "../../shared/api/DataApi";
 import {
   getSessionQuestionsSuccess,
   getSessionQuestionsFail,
@@ -11,7 +11,7 @@ import {
   isPushingNewImage,
   deleteImageSuccess,
   deleteImageFail,
-} from '../actions/questionActions';
+} from "../actions/questionActions";
 
 function* fetchQuestions(action) {
   try {

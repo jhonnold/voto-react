@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import DropZone from 'react-dropzone';
+import React from "react";
+import PropTypes from "prop-types";
+import DropZone from "react-dropzone";
 
-import './styles/QuestionImageDropStyles.css';
+import "./styles/QuestionImageDropStyles.css";
 
 export default function QuestionImageDrop(props) {
   const onDrop = (files) => {
     for (let i = 0; i < files.length; i += 1) {
       const file = files[i];
       const formData = new FormData();
-      formData.append('image', file);
+      formData.append("image", file);
       props.onNewImage(formData);
     }
   };

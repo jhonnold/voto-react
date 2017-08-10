@@ -1,4 +1,4 @@
-import * as types from './types';
+import * as types from "./types";
 
 export const getSessionQuestions = sessionId => ({
   type: types.SESSION_QUESTIONS_REQUESTED,

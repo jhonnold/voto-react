@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
-import { Grid, Button } from 'material-ui';
+import React from "react";
+import PropTypes from "prop-types";
+import { Field, reduxForm } from "redux-form";
+import { Grid, Button } from "material-ui";
 
-import './styles/SessionEditFormStyles.css';
+import "./styles/SessionEditFormStyles.css";
 
 function SessionEditForm(props) {
   const { handleSubmit, handleCancel } = props;
@@ -37,7 +37,7 @@ function SessionEditForm(props) {
               component="input"
               className="session-edit-input"
             />
-            <span className="session-edit-subtitle" style={{ width: '85%' }}>
+            <span className="session-edit-subtitle" style={{ width: "85%" }}>
               Description
             </span>
           </Grid>
@@ -65,5 +65,5 @@ SessionEditForm.propTypes = {
 };
 
 export default reduxForm({
-  form: 'sessionEdit',
+  form: "sessionEdit",
 })(SessionEditForm);

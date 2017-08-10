@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
-import { Button } from 'material-ui';
+import React from "react";
+import PropTypes from "prop-types";
+import { Field, reduxForm } from "redux-form";
+import { Button } from "material-ui";
 
 function SignupForm(props) {
   const { handleSubmit, goToLogin } = props;
@@ -37,7 +37,7 @@ function SignupForm(props) {
         component="input"
         name="password"
       />
-      <input type="submit" style={{ display: 'none' }} />
+      <input type="submit" style={{ display: "none" }} />
       <div className="signup-page-buttons-wrapper">
         <Button raised className="signup-page-button" type="submit">
           Sign Up
@@ -61,5 +61,5 @@ SignupForm.propTypes = {
 };
 
 export default reduxForm({
-  form: 'signupForm',
+  form: "signupForm",
 })(SignupForm);

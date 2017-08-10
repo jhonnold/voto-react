@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import VotoNavBar from '../components/VotoNavBar';
-import VotoSideNav from '../components/VotoSideNav';
+import React from "react";
+import PropTypes from "prop-types";
+import VotoNavBar from "../components/VotoNavBar";
+import VotoSideNav from "../components/VotoSideNav";
 
-import './styles/VotoNavWrapperStyles.css';
+import "./styles/VotoNavWrapperStyles.css";
 
 export default function VotoNavWrapper(props) {
   const { drawSideNav } = props;

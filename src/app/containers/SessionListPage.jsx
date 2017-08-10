@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import { Grid, Button } from 'material-ui';
-import { Add as AddIcon } from 'material-ui-icons';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { push } from "react-router-redux";
+import { Grid, Button } from "material-ui";
+import { Add as AddIcon } from "material-ui-icons";
 import {
   getSessions,
   newSession,
   setSelectedSession,
-} from '../redux/actions/sessionsActions';
-import NewSessionModal from '../components/NewSessionModal';
-import SessionCard from '../components/SessionCard';
+} from "../redux/actions/sessionsActions";
+import NewSessionModal from "../components/NewSessionModal";
+import SessionCard from "../components/SessionCard";
 
-import './styles/SessionListPageStyles.css';
+import "./styles/SessionListPageStyles.css";
 
 class SessionListPage extends React.Component {
   constructor(props) {
@@ -57,7 +57,7 @@ class SessionListPage extends React.Component {
     const { modalOpen } = this.state;
     const { sessions } = this.props;
 
-    const blur = modalOpen ? { filter: 'blur(3px)' } : null;
+    const blur = modalOpen ? { filter: "blur(3px)" } : null;
 
     return (
       <div className="session-list-container">

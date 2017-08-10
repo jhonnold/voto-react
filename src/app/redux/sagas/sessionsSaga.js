@@ -1,6 +1,6 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
-import * as types from '../actions/types';
-import DataApi from '../../shared/api/DataApi';
+import { call, put, takeEvery } from "redux-saga/effects";
+import * as types from "../actions/types";
+import DataApi from "../../shared/api/DataApi";
 import {
   getSessionsSuccess,
   getSessionsFail,
@@ -8,7 +8,7 @@ import {
   newSessionFail,
   submitSessionSuccess,
   submitSessionFail,
-} from '../actions/sessionsActions';
+} from "../actions/sessionsActions";
 
 function* fetchSessions(action) {
   try {
@@ -41,7 +41,7 @@ function* updateSession(action) {
     const response = yield call(DataApi.updateSession, action.payload);
     yield put(submitSessionSuccess(response));
     yield call(DataApi.updateQuestions, action.payload.questions);
-    yield put({ type: 'UPDATE_QUESTIONS_RESOLVED' });
+    yield put({ type: "UPDATE_QUESTIONS_RESOLVED" });
   } catch (err) {
     yield put(submitSessionFail(err));
   }

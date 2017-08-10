@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { AppBar, Toolbar, IconButton } from 'material-ui';
-import { Menu as MenuIcon } from 'material-ui-icons';
-import VotoNavDrawer from './VotoNavDrawer';
+import React from "react";
+import PropTypes from "prop-types";
+import { AppBar, Toolbar, IconButton } from "material-ui";
+import { Menu as MenuIcon } from "material-ui-icons";
+import VotoNavDrawer from "./VotoNavDrawer";
 
-import './styles/VotoNavBarStyles.css';
+import "./styles/VotoNavBarStyles.css";
 
 export default class VotoNavBar extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ export default class VotoNavBar extends React.Component {
     return (
       <div className="nav-bar-container">
         <AppBar position="static" className="nav-bar-app">
-          <Toolbar className="no-padding" style={{ height: '4rem' }}>
+          <Toolbar className="no-padding" style={{ height: "4rem" }}>
             {drawNavHeader &&
               <div className="nav-bar-side-nav-header">
                 <span className="nav-bar-side-nav-header-text">voto</span>

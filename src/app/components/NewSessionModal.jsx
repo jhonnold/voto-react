@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
-import { Button } from 'material-ui';
+import React from "react";
+import PropTypes from "prop-types";
+import { Field, reduxForm } from "redux-form";
+import { Button } from "material-ui";
 
-import './styles/NewSessionModalStyles.css';
+import "./styles/NewSessionModalStyles.css";
 
 function NewSessionModal(props) {
   const { handleSubmit, handleCancel } = props;
@@ -35,7 +35,7 @@ function NewSessionModal(props) {
           name="description"
         />
 
-        <input type="submit" style={{ display: 'none' }} />
+        <input type="submit" style={{ display: "none" }} />
 
         <div className="new-session-modal-button-wrapper">
           <Button raised className="new-session-modal-button" type="submit">
@@ -60,5 +60,5 @@ NewSessionModal.propTypes = {
 };
 
 export default reduxForm({
-  form: 'createNewSession',
+  form: "createNewSession",
 })(NewSessionModal);

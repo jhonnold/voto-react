@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { DropTarget, DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
-import { CircularProgress } from 'material-ui/Progress';
-import Question from './Question';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { DropTarget, DragDropContext } from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
+import { CircularProgress } from "material-ui/Progress";
+import Question from "./Question";
 
-import './styles/QuestionContainerStyles.css';
+import "./styles/QuestionContainerStyles.css";
 
-const QUESTION = 'question';
+const QUESTION = "question";
 
 const questionTarget = {
   drop() {},
@@ -38,7 +38,7 @@ function QuestionContainer(props) {
     loaders.fill(
       <div className="question-image-progress-loader">
         <CircularProgress size={60} />
-      </div>
+      </div>,
     );
   }
 
@@ -67,7 +67,7 @@ function QuestionContainer(props) {
 const mapDispatchToProps = dispatch => ({
   dispatchMoveQuestion: (index, atIndex, question) => {
     dispatch({
-      type: 'QUESTION_CARD_MOVED',
+      type: "QUESTION_CARD_MOVED",
       payload: {
         index,
         atIndex,

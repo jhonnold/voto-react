@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import { signupUser } from '../redux/actions/userActions';
-import SignupForm from '../components/SignupForm';
-import './styles/SignupPageStyles.css';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { push } from "react-router-redux";
+import { signupUser } from "../redux/actions/userActions";
+import SignupForm from "../components/SignupForm";
+import "./styles/SignupPageStyles.css";
 
 function SignupPage(props) {
   const { onSignup, goToLogin } = props;
@@ -26,7 +26,7 @@ function SignupPage(props) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  goToLogin: () => dispatch(push('/login')),
+  goToLogin: () => dispatch(push("/login")),
   onSignup: params => dispatch(signupUser(params)),
 });
 

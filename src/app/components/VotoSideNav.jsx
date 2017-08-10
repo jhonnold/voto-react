@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import { withRouter } from 'react-router';
-import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { push } from "react-router-redux";
+import { withRouter } from "react-router";
+import SideNav, { Nav, NavIcon, NavText } from "react-sidenav";
 import {
   Home as HomeIcon,
   DataUsage,
   Folder as FolderIcon,
   FolderOpen as FolderOpenIcon,
   FolderSpecial,
-} from 'material-ui-icons';
+} from "material-ui-icons";
 
-import './styles/VotoSideNavStyles.css';
+import "./styles/VotoSideNavStyles.css";
 
 function VotoSideNav(props) {
   return (

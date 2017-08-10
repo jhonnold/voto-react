@@ -1,4 +1,4 @@
-import * as types from './types';
+import * as types from "./types";
 
 const resize = width => ({
   type: types.CONTAINER_RESIZE,

@@ -1,4 +1,4 @@
-import * as types from './types';
+import * as types from "./types";
 
 export const loginUser = (username, password) => ({
   type: types.LOGIN_USER_REQUESTED,
