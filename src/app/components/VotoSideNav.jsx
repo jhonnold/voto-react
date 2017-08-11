@@ -20,7 +20,7 @@ function VotoSideNav(props) {
       <SideNav
         highlightColor="#fff"
         highlightBgColor="#31383e"
-        defaultSelected={props.location.pathname.substring(1)}
+        selected={props.location.pathname.substring(1)}
         onItemSelection={i => props.navigateTo(`/${i}`)}
       >
         <Nav id="dashboard">
