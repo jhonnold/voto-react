@@ -28,9 +28,6 @@ const Blank = () =>
 class Root extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      navShowing: true,
-    };
 
     this.handleResize = this.handleResize.bind(this);
   }

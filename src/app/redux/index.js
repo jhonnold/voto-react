@@ -4,6 +4,7 @@ import { routerReducer, routerMiddleware } from "react-router-redux";
 import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import { reducer as formReducer } from "redux-form";
+import { keaReducer, keaSaga } from "kea";
 import userReducer from "./reducers/userReducer";
 import sessionsReducer from "./reducers/sessionsReducer";
 import questionsReducer from "./reducers/questionsReducer";
@@ -27,6 +28,7 @@ const reducer = combineReducers({
   selectedSession: selecterReducer,
   form: formReducer,
   container: containerReducer,
+  scenes: keaReducer("scenes"),
 });
 
 export const store = createStore(
@@ -34,4 +36,5 @@ export const store = createStore(
   applyMiddleware(routerMiddle, logger, sagaMiddleware),
 );
 
+sagaMiddleware.run(keaSaga);
 sagaMiddleware.run(rootSaga);
