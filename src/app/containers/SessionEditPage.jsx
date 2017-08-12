@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { goBack } from "react-router-redux";
 import { Scrollbars } from "react-custom-scrollbars";
-import { Grid, Divider, IconButton } from "material-ui";
+import { Divider, IconButton } from "material-ui";
 import {
   ArrowForward,
   ArrowBack,
@@ -18,6 +18,8 @@ import { submitSession } from "../redux/actions/sessionsActions";
 import QuestionContainer from "../components/QuestionContainer";
 import SessionEditForm from "../components/SessionEditForm";
 import QuestionImageDrop from "../components/QuestionImageDrop";
+import CenterImage from "../components/CenterImage";
+import CenterWrapper from "../components/CenterWrapper";
 
 import "./styles/SessionEditPageStyles.css";
 
@@ -51,7 +53,7 @@ class SessionEditPage extends React.Component {
     this.moveQuestion = this.moveQuestion.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (!this.props.session.sessionId) {
       this.props.goBack();
       return;
@@ -136,12 +138,12 @@ class SessionEditPage extends React.Component {
 
     const width =
       containerWidth > 750 ? containerWidth - 264 : containerWidth - 8;
-    const height = width * 0.5625; // --9/16
+    const height = width * 0.5625; // --> 9/16
 
     let src;
     if (questions.length && this.state.id >= 0) {
       const question = questions.filter(q => q.id === id)[0];
-      src = (question ? question.url : questions[0].url);
+      src = question ? question.url : questions[0].url;
     }
 
     return (
@@ -158,56 +160,29 @@ class SessionEditPage extends React.Component {
             handleCancel={this.handleCancel}
             initialValues={initialValues}
           >
-            <Grid
-              container
-              gutter={0}
-              className="session-edit-center-container"
-              justify="center"
-            >
-              <Grid
-                item
-                xs={12}
-                md={8}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                }}
-              >
-                {questions.length > 0 &&
-                  <div
-                    // src={src}
-                    style={{
-                      backgroundImage: `url(${src})`,
-                      width,
-                      height,
-                      maxHeight: "27rem",
-                      maxWidth: "calc(100% - 1rem)",
-                    }}
-                    alt="Select a slide to edit"
-                    className="session-edit-selected-image"
-                  />}
+            <CenterWrapper>
+              {questions.length > 0 &&
+                <CenterImage width={width} height={height} src={src} />}
 
-                <QuestionImageDrop onNewImage={handleNewImage} />
+              <QuestionImageDrop onNewImage={handleNewImage} />
 
-                <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
-                <span className="session-edit-subtitle">
-                  Click the arrows to move this question within the Session
-                </span>
-                <div className="session-edit-button-container">
-                  <IconButton onClick={this.onLeftArrow}>
-                    <ArrowBack />
-                  </IconButton>
-                  <IconButton onClick={this.onDelete}>
-                    <DeleteIcon />
-                  </IconButton>
-                  <IconButton onClick={this.onRightArrow}>
-                    <ArrowForward />
-                  </IconButton>
-                </div>
-                <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
-              </Grid>
-            </Grid>
+              <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
+              <span className="session-edit-subtitle">
+                Click the arrows to move this question within the Session
+              </span>
+              <div className="session-edit-button-container">
+                <IconButton onClick={this.onLeftArrow}>
+                  <ArrowBack />
+                </IconButton>
+                <IconButton onClick={this.onDelete}>
+                  <DeleteIcon />
+                </IconButton>
+                <IconButton onClick={this.onRightArrow}>
+                  <ArrowForward />
+                </IconButton>
+              </div>
+              <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
+            </CenterWrapper>
           </SessionEditForm>
           <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
         </div>

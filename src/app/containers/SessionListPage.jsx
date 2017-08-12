@@ -27,7 +27,7 @@ class SessionListPage extends React.Component {
     this.handleNewSessionSubmitted = this.handleNewSessionSubmitted.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.sessions.length === 0) {
       this.props.requestSessions();
     }
