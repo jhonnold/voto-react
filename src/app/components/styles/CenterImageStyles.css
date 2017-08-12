@@ -1,0 +1,7 @@
+.center-image {
+  margin: .5rem;
+  box-shadow: 0 0 5px 1px #3d464d;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
