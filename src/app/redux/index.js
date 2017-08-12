@@ -1,10 +1,9 @@
 import createHistory from "history/createBrowserHistory";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { routerReducer, routerMiddleware } from "react-router-redux";
-import logger from "redux-logger";
+import { createLogger } from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import { reducer as formReducer } from "redux-form";
-import { keaReducer, keaSaga } from "kea";
 import userReducer from "./reducers/userReducer";
 import sessionsReducer from "./reducers/sessionsReducer";
 import questionsReducer from "./reducers/questionsReducer";
@@ -20,6 +19,28 @@ const sagaMiddleware = createSagaMiddleware({
   sagaMonitor,
 });
 
+const colorsObject = {
+  title: (action) => {
+    if (action.type.indexOf("_REQUESTED") >= 0) {
+      return "blue";
+    } else if (action.type.indexOf("_RESOLVED") >= 0) {
+      return "green";
+    } else if (action.type.indexOf("_REJECTED") >= 0) {
+      return "red";
+    }
+    return "black";
+  },
+  prevState: () => "#9E9E9E",
+  action: () => "#03A9F4",
+  nextState: () => "#4CAF50",
+  error: () => "#F20404",
+};
+
+const logger = createLogger({
+  collapsed: (_, action) => action.type.indexOf("_RESOLVED") === -1,
+  colors: colorsObject,
+});
+
 const reducer = combineReducers({
   user: userReducer,
   route: routerReducer,
@@ -28,7 +49,6 @@ const reducer = combineReducers({
   selectedSession: selecterReducer,
   form: formReducer,
   container: containerReducer,
-  scenes: keaReducer("scenes"),
 });
 
 export const store = createStore(
@@ -36,5 +56,4 @@ export const store = createStore(
   applyMiddleware(routerMiddle, logger, sagaMiddleware),
 );
 
-sagaMiddleware.run(keaSaga);
 sagaMiddleware.run(rootSaga);

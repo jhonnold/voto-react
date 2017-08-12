@@ -68,7 +68,7 @@ class SessionListPage extends React.Component {
       <div className="session-list-container">
         {modalOpen &&
           <NewSessionModal
-            onCancel={this.handleNewSessionCanceled}
+            handleCancel={this.handleNewSessionCanceled}
             onSubmit={this.handleNewSessionSubmitted}
           />}
         <Grid container style={blur}>
