@@ -22,6 +22,7 @@ class SessionListPage extends React.Component {
     };
 
     this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleHostClick = this.handleHostClick.bind(this);
     this.handleNewSessionCanceled = this.handleNewSessionCanceled.bind(this);
     this.handleNewSessionClicked = this.handleNewSessionClicked.bind(this);
     this.handleNewSessionSubmitted = this.handleNewSessionSubmitted.bind(this);
@@ -53,6 +54,10 @@ class SessionListPage extends React.Component {
     this.props.goToEdit(session);
   }
 
+  handleHostClick(session) {
+    this.props.goToHost(session);
+  }
+
   render() {
     const { modalOpen } = this.state;
     const { sessions } = this.props;
@@ -66,12 +71,13 @@ class SessionListPage extends React.Component {
             onCancel={this.handleNewSessionCanceled}
             onSubmit={this.handleNewSessionSubmitted}
           />}
-        <Grid container gutter={8} style={blur}>
+        <Grid container style={blur}>
           {sessions.map(l =>
             (<SessionCard
               key={l.sessionId}
               data={l}
               onEditClick={this.handleEditClick}
+              onHostClick={this.handleHostClick}
             />),
           )}
         </Grid>
@@ -101,6 +107,10 @@ const mapDispatchToProps = dispatch => ({
   goToEdit: (session) => {
     dispatch(setSelectedSession(session));
     dispatch(push(`/sessions/${session.sessionId}/edit`));
+  },
+  goToHost: (session) => {
+    dispatch(setSelectedSession(session));
+    dispatch(push(`/sessions/${session.sessionId}/host`));
   },
 });
 

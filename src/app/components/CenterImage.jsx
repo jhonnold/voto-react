@@ -10,8 +10,8 @@ export default function CenterImage(props) {
     <div
       style={{
         backgroundImage: `url(${src})`,
-        width,
-        height,
+        width: width || 0,
+        height: height || 0,
         maxHeight: "27rem",
         maxWidth: "calc(100% - 1rem)",
       }}
@@ -21,8 +21,12 @@ export default function CenterImage(props) {
   );
 }
 
+CenterImage.defaultProps = {
+  src: "",
+};
+
 CenterImage.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
 };

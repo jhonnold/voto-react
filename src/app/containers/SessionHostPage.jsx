@@ -34,7 +34,7 @@ class SessionHostPage extends React.Component {
           <div className="session-host-header-wrapper">
             <span>HEADER</span>
           </div>
-          <Grid container gutter={0} justify="center">
+          <Grid container justify="center">
             <Grid item xs={12} md={8}>
               <CenterImage width={width} height={height} src={"google.com"} />
             </Grid>

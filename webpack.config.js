@@ -4,8 +4,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: ["babel-polyfill", "./src/index.js"],
   output: {
-    path: __dirname,
-    filename: "public/main.bundle.js",
+    path: path.resolve(__dirname, "/public"),
+    publicPath: "/",
+    filename: "main.bundle.js",
   },
   watch: true,
   module: {
@@ -38,8 +39,9 @@ module.exports = {
       "/api": "http://localhost:8080",
     },
     historyApiFallback: true,
+    contentBase: "./",
   },
-  devtool: "cheap-module-source-map",
+  devtool: "source-map",
   resolve: {
     extensions: [".js", ".jsx"],
   },

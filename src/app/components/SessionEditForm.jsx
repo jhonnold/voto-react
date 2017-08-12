@@ -11,7 +11,7 @@ function SessionEditForm(props) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="session-edit-session-form">
-        <Grid container gutter={8}>
+        <Grid container>
           <Grid item xs={12} md={4} className="session-edit-input-wrapper">
             <Field
               type="text"
@@ -61,7 +61,6 @@ function SessionEditForm(props) {
 SessionEditForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
 export default reduxForm({

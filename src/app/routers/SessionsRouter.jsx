@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Route, Switch, Redirect } from "react-router";
 import SessionListPage from "../containers/SessionListPage";
 import SessionEditPage from "../containers/SessionEditPage";
+import SessionHostPage from "../containers/SessionHostPage";
 
 export default function SessionsRouter(props) {
   return (
@@ -12,6 +13,11 @@ export default function SessionsRouter(props) {
         exact
         path={`${props.match.path}/:sessionId/edit`}
         component={SessionEditPage}
+      />
+      <Route
+        exact
+        path={`${props.match.path}/:sessionId/host`}
+        component={SessionHostPage}
       />
       <Route render={() => <Redirect to={props.match.path} />} />
     </Switch>

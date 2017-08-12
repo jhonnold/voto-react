@@ -4,14 +4,17 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
 import { Route } from "react-router";
+import createMuiTheme from "material-ui/styles/theme";
 import { MuiThemeProvider } from "material-ui/styles";
 import { history, store } from "./app/redux";
 import Root from "./app/Root";
 import registerServiceWorker from "./registerServiceWorker";
 import "./index.css";
 
+const theme = createMuiTheme();
+
 const App = () =>
-  <MuiThemeProvider>
+  <MuiThemeProvider theme={theme}>
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Route path="/" component={Root} />

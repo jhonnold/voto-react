@@ -11,14 +11,16 @@ import {
   Favorite,
 } from "material-ui-icons";
 
-import slide from "../images/sampleslide.png";
-
 import "./styles/SessionCardStyles.css";
 
 function SessionCardSlide() {
   return (
     <Grid item xs={6} sm={4} md={3} lg={4} xl={3}>
-      <img src={slide} className="session-card-slide" alt="session-slide" />
+      <img
+        src="public/images/sampleslide.png"
+        className="session-card-slide"
+        alt="session-slide"
+      />
     </Grid>
   );
 }
@@ -42,7 +44,7 @@ export default class SessionCard extends React.Component {
 
   render() {
     const { expanded } = this.state;
-    const { onEditClick, data } = this.props;
+    const { onEditClick, onHostClick, data } = this.props;
     const { title, timeStamp, className } = data;
 
     return (
@@ -64,7 +66,7 @@ export default class SessionCard extends React.Component {
             </div>
             <div style={{ flex: 1 }} />
             <div className="session-card-actions-wrapper">
-              <IconButton>
+              <IconButton onClick={() => onHostClick(data)}>
                 <Slideshow />
               </IconButton>
             </div>
@@ -83,7 +85,7 @@ export default class SessionCard extends React.Component {
           >
             <Divider style={{ margin: ".5rem 0" }} />
             <div className="session-card-image-slider">
-              <Grid container gutter={8} wrap="nowrap">
+              <Grid container wrap="nowrap">
                 <SessionCardSlide />
                 <SessionCardSlide />
                 <SessionCardSlide />
