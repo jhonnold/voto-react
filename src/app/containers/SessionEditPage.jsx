@@ -190,7 +190,7 @@ class SessionEditPage extends React.Component {
               questions={this.props.questions}
               onSelect={this.onImageSelect}
               pushingImageCount={this.props.session.pushingImageCount}
-              canDrag={true}
+              canDrag
             />
           </Scrollbars>
         </div>

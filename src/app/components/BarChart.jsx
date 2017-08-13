@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactHighcharts from "react-highcharts";
-import { Grid } from "material-ui";
 
 export default function BarChart(props) {
   const config = {
@@ -41,4 +40,8 @@ export default function BarChart(props) {
 
 BarChart.defaultProps = {
   data: [1, 2, 3, 4, 5],
+};
+
+BarChart.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.number),
 };

@@ -15,12 +15,13 @@ import {
 import "./styles/VotoSideNavStyles.css";
 
 function VotoSideNav(props) {
+  const selected = props.location.pathname.substring(1).split("/")[0];
   return (
     <div className="side-nav-container">
       <SideNav
         highlightColor="#fff"
         highlightBgColor="#31383e"
-        selected={props.location.pathname.substring(1)}
+        selected={selected}
         onItemSelection={i => props.navigateTo(`/${i}`)}
       >
         <Nav id="dashboard">

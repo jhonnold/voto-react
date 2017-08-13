@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { goBack } from "react-router-redux";
 import { Scrollbars } from "react-custom-scrollbars";
-import { Grid, Divider, IconButton } from "material-ui";
+import { Grid, Divider, IconButton, Switch } from "material-ui";
 import { ArrowForward, ArrowBack } from "material-ui-icons";
 import { getSessionQuestions } from "../redux/actions/questionActions";
 import renderThumb from "../components/Thumb";
@@ -19,10 +19,12 @@ class SessionHostPage extends React.Component {
 
     this.state = {
       index: 0,
+      sessionActive: false,
     };
 
     this.onLeftArrow = this.onLeftArrow.bind(this);
     this.onRightArrow = this.onRightArrow.bind(this);
+    this.onSwitch = this.onSwitch.bind(this);
   }
 
   componentDidMount() {
@@ -50,6 +52,12 @@ class SessionHostPage extends React.Component {
     }
   }
 
+  onSwitch() {
+    this.setState({
+      sessionActive: !this.state.sessionActive,
+    });
+  }
+
   render() {
     const { containerWidth, questions, session } = this.props;
 
@@ -61,6 +69,10 @@ class SessionHostPage extends React.Component {
     if (questions.length) {
       src = questions[this.state.index].url;
     }
+
+    const subtitle = this.state.sessionActive
+      ? "The above picture is currently visible to connected students"
+      : "Slide the lever to make the session active";
 
     return (
       <div className="session-host-page-wrapper">
@@ -75,12 +87,18 @@ class SessionHostPage extends React.Component {
               <CenterImage width={width} height={height} src={src} />
               <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
               <span className="session-host-subtitle">
-                Slide the lever to make the session active
+                {subtitle}
               </span>
               <div className="session-host-button-container">
                 <IconButton onClick={this.onLeftArrow}>
                   <ArrowBack />
                 </IconButton>
+                <Switch
+                  checked={this.state.sessionActive}
+                  onChange={this.onSwitch}
+                  aria-label="Active Session"
+                  checkedClassName="session-host-switch"
+                />
                 <IconButton onClick={this.onRightArrow}>
                   <ArrowForward />
                 </IconButton>
