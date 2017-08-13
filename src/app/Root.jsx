@@ -50,16 +50,6 @@ class Root extends React.Component {
 
     return (
       <VotoNavWrapper drawSideNav={this.props.containerWidth > 750}>
-        <Route
-          exact
-          path="/"
-          render={() => {
-            if (props.user) {
-              return <Redirect to="/dashboard" />;
-            }
-            return <Redirect to="/login" />;
-          }}
-        />
         <TransitionGroup>
           <Fade key={props.location.pathname}>
             <section
@@ -75,6 +65,9 @@ class Root extends React.Component {
                 flexDirection: "column",
               }}
             >
+              {!props.user.loggedIn &&
+                <Route render={() => <Redirect to="/login" />} />
+              }
               <Route exact path="/" render={() => <Redirect to="/login" />} />
               <Switch location={props.location}>
                 <Route exact path="/login" component={LoginPage} />
@@ -90,8 +83,9 @@ class Root extends React.Component {
   }
 }
 
-const mapStateToProps = ({ container }) => ({
+const mapStateToProps = ({ container, user }) => ({
   containerWidth: container.width,
+  user,
 });
 
 const mapDispatchToProps = dispatch => ({
