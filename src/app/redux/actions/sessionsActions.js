@@ -42,7 +42,7 @@ export const submitSession = (values, session) => {
   // FORMAT ALL THE QUESTIONS
   const formattedQuestions = session.questions.map((question, index) => ({
     ...question,
-    orderNum: index,
+    orderNumber: index,
     sessionId: session.sessionId,
   }));
 

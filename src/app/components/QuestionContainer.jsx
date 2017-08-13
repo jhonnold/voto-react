@@ -15,7 +15,13 @@ const questionTarget = {
 };
 
 function QuestionContainer(props) {
-  const { connectDropTarget, questions, pushingImageCount, onSelect } = props;
+  const {
+    connectDropTarget,
+    questions,
+    pushingImageCount,
+    onSelect,
+    canDrag,
+  } = props;
   let loaders;
 
   const findQuestion = (id) => {
@@ -54,6 +60,7 @@ function QuestionContainer(props) {
               moveQuestion={moveQuestion}
               findQuestion={findQuestion}
               onClick={onSelect}
+              canDrag={canDrag}
             />
           );
         }
@@ -82,6 +89,7 @@ QuestionContainer.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.object),
   pushingImageCount: PropTypes.number,
   onSelect: PropTypes.func,
+  canDrag: PropTypes.bool,
 };
 
 export default DragDropContext(HTML5Backend)(

@@ -7,6 +7,9 @@ import "./styles/QuestionStyles.css";
 const QUESTION = "question";
 
 const questionSource = {
+  canDrag(props) {
+    return props.canDrag;
+  },
   beginDrag(props) {
     return {
       id: props.id,
@@ -67,6 +70,7 @@ Question.propTypes = {
   connectDropTarget: PropTypes.func,
   id: PropTypes.number,
   onClick: PropTypes.func,
+  canDrag: PropTypes.bool,
 };
 
 export default DragSource(QUESTION, questionSource, (connect, monitor) => ({

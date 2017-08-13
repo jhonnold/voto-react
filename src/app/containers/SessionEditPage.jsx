@@ -20,20 +20,9 @@ import SessionEditForm from "../components/SessionEditForm";
 import QuestionImageDrop from "../components/QuestionImageDrop";
 import CenterImage from "../components/CenterImage";
 import CenterWrapper from "../components/CenterWrapper";
+import renderThumb from "../components/Thumb";
 
 import "./styles/SessionEditPageStyles.css";
-
-function renderThumb({ style, ...props }) {
-  const thumbStyle = {
-    backgroundColor: "#3f51b5",
-    opacity: 1,
-    height: "1rem",
-    cursor: "pointer",
-    minHeight: "min-content",
-  };
-
-  return <div style={{ ...style, ...thumbStyle }} {...props} />;
-}
 
 class SessionEditPage extends React.Component {
   constructor(props) {
@@ -201,6 +190,7 @@ class SessionEditPage extends React.Component {
               questions={this.props.questions}
               onSelect={this.onImageSelect}
               pushingImageCount={this.props.session.pushingImageCount}
+              canDrag={true}
             />
           </Scrollbars>
         </div>
@@ -247,10 +237,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(deleteImage(question));
   },
 });
-
-renderThumb.propTypes = {
-  style: PropTypes.objectOf(PropTypes.string).isRequired,
-};
 
 SessionEditPage.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
