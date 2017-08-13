@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
+import { persistStore } from "redux-persist";
 import { Route } from "react-router";
 import createMuiTheme from "material-ui/styles/theme";
 import { MuiThemeProvider } from "material-ui/styles";
@@ -13,14 +14,32 @@ import "./index.css";
 
 const theme = createMuiTheme();
 
-const App = () =>
-  <MuiThemeProvider theme={theme}>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Route path="/" component={Root} />
-      </ConnectedRouter>
-    </Provider>
-  </MuiThemeProvider>;
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = { rehydrated: false };
+  }
+
+  componentWillMount() {
+    persistStore(store, {}, () => {
+      this.setState({ rehydrated: true });
+    });
+  }
+
+  render() {
+    return (
+      <MuiThemeProvider theme={theme}>
+        <Provider store={store}>
+          {this.state.rehydrated
+            ? <ConnectedRouter history={history}>
+                <Route path="/" component={Root} />
+              </ConnectedRouter>
+            : <div />}
+        </Provider>
+      </MuiThemeProvider>
+    );
+  }
+}
 
 ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();

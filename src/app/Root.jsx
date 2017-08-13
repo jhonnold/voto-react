@@ -66,8 +66,7 @@ class Root extends React.Component {
               }}
             >
               {!props.user.loggedIn &&
-                <Route render={() => <Redirect to="/login" />} />
-              }
+                <Route render={() => <Redirect to="/login" />} />}
               <Route exact path="/" render={() => <Redirect to="/login" />} />
               <Switch location={props.location}>
                 <Route exact path="/login" component={LoginPage} />

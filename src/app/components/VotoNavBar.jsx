@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { AppBar, Toolbar, IconButton, Button } from "material-ui";
-import { Menu as MenuIcon, MoreVert } from "material-ui-icons";
+import { Menu as MenuIcon } from "material-ui-icons";
 import VotoNavDrawer from "./VotoNavDrawer";
 
 import "./styles/VotoNavBarStyles.css";
@@ -45,10 +45,8 @@ export default class VotoNavBar extends React.Component {
               <IconButton onClick={this.handleDrawerOpen}>
                 <MenuIcon />
               </IconButton>}
-              <div style={{flex: 1}} />
-              <Button color="contrast">
-                Login
-              </Button>
+            <div style={{ flex: 1 }} />
+            <Button color="contrast">Login</Button>
           </Toolbar>
         </AppBar>
         <VotoNavDrawer

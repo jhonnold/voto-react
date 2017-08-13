@@ -23,5 +23,4 @@ export default function VotoNavWrapper(props) {
 
 VotoNavWrapper.propTypes = {
   drawSideNav: PropTypes.bool.isRequired,
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };

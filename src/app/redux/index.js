@@ -1,9 +1,10 @@
 import createHistory from "history/createBrowserHistory";
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { routerReducer, routerMiddleware } from "react-router-redux";
 import { createLogger } from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import { reducer as formReducer } from "redux-form";
+import { autoRehydrate } from "redux-persist";
 import userReducer from "./reducers/userReducer";
 import sessionsReducer from "./reducers/sessionsReducer";
 import questionsReducer from "./reducers/questionsReducer";
@@ -53,7 +54,10 @@ const reducer = combineReducers({
 
 export const store = createStore(
   reducer,
-  applyMiddleware(routerMiddle, logger, sagaMiddleware),
+  compose(
+    autoRehydrate(),
+    applyMiddleware(routerMiddle, logger, sagaMiddleware),
+  ),
 );
 
 sagaMiddleware.run(rootSaga);

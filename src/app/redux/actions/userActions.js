@@ -33,7 +33,7 @@ export const signupFail = err => ({
   payload: err,
 });
 
-export const setLoginState = (payload) => ({
+export const setLoginState = payload => ({
   type: types.SET_LOGIN_STATE,
   payload,
 });

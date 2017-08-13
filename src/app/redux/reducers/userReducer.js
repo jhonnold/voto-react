@@ -1,3 +1,4 @@
+import { REHYDRATE } from "redux-persist/constants";
 import * as types from "../actions/types";
 
 const userReducer = (state = {}, action) => {
@@ -17,7 +18,12 @@ const userReducer = (state = {}, action) => {
       return { ...state };
     }
     case types.SET_LOGIN_STATE: {
-      return {...state, loggedIn: payload};
+      return { ...state, loggedIn: payload };
+    }
+    case REHYDRATE: {
+      const user = payload.user;
+      if (user.loggedIn) return { ...state, loggedIn: user.loggedIn };
+      return state;
     }
     default: {
       return { ...state };
