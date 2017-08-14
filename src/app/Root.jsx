@@ -49,7 +49,7 @@ class Root extends React.Component {
     const { props } = this;
 
     return (
-      <VotoNavWrapper drawSideNav={this.props.containerWidth > 750}>
+      <VotoNavWrapper drawSideNav={this.props.containerWidth > 750} loggedIn={props.user.loggedIn}>
         <TransitionGroup>
           <Fade key={props.location.pathname}>
             <section

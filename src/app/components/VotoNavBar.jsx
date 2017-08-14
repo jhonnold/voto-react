@@ -31,7 +31,7 @@ export default class VotoNavBar extends React.Component {
   }
 
   render() {
-    const { drawNavHeader } = this.props;
+    const { drawNavHeader, loggedIn } = this.props;
 
     return (
       <div className="nav-bar-container">
@@ -46,7 +46,9 @@ export default class VotoNavBar extends React.Component {
                 <MenuIcon />
               </IconButton>}
             <div style={{ flex: 1 }} />
-            <Button color="contrast">Login</Button>
+            {loggedIn
+              ? <Button color="contrast">Login</Button>
+              : <Button color="contrast">Logout</Button>}
           </Toolbar>
         </AppBar>
         <VotoNavDrawer
