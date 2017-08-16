@@ -53,7 +53,9 @@ export default class VotoNavBar extends React.Component {
             <div style={{ flex: 1 }} />
             {loggedIn
               ? <Button color="contrast">Login</Button>
-              : <Button color="contrast" onClick={this.handleLogout}>Logout</Button>}
+              : <Button color="contrast" onClick={this.handleLogout}>
+                  Logout
+                </Button>}
           </Toolbar>
         </AppBar>
         <VotoNavDrawer

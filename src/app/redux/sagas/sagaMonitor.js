@@ -23,19 +23,19 @@ const sagaMonitor = {
         return;
       }
       case types.SESSION_QUESTIONS_RESOLVED: {
-        result.payload.data.map(q => {
+        result.payload.data.map((q) => {
           store.dispatch(getQuestionUrl(q.imgFileName));
-          return;
+          return 0;
         });
         return;
       }
       case types.LOGOUT_RESOLVED: {
         store.dispatch(setLoginState(false));
         store.dispatch(push("/login"));
-        return;
+        break;
       }
       default: {
-        return;
+        break;
       }
     }
   },
