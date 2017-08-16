@@ -36,7 +36,7 @@ function VotoSideNav(props) {
           </NavIcon>
           <NavText>Sessions</NavText>
         </Nav>
-        <Nav id="sessions/favorite">
+        <Nav id="fave_sessions">
           <NavIcon>
             <FolderSpecial />
           </NavIcon>

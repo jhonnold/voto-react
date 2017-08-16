@@ -1,4 +1,4 @@
-import { push } from "react-router-redux";
+import { push, goBack } from "react-router-redux";
 import { store } from "../index";
 import { setLoginState } from "../actions/userActions";
 import { setSelectedSession } from "../actions/sessionsActions";
@@ -6,6 +6,9 @@ import { getQuestionUrl } from "../actions/questionActions";
 import * as types from "../actions/types";
 
 const sagaMonitor = {
+  effectRejected: (effectId, error) => {
+    store.dispatch({ type: "ERROR", payload: error });
+  },
   effectResolved: (effectId, result) => {
     switch (result.type) {
       case types.LOGIN_USER_RESOLVED: {
@@ -27,6 +30,10 @@ const sagaMonitor = {
           store.dispatch(getQuestionUrl(q.imgFileName));
           return 0;
         });
+        return;
+      }
+      case "UPDATE_QUESTIONS_RESOLVED": {
+        store.dispatch(goBack());
         return;
       }
       case types.LOGOUT_RESOLVED: {
