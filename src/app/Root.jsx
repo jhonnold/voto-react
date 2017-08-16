@@ -6,9 +6,10 @@ import { connect } from "react-redux";
 import { logoutUser } from "./redux/actions/userActions";
 import resize from "./redux/actions/containerActions";
 import VotoNavWrapper from "./containers/VotoNavWrapper";
-import SessionsRouter from "./routers/SessionsRouter";
 import LoginPage from "./containers/LoginPage";
 import SignupPage from "./containers/SignupPage";
+import SessionsRouter from "./routers/SessionsRouter";
+import StudentRouter from "./routers/StudentRouter";
 
 import "./styles/RootStyles.css";
 
@@ -92,6 +93,7 @@ class Root extends React.Component {
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/signup" component={SignupPage} />
                 <Route path="/sessions" component={SessionsRouter} />
+                <Route path="/student" component={StudentRouter} />
                 <Route component={Blank} />
               </Switch>
             </section>

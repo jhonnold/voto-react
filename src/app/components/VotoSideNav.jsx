@@ -18,45 +18,46 @@ function VotoSideNav(props) {
   const selected = props.location.pathname.substring(1).split("/")[0];
   return (
     <div className="side-nav-container">
-      <SideNav
-        highlightColor="#fff"
-        highlightBgColor="#31383e"
-        selected={selected}
-        onItemSelection={(i) => {
-          if (props.loggedIn) props.navigateTo(`/${i}`);
-        }}
-      >
-        <Nav id="dashboard">
-          <NavIcon>
-            <HomeIcon />
-          </NavIcon>
-          <NavText>Dashboard</NavText>
-        </Nav>
-        <Nav id="sessions">
-          <NavIcon>
-            <FolderIcon />
-          </NavIcon>
-          <NavText>Sessions</NavText>
-        </Nav>
-        <Nav id="fave_sessions">
-          <NavIcon>
-            <FolderSpecial />
-          </NavIcon>
-          <NavText>Favorite Sessions</NavText>
-        </Nav>
-        <Nav id="prev_sessions">
-          <NavIcon>
-            <FolderOpenIcon />
-          </NavIcon>
-          <NavText>Past Sessions</NavText>
-        </Nav>
-        <Nav id="data">
-          <NavIcon>
-            <DataUsage />
-          </NavIcon>
-          <NavText>Data</NavText>
-        </Nav>
-      </SideNav>
+      {props.loggedIn &&
+        <SideNav
+          highlightColor="#fff"
+          highlightBgColor="#31383e"
+          selected={selected}
+          onItemSelection={(i) => {
+            props.navigateTo(`/${i}`);
+          }}
+        >
+          <Nav id="dashboard">
+            <NavIcon>
+              <HomeIcon />
+            </NavIcon>
+            <NavText>Dashboard</NavText>
+          </Nav>
+          <Nav id="sessions">
+            <NavIcon>
+              <FolderIcon />
+            </NavIcon>
+            <NavText>Sessions</NavText>
+          </Nav>
+          <Nav id="fave_sessions">
+            <NavIcon>
+              <FolderSpecial />
+            </NavIcon>
+            <NavText>Favorite Sessions</NavText>
+          </Nav>
+          <Nav id="prev_sessions">
+            <NavIcon>
+              <FolderOpenIcon />
+            </NavIcon>
+            <NavText>Past Sessions</NavText>
+          </Nav>
+          <Nav id="data">
+            <NavIcon>
+              <DataUsage />
+            </NavIcon>
+            <NavText>Data</NavText>
+          </Nav>
+        </SideNav>}
     </div>
   );
 }

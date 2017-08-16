@@ -14,10 +14,17 @@ import {
 
 function VotoNavDrawer(props) {
   const navigate = (i) => {
-    if (props.loggedIn) {
-      props.navigateTo(i);
-    }
+    props.navigateTo(i);
   };
+
+  const loggedOutItems = (
+    <div>
+      <ListItem>
+        <ListItemText primary="Please Login" />
+      </ListItem>
+      <Divider />
+    </div>
+  );
 
   const listItems = (
     <div>
@@ -62,7 +69,7 @@ function VotoNavDrawer(props) {
   return (
     <div>
       <Drawer anchor="left" {...props}>
-        {listItems}
+        {props.loggedIn ? listItems : loggedOutItems}
       </Drawer>
     </div>
   );
