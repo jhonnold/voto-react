@@ -22,7 +22,9 @@ function VotoSideNav(props) {
         highlightColor="#fff"
         highlightBgColor="#31383e"
         selected={selected}
-        onItemSelection={i => props.navigateTo(`/${i}`)}
+        onItemSelection={(i) => {
+          if (props.loggedIn) props.navigateTo(`/${i}`);
+        }}
       >
         <Nav id="dashboard">
           <NavIcon>

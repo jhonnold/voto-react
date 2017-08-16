@@ -51,17 +51,18 @@ export default class VotoNavBar extends React.Component {
                 <MenuIcon />
               </IconButton>}
             <div style={{ flex: 1 }} />
-            {loggedIn
+            {!loggedIn
               ? <Button color="contrast">Login</Button>
               : <Button color="contrast" onClick={this.handleLogout}>
-                  Logout
-                </Button>}
+                Logout
+              </Button>}
           </Toolbar>
         </AppBar>
         <VotoNavDrawer
           open={this.state.open}
           onRequestClose={this.handleDrawerClose}
           onClick={this.handleDrawerClose}
+          loggedIn={loggedIn}
         />
       </div>
     );

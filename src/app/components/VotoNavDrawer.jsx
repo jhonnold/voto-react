@@ -13,37 +13,43 @@ import {
 } from "material-ui-icons";
 
 function VotoNavDrawer(props) {
+  const navigate = (i) => {
+    if (props.loggedIn) {
+      props.navigateTo(i);
+    }
+  };
+
   const listItems = (
     <div>
-      <ListItem button onClick={() => props.navigateTo("/dashboard")}>
+      <ListItem button onClick={() => navigate("/dashboard")}>
         <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItem>
       <Divider />
-      <ListItem button onClick={() => props.navigateTo("/sessions")}>
+      <ListItem button onClick={() => navigate("/sessions")}>
         <ListItemIcon>
           <FolderIcon />
         </ListItemIcon>
         <ListItemText primary="Sessions" />
       </ListItem>
       <Divider />
-      <ListItem button onClick={() => props.navigateTo("/fave_sessions")}>
+      <ListItem button onClick={() => navigate("/fave_sessions")}>
         <ListItemIcon>
           <FolderSpecial />
         </ListItemIcon>
         <ListItemText primary="Favorite Sessions" />
       </ListItem>
       <Divider />
-      <ListItem button onClick={() => props.navigateTo("/prev_sessions")}>
+      <ListItem button onClick={() => navigate("/prev_sessions")}>
         <ListItemIcon>
           <FolderOpenIcon />
         </ListItemIcon>
         <ListItemText primary="Previous Sessions" />
       </ListItem>
       <Divider />
-      <ListItem button onClick={() => props.navigateTo("/data")}>
+      <ListItem button onClick={() => navigate("/data")}>
         <ListItemIcon>
           <DataUsage />
         </ListItemIcon>

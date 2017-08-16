@@ -31,6 +31,7 @@ class Root extends React.Component {
     super(props);
 
     this.handleResize = this.handleResize.bind(this);
+    this.redirectIfNeeded = this.redirectIfNeeded.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +45,22 @@ class Root extends React.Component {
 
   handleResize() {
     this.props.handleResize(window.innerWidth);
+  }
+
+  redirectIfNeeded() {
+    const { pathname } = this.props.location;
+
+    if (!this.props.user.loggedIn) {
+      if (pathname !== "/signup" && pathname !== "/login") {
+        return <Route render={() => <Redirect to="/login" />} />;
+      }
+    }
+
+    if (pathname === "/") {
+      return <Route render={() => <Redirect to="/login" />} />;
+    }
+
+    return null;
   }
 
   render() {
@@ -70,10 +87,7 @@ class Root extends React.Component {
                 flexDirection: "column",
               }}
             >
-              {!props.user.loggedIn &&
-                (props.location.pathname !== "/signup" || props.location.pathname !== "/login") &&
-                <Route render={() => <Redirect to="/login" />} />}
-              <Route exact path="/" render={() => <Redirect to="/login" />} />
+              {this.redirectIfNeeded()}
               <Switch location={props.location}>
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/signup" component={SignupPage} />

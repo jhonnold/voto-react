@@ -10,9 +10,13 @@ export default function VotoNavWrapper(props) {
 
   return (
     <div className="nav-wrapper">
-      <VotoNavBar drawNavHeader={drawSideNav} logout={props.logout} />
+      <VotoNavBar
+        drawNavHeader={drawSideNav}
+        logout={props.logout}
+        loggedIn={props.loggedIn}
+      />
       <div className="nav-bottom-wrapper">
-        {drawSideNav && <VotoSideNav />}
+        {drawSideNav && <VotoSideNav loggedIn={props.loggedIn} />}
         <div className="app-wrapper">
           {props.children}
         </div>
