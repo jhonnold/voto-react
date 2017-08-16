@@ -16,6 +16,7 @@ export default class VotoNavBar extends React.Component {
 
     this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
     this.handleDrawerClose = this.handleDrawerClose.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleDrawerOpen() {
@@ -28,6 +29,10 @@ export default class VotoNavBar extends React.Component {
     this.setState({
       open: false,
     });
+  }
+
+  handleLogout() {
+    this.props.logout();
   }
 
   render() {
@@ -48,7 +53,7 @@ export default class VotoNavBar extends React.Component {
             <div style={{ flex: 1 }} />
             {loggedIn
               ? <Button color="contrast">Login</Button>
-              : <Button color="contrast">Logout</Button>}
+              : <Button color="contrast" onClick={this.handleLogout}>Logout</Button>}
           </Toolbar>
         </AppBar>
         <VotoNavDrawer

@@ -22,7 +22,7 @@ const userReducer = (state = {}, action) => {
     }
     case REHYDRATE: {
       const user = payload.user;
-      if (user.loggedIn) return { ...state, loggedIn: user.loggedIn };
+      if (user && user.loggedIn) return { ...state, loggedIn: user.loggedIn };
       return state;
     }
     default: {

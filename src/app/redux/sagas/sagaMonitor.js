@@ -7,22 +7,36 @@ import * as types from "../actions/types";
 
 const sagaMonitor = {
   effectResolved: (effectId, result) => {
-    if (result.type === types.LOGIN_USER_RESOLVED) {
-      store.dispatch(setLoginState(true));
-      store.dispatch(push("/dashboard"));
-    } else if (result.type === types.SIGNUP_USER_RESOLVED) {
-      store.dispatch(push("/dashboard"));
-    } else if (result.type === types.NEW_SESSION_RESOLVED) {
-      store.dispatch(setSelectedSession(result.payload.data));
-      store.dispatch(push(`/sessions/${result.payload.data.sessionId}/edit`));
-      // } else if (result.type === types.SUBMIT_SESSION_RESOLVED) {
-      //    store.dispatch(goBack());
-    } else if (result.type === types.SESSION_QUESTIONS_RESOLVED) {
-      const { data } = result.payload;
-      data.map((question) => {
-        store.dispatch(getQuestionUrl(question.imgFileName));
-        return 0;
-      });
+    switch (result.type) {
+      case types.LOGIN_USER_RESOLVED: {
+        store.dispatch(setLoginState(true));
+        store.dispatch(push("/dashboard"));
+        return;
+      }
+      case types.SIGNUP_USER_RESOLVED: {
+        store.dispatch(push("/dashboard"));
+        return;
+      }
+      case types.NEW_SESSION_RESOLVED: {
+        store.dispatch(setSelectedSession(result.payload.data));
+        store.dispatch(push(`/sessions/${result.payload.data.sessionId}/edit`));
+        return;
+      }
+      case types.SESSION_QUESTIONS_RESOLVED: {
+        result.payload.data.map(q => {
+          store.dispatch(getQuestionUrl(q.imgFileName));
+          return;
+        });
+        return;
+      }
+      case types.LOGOUT_RESOLVED: {
+        store.dispatch(setLoginState(false));
+        store.dispatch(push("/login"));
+        return;
+      }
+      default: {
+        return;
+      }
     }
   },
 };

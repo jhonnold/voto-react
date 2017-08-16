@@ -18,6 +18,19 @@ export const loginFail = err => ({
   payload: err,
 });
 
+export const logoutUser = () => ({
+  type: types.LOGOUT_REQUESTED,
+});
+
+export const logoutSuccess = () => ({
+  type: types.LOGOUT_RESOLVED,
+});
+
+export const logoutFail = err => ({
+  type: types.LOGOUT_REJECTED,
+  payload: err,
+});
+
 export const signupUser = params => ({
   type: types.SIGNUP_USER_REQUESTED,
   payload: params,

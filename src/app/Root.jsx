@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Route, Switch, Redirect } from "react-router";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
+import { logoutUser } from './redux/actions/userActions';
 import resize from "./redux/actions/containerActions";
 import VotoNavWrapper from "./containers/VotoNavWrapper";
 import SessionsRouter from "./routers/SessionsRouter";
@@ -49,7 +50,7 @@ class Root extends React.Component {
     const { props } = this;
 
     return (
-      <VotoNavWrapper drawSideNav={this.props.containerWidth > 750} loggedIn={props.user.loggedIn}>
+      <VotoNavWrapper drawSideNav={this.props.containerWidth > 750} loggedIn={props.user.loggedIn} logout={props.logout}>
         <TransitionGroup>
           <Fade key={props.location.pathname}>
             <section
@@ -65,7 +66,7 @@ class Root extends React.Component {
                 flexDirection: "column",
               }}
             >
-              {!props.user.loggedIn &&
+              {(!props.user.loggedIn && props.location.pathname !== '/signup') &&
                 <Route render={() => <Redirect to="/login" />} />}
               <Route exact path="/" render={() => <Redirect to="/login" />} />
               <Switch location={props.location}>
@@ -91,6 +92,7 @@ const mapDispatchToProps = dispatch => ({
   handleResize: (width) => {
     dispatch(resize(width));
   },
+  logout: () => dispatch(logoutUser()),
 });
 
 Root.propTypes = {

@@ -1,5 +1,5 @@
 import { fork } from "redux-saga/effects";
-import loginUserSaga from "./loginSaga";
+import { loginUserSaga, logoutUserSaga } from "./loginSaga";
 import signupUserSaga from "./signupSaga";
 import {
   fetchSessionsSaga,
@@ -16,6 +16,7 @@ import {
 export default function* rootSaga() {
   yield [
     fork(loginUserSaga),
+    fork(logoutUserSaga),
     fork(signupUserSaga),
     fork(fetchSessionsSaga),
     fork(createSessionSaga),
