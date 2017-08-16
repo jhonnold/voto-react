@@ -9,13 +9,16 @@ const DataApi = {
     return axios.post("/api/sessions/updateSession", rest);
   },
   fetchQuestions: params =>
-    axios.get("/api/sessions/sessionQuestions", { params }),
+    axios.get(`/api/sessions/sessionQuestions/${params.sessionId}`),
   updateQuestions: params =>
     axios.post("/api/sessions/saveSessionQuestions", { questions: params }),
   getQuestionUrl: params =>
     axios.get("/api/sessions/questionImageUrl", { params }),
   newImageUpload: params => axios.post("/api/sessions/uploadImageFile", params),
-  deleteQuestion: params => axios.delete("/api/sessions/deleteQuestion", params),
+  deleteQuestion: params =>
+    axios.delete(
+      `/api/sessions/${params.questionId || 0}/image/${params.imgFileName}`,
+    ),
 };
 
 export default DataApi;
