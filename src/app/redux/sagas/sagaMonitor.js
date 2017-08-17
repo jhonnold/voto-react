@@ -41,7 +41,7 @@ const sagaMonitor = {
         return;
       }
       case types.LOGOUT_RESOLVED: {
-        store.dispatch(setUser({loggedIn: false}));
+        store.dispatch(setUser({ loggedIn: false }));
         store.dispatch(push("/login"));
         break;
       }
