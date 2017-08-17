@@ -42,8 +42,8 @@ function QuestionContainer(props) {
   if (pushingImageCount > 0) {
     loaders = new Array(pushingImageCount);
     loaders.fill(
-      <div className="question-image-progress-loader">
-        <CircularProgress size={60} key={Math.random()} />
+      <div className="question-image-progress-loader" key={Math.random()}>
+        <CircularProgress size={60} />
       </div>,
     );
   }

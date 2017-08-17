@@ -1,6 +1,6 @@
 import { push, goBack } from "react-router-redux";
 import { store } from "../index";
-import { setLoginState } from "../actions/userActions";
+import { setUser } from "../actions/userActions";
 import { setSelectedSession } from "../actions/sessionsActions";
 import { getQuestionUrl } from "../actions/questionActions";
 import * as types from "../actions/types";
@@ -12,8 +12,12 @@ const sagaMonitor = {
   effectResolved: (effectId, result) => {
     switch (result.type) {
       case types.LOGIN_USER_RESOLVED: {
-        store.dispatch(setLoginState(true));
-        store.dispatch(push("/dashboard"));
+        store.dispatch(setUser(result.payload.data));
+        if (result.payload.data.type === "T") {
+          store.dispatch(push("/dashboard"));
+        } else {
+          store.dispatch(push("/student"));
+        }
         return;
       }
       case types.SIGNUP_USER_RESOLVED: {
@@ -37,7 +41,7 @@ const sagaMonitor = {
         return;
       }
       case types.LOGOUT_RESOLVED: {
-        store.dispatch(setLoginState(false));
+        store.dispatch(setUser({loggedIn: false}));
         store.dispatch(push("/login"));
         break;
       }

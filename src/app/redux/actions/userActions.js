@@ -46,7 +46,7 @@ export const signupFail = err => ({
   payload: err,
 });
 
-export const setLoginState = payload => ({
-  type: types.SET_LOGIN_STATE,
+export const setUser = payload => ({
+  type: types.SET_USER,
   payload,
 });

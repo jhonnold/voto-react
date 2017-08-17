@@ -58,6 +58,10 @@ const selecterReducer = (state = initialState, action) => {
       });
       return { ...state, pushingImageCount: pushingCount, questions: newList };
     }
+    case types.NEW_IMAGE_REJECTED: {
+      pushingCount = state.pushingImageCount - 1;
+      return { ...state, pushingImageCount: pushingCount };
+    }
     case types.DELETE_QUESTION_RESOLVED: {
       newList = state.questions.filter(question => question.id !== payload.id);
       newList = newList.map((question, i) => ({

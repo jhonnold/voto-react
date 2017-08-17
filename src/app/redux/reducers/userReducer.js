@@ -17,8 +17,8 @@ const userReducer = (state = {}, action) => {
     case types.SIGNUP_USER_REJECTED: {
       return { ...state };
     }
-    case types.SET_LOGIN_STATE: {
-      return { ...state, loggedIn: payload };
+    case types.SET_USER: {
+      return { loggedIn: true, ...payload };
     }
     case REHYDRATE: {
       const user = payload.user;

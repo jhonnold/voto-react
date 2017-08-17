@@ -60,9 +60,7 @@ export function* newImageUploadSaga() {
 
 function* deleteQuestion(action) {
   try {
-    const response = yield call(DataApi.deleteQuestion, {
-      params: action.payload,
-    });
+    const response = yield call(DataApi.deleteQuestion, action.payload);
     yield put(deleteImageSuccess(response, action.payload.id));
   } catch (err) {
     yield put(deleteImageFail(err));
