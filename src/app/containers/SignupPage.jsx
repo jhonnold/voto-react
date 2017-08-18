@@ -2,12 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
+import { formValueSelector } from "redux-form";
 import { signupUser } from "../redux/actions/userActions";
 import SignupForm from "../components/SignupForm";
 import "./styles/SignupPageStyles.css";
 
 function SignupPage(props) {
-  const { onSignup, goToLogin } = props;
+  const { onSignup, goToLogin, type } = props;
 
   const handleSubmit = (values) => {
     onSignup({
@@ -20,10 +21,19 @@ function SignupPage(props) {
 
   return (
     <div className="signup-page-wrapper">
-      <SignupForm onSubmit={handleSubmit} goToLogin={goToLogin} />
+      <SignupForm
+        selectedType={type}
+        onSubmit={handleSubmit}
+        goToLogin={goToLogin}
+      />
     </div>
   );
 }
+
+const selector = formValueSelector("signupForm");
+const mapStateToProps = state => ({
+  type: selector(state, "type"),
+});
 
 const mapDispatchToProps = dispatch => ({
   goToLogin: () => dispatch(push("/login")),
@@ -33,6 +43,7 @@ const mapDispatchToProps = dispatch => ({
 SignupPage.propTypes = {
   onSignup: PropTypes.func.isRequired,
   goToLogin: PropTypes.func.isRequired,
+  type: PropTypes.string,
 };
 
-export default connect(null, mapDispatchToProps)(SignupPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupPage);
