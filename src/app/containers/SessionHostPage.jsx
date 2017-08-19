@@ -6,6 +6,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { Grid, Divider, IconButton, Switch } from "material-ui";
 import { ArrowForward, ArrowBack } from "material-ui-icons";
 import { getSessionQuestions } from "../redux/actions/questionActions";
+import { activateSession } from "../redux/actions/sessionsActions";
 import renderThumb from "../components/Thumb";
 import CenterImage from "../components/CenterImage";
 import QuestionContainer from "../components/QuestionContainer";
@@ -19,7 +20,6 @@ class SessionHostPage extends React.Component {
 
     this.state = {
       index: 0,
-      sessionActive: false,
     };
 
     this.onLeftArrow = this.onLeftArrow.bind(this);
@@ -53,9 +53,10 @@ class SessionHostPage extends React.Component {
   }
 
   onSwitch() {
-    this.setState({
-      sessionActive: !this.state.sessionActive,
-    });
+    this.props.activateSession(
+      this.props.session.sessionId,
+      this.props.session.isActive,
+    );
   }
 
   render() {
@@ -94,7 +95,7 @@ class SessionHostPage extends React.Component {
                   <ArrowBack />
                 </IconButton>
                 <Switch
-                  checked={this.state.sessionActive}
+                  checked={this.props.session.isActive}
                   onChange={this.onSwitch}
                   aria-label="Active Session"
                   checkedClassName="session-host-switch"
@@ -153,13 +154,12 @@ const mapDispatchToProps = dispatch => ({
   goBack: () => {
     dispatch(goBack());
   },
+  activateSession: (id, isActive) => {
+    dispatch(activateSession(id, isActive));
+  },
 });
 
 SessionHostPage.propTypes = {
-  // questions: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // session: PropTypes.shape({
-  //   sessionId: PropTypes.number,
-  // }),
   containerWidth: PropTypes.number,
 };
 

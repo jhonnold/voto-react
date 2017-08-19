@@ -10,6 +10,8 @@ import {
   submitSessionFail,
   activeSessionsSuccess,
   activeSessionsFail,
+  activateSessionSuccess,
+  activateSessionFail,
 } from "../actions/sessionsActions";
 
 function* fetchSessions(action) {
@@ -64,4 +66,17 @@ function* activeSession() {
 
 export function* activeSessionSaga() {
   yield takeEvery(types.GET_ACTIVE_REQUESTED, activeSession);
+}
+
+function* activateSession(action) {
+  try {
+    const response = yield call(DataApi.activateSession, action.payload);
+    yield put(activateSessionSuccess(response));
+  } catch (err) {
+    yield put(activateSessionFail(err));
+  }
+}
+
+export function* activateSessionSaga() {
+  yield takeEvery(types.ACTIVATE_SESSION_REQUESTED, activateSession);
 }

@@ -53,7 +53,7 @@ export default class SessionCard extends React.Component {
           <div className="session-card-top-container">
             <div className="session-card-title-wrapper">
               <Avatar className="session-card-avatar">
-                {className.charAt(0).toUpperCase()}
+                {className && className.charAt(0).toUpperCase()}
               </Avatar>
               <div className="session-card-header-wrapper">
                 <span className="session-card-title">

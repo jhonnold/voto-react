@@ -70,6 +70,9 @@ const selecterReducer = (state = initialState, action) => {
       }));
       return { ...state, questions: newList };
     }
+    case types.ACTIVATE_SESSION_RESOLVED: {
+      return { ...state, isActive: !state.isActive };
+    }
     default: {
       return state;
     }

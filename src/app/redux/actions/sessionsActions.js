@@ -81,3 +81,18 @@ export const activeSessionsFail = err => ({
   type: types.GET_ACTIVE_REJECTED,
   payload: err,
 });
+
+export const activateSession = (sessionId, isActive) => ({
+  type: types.ACTIVATE_SESSION_REQUESTED,
+  payload: { sessionId, isActive },
+});
+
+export const activateSessionSuccess = response => ({
+  type: types.ACTIVATE_SESSION_RESOLVED,
+  payload: response,
+});
+
+export const activateSessionFail = err => ({
+  type: types.ACTIVATE_SESSION_REJECTED,
+  payload: err,
+});
