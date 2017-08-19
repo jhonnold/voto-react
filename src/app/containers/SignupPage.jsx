@@ -16,6 +16,8 @@ function SignupPage(props) {
       lastName: values.last,
       userName: values.userName,
       password: values.password,
+      email: values.email,
+      type: values.type,
     });
   };
 

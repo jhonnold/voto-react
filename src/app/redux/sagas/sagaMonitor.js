@@ -7,7 +7,7 @@ import * as types from "../actions/types";
 
 const sagaMonitor = {
   effectRejected: (effectId, error) => {
-    store.dispatch({ type: "ERROR", payload: error });
+    store.dispatch({ type: types.ERROR, payload: error });
   },
   effectResolved: (effectId, result) => {
     switch (result.type) {

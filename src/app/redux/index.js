@@ -10,6 +10,7 @@ import sessionsReducer from "./reducers/sessionsReducer";
 import questionsReducer from "./reducers/questionsReducer";
 import containerReducer from "./reducers/containerReducer";
 import selecterReducer from "./reducers/selecterReducer";
+import errorReducer from "./reducers/errorReducer";
 import rootSaga from "./sagas/index";
 import sagaMonitor from "./sagas/sagaMonitor";
 
@@ -50,6 +51,7 @@ const reducer = combineReducers({
   selectedSession: selecterReducer,
   form: formReducer,
   container: containerReducer,
+  error: errorReducer,
 });
 
 export const store = createStore(

@@ -5,6 +5,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { logoutUser } from "./redux/actions/userActions";
 import resize from "./redux/actions/containerActions";
+import ErrorComponent from "./components/ErrorComponent";
 import VotoNavWrapper from "./containers/VotoNavWrapper";
 import LoginPage from "./containers/LoginPage";
 import SignupPage from "./containers/SignupPage";
@@ -73,6 +74,7 @@ class Root extends React.Component {
         loggedIn={props.user.loggedIn}
         logout={props.logout}
       >
+        <ErrorComponent />
         <TransitionGroup>
           <Fade key={props.location.pathname}>
             <section
