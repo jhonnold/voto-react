@@ -16,7 +16,7 @@ const sagaMonitor = {
         if (result.payload.data.type === "T") {
           store.dispatch(push("/dashboard"));
         } else {
-          store.dispatch(push("/student"));
+          store.dispatch(push("/student/classes"));
         }
         return;
       }

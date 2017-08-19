@@ -75,6 +75,10 @@ function VotoNavDrawer(props) {
   );
 }
 
+const mapStateToProps = ({ user }) => ({
+  user,
+})
+
 const mapDispatchToProps = dispatch => ({
   navigateTo: (route) => {
     dispatch(push(route));

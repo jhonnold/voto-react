@@ -6,8 +6,8 @@ import StudentLandingPage from "../containers/StudentLandingPage";
 export default function StudentRouter(props) {
   return (
     <Switch>
-      <Route exact path={props.match.path} component={StudentLandingPage} />
-      <Route render={() => <Redirect to={props.match.path} />} />
+      <Route exact path={`${props.match.path}/classes`} component={StudentLandingPage} />
+      <Route render={() => <Redirect to={`${props.match.path}/classes`} />} />
     </Switch>
   );
 }
