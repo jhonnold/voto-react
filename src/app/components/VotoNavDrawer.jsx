@@ -77,7 +77,7 @@ function VotoNavDrawer(props) {
 
 const mapStateToProps = ({ user }) => ({
   user,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   navigateTo: (route) => {
@@ -89,4 +89,4 @@ VotoNavDrawer.propTypes = {
   navigateTo: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(VotoNavDrawer);
+export default connect(mapStateToProps, mapDispatchToProps)(VotoNavDrawer);

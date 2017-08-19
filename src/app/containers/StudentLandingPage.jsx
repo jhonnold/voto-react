@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { activeSessions } from "../redux/actions/sessionsActions";
 
 class StudentLandingPage extends React.Component {
-
   componentDidMount() {
     this.props.getActiveSessions();
   }
