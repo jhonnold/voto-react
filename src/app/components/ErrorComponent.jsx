@@ -29,15 +29,16 @@ class ErrorComponent extends React.Component {
           className={`error-container ${this.state.shouldAnimateOut &&
             "close"}`}
         >
-          <div className="error-title-container">
-            <h4 className="title">
-              {this.props.error.errno}
-            </h4>
-          </div>
+          {this.props.error.errno &&
+            <div className="error-title-container">
+              <h4 className="title">
+                {this.props.error.errno}
+              </h4>
+            </div>}
 
           <div className="error-message-container">
             <p className="message">
-              {this.props.error.code}
+              {this.props.error.code || this.props.error.error}
             </p>
           </div>
         </div>
