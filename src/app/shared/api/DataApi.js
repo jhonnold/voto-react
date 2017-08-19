@@ -8,6 +8,7 @@ const DataApi = {
 
     return axios.post("/api/sessions/updateSession", rest);
   },
+  activeSessions: () => axios.get("/api/sessions/active"),
   fetchQuestions: params =>
     axios.get(`/api/sessions/sessionQuestions/${params.sessionId}`),
   updateQuestions: params =>

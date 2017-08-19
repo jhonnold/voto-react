@@ -77,7 +77,7 @@ function VotoSideNav(props) {
           </NavIcon>
           <NavText>Classes</NavText>
         </Nav>
-        <Nav id="active_sessions">
+        <Nav id="sessions">
           <NavIcon>
             <DataUsage />
           </NavIcon>

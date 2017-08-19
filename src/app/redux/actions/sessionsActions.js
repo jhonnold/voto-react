@@ -67,3 +67,17 @@ export const submitSessionFail = err => ({
   type: types.SUBMIT_SESSION_REJECTED,
   payload: err,
 });
+
+export const activeSessions = () => ({
+  type: types.GET_ACTIVE_REQUESTED,
+});
+
+export const activeSessionsSuccess = response => ({
+  type: types.GET_ACTIVE_RESOLVED,
+  payload: response,
+});
+
+export const activeSessionsFail = err => ({
+  type: types.GET_ACTIVE_REJECTED,
+  payload: err,
+});

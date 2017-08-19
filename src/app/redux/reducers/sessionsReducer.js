@@ -23,6 +23,9 @@ const sessionsReducer = (state = [], action) => {
       newState[index] = payload.data;
       return newState;
     }
+    case types.GET_ACTIVE_RESOLVED: {
+      return payload.data;
+    }
     default: {
       return state.slice();
     }

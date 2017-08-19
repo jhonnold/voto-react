@@ -8,6 +8,8 @@ import {
   newSessionFail,
   submitSessionSuccess,
   submitSessionFail,
+  activeSessionsSuccess,
+  activeSessionsFail,
 } from "../actions/sessionsActions";
 
 function* fetchSessions(action) {
@@ -49,4 +51,17 @@ function* updateSession(action) {
 
 export function* updateSessionSaga() {
   yield takeEvery(types.SUBMIT_SESSION_REQUESTED, updateSession);
+}
+
+function* activeSession() {
+  try {
+    const response = yield call(DataApi.activeSessions);
+    yield put(activeSessionsSuccess(response));
+  } catch (err) {
+    yield put(activeSessionsFail(err));
+  }
+}
+
+export function* activeSessionSaga() {
+  yield takeEvery(types.GET_ACTIVE_REQUESTED, activeSession);
 }
