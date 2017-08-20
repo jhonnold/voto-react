@@ -23,9 +23,8 @@ function VotoSideNav(props) {
   ];
 
   const listItems =
-    type === "T"
-      ? /* If they are a teacher */
-        <SideNav
+    type === "T" /* If they are a teacher */
+      ? (<SideNav
         highlightColor="#fff"
         highlightBgColor="#31383e"
         selected={selected}
@@ -34,36 +33,36 @@ function VotoSideNav(props) {
         }}
       >
         <Nav id="dashboard">
-            <NavIcon>
+          <NavIcon>
             <HomeIcon />
           </NavIcon>
-            <NavText>Dashboard</NavText>
-          </Nav>
+          <NavText>Dashboard</NavText>
+        </Nav>
         <Nav id="sessions">
-            <NavIcon>
+          <NavIcon>
             <FolderIcon />
           </NavIcon>
-            <NavText>Sessions</NavText>
-          </Nav>
+          <NavText>Sessions</NavText>
+        </Nav>
         <Nav id="fave_sessions">
-            <NavIcon>
+          <NavIcon>
             <FolderSpecial />
           </NavIcon>
-            <NavText>Favorite Sessions</NavText>
-          </Nav>
+          <NavText>Favorite Sessions</NavText>
+        </Nav>
         <Nav id="prev_sessions">
-            <NavIcon>
+          <NavIcon>
             <FolderOpenIcon />
           </NavIcon>
-            <NavText>Past Sessions</NavText>
-          </Nav>
+          <NavText>Past Sessions</NavText>
+        </Nav>
         <Nav id="data">
-            <NavIcon>
+          <NavIcon>
             <DataUsage />
           </NavIcon>
-            <NavText>Data</NavText>
-          </Nav>
-      </SideNav>
+          <NavText>Data</NavText>
+        </Nav>
+      </SideNav>)
       : /* If they are a student */
       (<SideNav
         highlightColor="#fff"

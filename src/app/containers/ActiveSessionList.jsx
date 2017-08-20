@@ -2,6 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Grid } from "material-ui";
 import { activeSessions } from "../redux/actions/sessionsActions";
+import ActiveSessionCard from "../components/ActiveSessionCard";
+
+import "./styles/ActiveSessionListStyles.scss";
 
 class ActiveSessionList extends React.Component {
   componentDidMount() {
@@ -12,9 +15,11 @@ class ActiveSessionList extends React.Component {
     const { sessions } = this.props;
 
     return (
-      <div>
+      <div className="active-session-list-container">
         <Grid>
-            {/* TODO design active session card for students */}
+          {sessions.map(session =>
+            <ActiveSessionCard key={session.sessionId} data={session} />,
+          )}
         </Grid>
       </div>
     );

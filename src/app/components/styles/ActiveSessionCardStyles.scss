@@ -1,0 +1,50 @@
+.active-session-card-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0.5rem;
+}
+
+.active-session-card-top-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.active-session-card-avatar {
+  background-color: #3185db !important;
+}
+
+.active-session-card-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.active-session-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #3d464d;
+}
+
+.active-session-card-subtitle {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #3d464d;
+}
+
+.active-session-card-header-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 1rem;
+}
+
+.active-session-card-button-container {
+
+  .rotate180 {
+    transform: rotate(180deg);
+  }
+}

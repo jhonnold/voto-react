@@ -9,8 +9,8 @@ const sagaMonitor = {
   effectRejected: (effectId, error) => {
     if (error.response.status === 401) {
       // We have been inactive too long and are kicked out
-      store.dispatch(setUser({}));
-      store.dispatch(push('/login'));
+      store.dispatch(setUser({ loggedIn: false }));
+      store.dispatch(push("/login"));
     } else {
       store.dispatch({ type: types.ERROR, payload: error });
     }
