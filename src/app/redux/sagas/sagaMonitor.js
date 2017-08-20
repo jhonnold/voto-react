@@ -7,7 +7,13 @@ import * as types from "../actions/types";
 
 const sagaMonitor = {
   effectRejected: (effectId, error) => {
-    store.dispatch({ type: types.ERROR, payload: error });
+    if (error.response.status === 401) {
+      // We have been inactive too long and are kicked out
+      store.dispatch(setUser({}));
+      store.dispatch(push('/login'));
+    } else {
+      store.dispatch({ type: types.ERROR, payload: error });
+    }
   },
   effectResolved: (effectId, result) => {
     switch (result.type) {

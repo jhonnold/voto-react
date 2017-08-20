@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Route, Switch, Redirect } from "react-router";
-import StudentLandingPage from "../containers/StudentLandingPage";
+import ActiveSessionList from "../containers/ActiveSessionList";
 
 export default function StudentRouter(props) {
   return (
     <Switch>
-      <Route exact path={`${props.match.path}/sessions`} component={StudentLandingPage} />
+      <Route exact path={`${props.match.path}/sessions`} component={ActiveSessionList} />
       <Route render={() => <Redirect to={`${props.match.path}/sessions`} />} />
     </Switch>
   );

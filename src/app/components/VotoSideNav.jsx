@@ -10,6 +10,8 @@ import {
   Folder as FolderIcon,
   FolderOpen as FolderOpenIcon,
   FolderSpecial,
+  PresentToAll,
+  Class as ClassIcon,
 } from "material-ui-icons";
 
 import "./styles/VotoSideNavStyles.css";
@@ -68,18 +70,18 @@ function VotoSideNav(props) {
         highlightBgColor="#31383e"
         selected={selected}
         onItemSelection={(i) => {
-          props.navigateTo(`/students/${i}`);
+          props.navigateTo(`/student/${i}`);
         }}
       >
         <Nav id="classes">
           <NavIcon>
-            <DataUsage />
+            <ClassIcon />
           </NavIcon>
           <NavText>Classes</NavText>
         </Nav>
         <Nav id="sessions">
           <NavIcon>
-            <DataUsage />
+            <PresentToAll />
           </NavIcon>
           <NavText>Active Sessions</NavText>
         </Nav>

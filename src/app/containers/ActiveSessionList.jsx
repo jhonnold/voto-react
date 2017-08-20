@@ -1,14 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Grid } from "material-ui";
 import { activeSessions } from "../redux/actions/sessionsActions";
 
-class StudentLandingPage extends React.Component {
+class ActiveSessionList extends React.Component {
   componentDidMount() {
     this.props.getActiveSessions();
   }
 
   render() {
-    return <div>I am the StudentLandingPage</div>;
+    const { sessions } = this.props;
+
+    return (
+      <div>
+        <Grid>
+            {/* TODO design active session card for students */}
+        </Grid>
+      </div>
+    );
   }
 }
 
@@ -20,4 +29,4 @@ const mapDispatchToProps = dispatch => ({
   getActiveSessions: () => dispatch(activeSessions()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(StudentLandingPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ActiveSessionList);
