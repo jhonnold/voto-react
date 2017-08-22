@@ -85,8 +85,13 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+VotoNavDrawer.defaultProps = {
+  loggedIn: false,
+};
+
 VotoNavDrawer.propTypes = {
   navigateTo: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(VotoNavDrawer);

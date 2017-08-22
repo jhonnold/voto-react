@@ -25,6 +25,14 @@ export default function VotoNavWrapper(props) {
   );
 }
 
+VotoNavWrapper.defaultProps = {
+  children: null,
+  loggedIn: false,
+};
+
 VotoNavWrapper.propTypes = {
   drawSideNav: PropTypes.bool.isRequired,
+  children: PropTypes.node,
+  loggedIn: PropTypes.bool,
+  logout: PropTypes.func.isRequired,
 };

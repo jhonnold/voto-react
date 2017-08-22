@@ -94,9 +94,14 @@ function SignupForm(props) {
   );
 }
 
+SignupForm.defaultProps = {
+  selectedType: "",
+};
+
 SignupForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   goToLogin: PropTypes.func.isRequired,
+  selectedType: PropTypes.string,
 };
 
 export default reduxForm({

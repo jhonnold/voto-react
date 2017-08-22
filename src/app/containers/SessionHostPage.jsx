@@ -159,8 +159,17 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+SessionHostPage.defaultProps = {
+  containerWidth: 0,
+};
+
 SessionHostPage.propTypes = {
   containerWidth: PropTypes.number,
+  session: PropTypes.object.isRequired,
+  goBack: PropTypes.func.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  getQuestions: PropTypes.func.isRequired,
+  activateSession: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SessionHostPage);

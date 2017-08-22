@@ -42,6 +42,10 @@ const mapDispatchToProps = dispatch => ({
   onSignup: params => dispatch(signupUser(params)),
 });
 
+SignupPage.defaultProps = {
+  type: "",
+};
+
 SignupPage.propTypes = {
   onSignup: PropTypes.func.isRequired,
   goToLogin: PropTypes.func.isRequired,

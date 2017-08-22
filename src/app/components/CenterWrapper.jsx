@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Grid } from "material-ui";
 
 import "./styles/CenterWrapperStyles.css";
@@ -12,3 +13,11 @@ export default function CenterWrapper(props) {
     </Grid>
   );
 }
+
+CenterWrapper.defaultProps = {
+  children: null,
+};
+
+CenterWrapper.propTypes = {
+  children: PropTypes.node,
+};

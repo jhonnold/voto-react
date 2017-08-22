@@ -1,6 +1,7 @@
 import React from "react";
-import { Card, Avatar, IconButton, Grid } from "material-ui";
-// import Collapse from "material-ui/transitions/Collapse";
+import PropTypes from "prop-types";
+import { Card, Avatar, IconButton, Grid, Divider } from "material-ui";
+import Collapse from "material-ui/transitions/Collapse";
 import { ExpandMore, Slideshow } from "material-ui-icons";
 
 import "./styles/ActiveSessionCardStyles.scss";
@@ -24,7 +25,7 @@ export default class ActiveSessionCard extends React.Component {
 
   render() {
     const { expanded } = this.state;
-    const { data } = this.props;
+    const { data, handleJoin } = this.props;
     const { title, className } = data;
 
     return (
@@ -46,7 +47,7 @@ export default class ActiveSessionCard extends React.Component {
             </div>
             <div style={{ flex: 1 }} />
             <div className="active-session-card-button-container">
-              <IconButton onClick={() => console.log("TODO JOIN CLICKED")}>
+              <IconButton onClick={handleJoin}>
                 <Slideshow />
               </IconButton>
               <IconButton
@@ -57,8 +58,17 @@ export default class ActiveSessionCard extends React.Component {
               </IconButton>
             </div>
           </div>
+          <Collapse in={expanded} transitionDuration="auto" unmountOnExit>
+            <Divider style={{ margin: ".5rem 0" }} />
+            {/* TODO INSERT OTHER DETAILS HERE */}
+          </Collapse>
         </Card>
       </Grid>
     );
   }
 }
+
+ActiveSessionCard.propTypes = {
+  data: PropTypes.object.isRequired,
+  handleJoin: PropTypes.func.isRequired,
+};

@@ -135,4 +135,5 @@ SessionCard.propTypes = {
     timeStamp: PropTypes.number,
     className: PropTypes.string,
   }),
+  onHostClick: PropTypes.func,
 };

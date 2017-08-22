@@ -69,6 +69,12 @@ export default class VotoNavBar extends React.Component {
   }
 }
 
+VotoNavBar.defaultProps = {
+  loggedIn: false,
+};
+
 VotoNavBar.propTypes = {
   drawNavHeader: PropTypes.bool.isRequired,
+  logout: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool,
 };

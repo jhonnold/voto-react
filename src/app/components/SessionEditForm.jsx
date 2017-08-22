@@ -58,9 +58,14 @@ function SessionEditForm(props) {
   );
 }
 
+SessionEditForm.defaultProps = {
+  children: null,
+};
+
 SessionEditForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
+  children: PropTypes.node,
 };
 
 export default reduxForm({

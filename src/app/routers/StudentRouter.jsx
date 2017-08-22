@@ -6,7 +6,16 @@ import ActiveSessionList from "../containers/ActiveSessionList";
 export default function StudentRouter(props) {
   return (
     <Switch>
-      <Route exact path={`${props.match.path}/sessions`} component={ActiveSessionList} />
+      <Route
+        exact
+        path={`${props.match.path}/sessions`}
+        component={ActiveSessionList}
+      />
+      <Route
+        exact
+        path={`${props.match.path}/sessions/:sessionId`}
+        component={ActiveSessionList}
+      />
       <Route render={() => <Redirect to={`${props.match.path}/sessions`} />} />
     </Switch>
   );

@@ -103,11 +103,17 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+VotoSideNav.defaultProps = {
+  loggedIn: false,
+};
+
 VotoSideNav.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string,
   }).isRequired,
   navigateTo: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  loggedIn: PropTypes.bool,
 };
 
 export default withRouter(

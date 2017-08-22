@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { hideError } from "../redux/actions/errorActions";
 import "./styles/ErrorStyles.scss";
@@ -48,6 +49,11 @@ class ErrorComponent extends React.Component {
     return null;
   }
 }
+
+ErrorComponent.propTypes = {
+  error: PropTypes.object.isRequired,
+  hide: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = ({ error }) => ({
   error,

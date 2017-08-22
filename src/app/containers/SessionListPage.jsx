@@ -119,6 +119,7 @@ SessionListPage.propTypes = {
   requestSessions: PropTypes.func.isRequired,
   createSession: PropTypes.func.isRequired,
   goToEdit: PropTypes.func.isRequired,
+  goToHost: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SessionListPage);

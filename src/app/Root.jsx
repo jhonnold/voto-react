@@ -121,6 +121,8 @@ const mapDispatchToProps = dispatch => ({
 Root.propTypes = {
   containerWidth: PropTypes.number,
   handleResize: PropTypes.func,
+  location: PropTypes.object,
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Root);

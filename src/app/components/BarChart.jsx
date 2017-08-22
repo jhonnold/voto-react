@@ -44,4 +44,5 @@ BarChart.defaultProps = {
 
 BarChart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.number),
+  height: PropTypes.number.isRequired,
 };
