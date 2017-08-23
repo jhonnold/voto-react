@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 // import { goBack } from "react-router-redux";
-import { Divider } from "material-ui";
+import { Divider, Button } from "material-ui";
 import CenterWrapper from "../components/CenterWrapper";
 import CenterImage from "../components/CenterImage";
 
@@ -34,21 +34,25 @@ class ActiveSession extends React.Component {
     const src = null;
 
     return (
-      <div className="TOP-LEVEL-WRAPPER">
-        <div className="TOP-LEVEL-CONTAINER">
-          <div className="HEADER-WRAPPER">
-            <span className="HEADER">
+      <div className="active-session-wrapper">
+        <div className="active-session-container">
+          <div className="header-wrapper">
+            <span>
               {session.className}
             </span>
           </div>
           <CenterWrapper>
             <CenterImage width={width} height={height} src={src} />
             <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
-            <span className="SUBTITLE">
+            <span>
               Subtitle
             </span>
-            <div className="BUTTON-WRAPPER">
-              BUTTONS
+            <div className="button-container">
+              <Button raised>A</Button>
+              <Button raised>B</Button>
+              <Button raised>C</Button>
+              <Button raised>D</Button>
+              <Button raised>E</Button>
             </div>
           </CenterWrapper>
         </div>
