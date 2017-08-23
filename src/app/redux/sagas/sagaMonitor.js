@@ -31,8 +31,8 @@ const sagaMonitor = {
         return;
       }
       case types.NEW_SESSION_RESOLVED: {
-        store.dispatch(setSelectedSession(result.payload.data));
-        store.dispatch(push(`/sessions/${result.payload.data.sessionId}/edit`));
+        store.dispatch(setSelectedSession(result.payload.data[0]));
+        store.dispatch(push(`/sessions/${result.payload.data[0].sessionId}/edit`));
         return;
       }
       case types.SESSION_QUESTIONS_RESOLVED: {

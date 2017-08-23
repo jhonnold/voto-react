@@ -40,12 +40,15 @@ function QuestionContainer(props) {
   };
 
   if (pushingImageCount > 0) {
-    loaders = new Array(pushingImageCount);
-    loaders.fill(
-      <div className="question-image-progress-loader" key={Math.random()}>
-        <CircularProgress size={60} />
-      </div>,
-    );
+    loaders = [];
+
+    for (let i = 0; i < pushingImageCount; i += 1) {
+      loaders.push(
+        <div className="question-image-progress-loader" key={i}>
+          <CircularProgress size={60} />
+        </div>,
+      );
+    }
   }
 
   return connectDropTarget(

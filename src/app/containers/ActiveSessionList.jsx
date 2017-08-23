@@ -1,8 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { push } from "react-router-redux";
 import { Grid } from "material-ui";
-import { activeSessions } from "../redux/actions/sessionsActions";
+import {
+  activeSessions,
+  setSelectedSession,
+} from "../redux/actions/sessionsActions";
 import ActiveSessionCard from "../components/ActiveSessionCard";
 
 import "./styles/ActiveSessionListStyles.scss";
@@ -19,9 +23,10 @@ class ActiveSessionList extends React.Component {
   }
 
   /* eslint-disable*/
-  handleJoin(sessionId) {
+  handleJoin(session) {
     // TODO Handle join here
-    console.log(`Attempting to join session ${sessionId}`);
+    //console.log(`Attempting to join session ${sessionId}`);
+    this.props.joinSession(session);
   }
   /* eslint-enable */
   render() {
@@ -34,7 +39,7 @@ class ActiveSessionList extends React.Component {
             (<ActiveSessionCard
               key={session.sessionId}
               data={session}
-              handleJoin={() => this.handleJoin(session.sessionId)}
+              handleJoin={() => this.handleJoin(session)}
             />),
           )}
         </Grid>
@@ -46,6 +51,7 @@ class ActiveSessionList extends React.Component {
 ActiveSessionList.propTypes = {
   getActiveSessions: PropTypes.func.isRequired,
   sessions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  joinSession: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ sessions }) => ({
@@ -54,6 +60,10 @@ const mapStateToProps = ({ sessions }) => ({
 
 const mapDispatchToProps = dispatch => ({
   getActiveSessions: () => dispatch(activeSessions()),
+  joinSession: (session) => {
+    dispatch(setSelectedSession(session));
+    dispatch(push(`/student/sessions/${session.sessionId}`));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActiveSessionList);

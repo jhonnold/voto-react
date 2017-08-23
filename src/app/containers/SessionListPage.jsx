@@ -42,6 +42,9 @@ class SessionListPage extends React.Component {
 
   handleNewSessionSubmitted({ className, title, description }) {
     this.props.createSession(className, title, description);
+    this.setState({
+      modalOpen: false,
+    });
   }
 
   handleNewSessionCanceled() {

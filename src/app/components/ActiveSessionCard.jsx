@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Card, Avatar, IconButton, Grid, Divider } from "material-ui";
 import Collapse from "material-ui/transitions/Collapse";
 import { ExpandMore, Slideshow } from "material-ui-icons";
+import moment from "moment";
 
 import "./styles/ActiveSessionCardStyles.scss";
 
@@ -26,7 +27,7 @@ export default class ActiveSessionCard extends React.Component {
   render() {
     const { expanded } = this.state;
     const { data, handleJoin } = this.props;
-    const { title, className } = data;
+    const { title, className, description, firstName, lastName } = data;
 
     return (
       <Grid item xs={12} lg={6}>
@@ -60,7 +61,18 @@ export default class ActiveSessionCard extends React.Component {
           </div>
           <Collapse in={expanded} transitionDuration="auto" unmountOnExit>
             <Divider style={{ margin: ".5rem 0" }} />
-            {/* TODO INSERT OTHER DETAILS HERE */}
+            <div className="active-session-card-info-wrapper">
+              <span>
+                {`${firstName} ${lastName}`}
+              </span>
+              <span>
+                {`Started at ${moment().format("h:mm")}`}
+              </span>
+            </div>
+            <Divider style={{ margin: ".5rem 0" }} />
+            <span className="active-session-card-subtitle" style={{ fontStyle: "normal" }}>
+              {description}
+            </span>
           </Collapse>
         </Card>
       </Grid>

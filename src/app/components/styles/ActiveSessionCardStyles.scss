@@ -48,3 +48,19 @@
     transform: rotate(180deg);
   }
 }
+
+.active-session-card-info-wrapper {
+  display: flex;
+  width: 100%;
+
+  span {
+    flex: 1;
+    font-size: 0.9rem;
+    color: #3d464d;
+    text-align: center;
+
+    &:first-of-type {
+      text-transform: capitalize;
+    }
+  }
+}
