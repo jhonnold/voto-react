@@ -6,6 +6,8 @@ import { Divider, Button } from "material-ui";
 import CenterWrapper from "../components/CenterWrapper";
 import CenterImage from "../components/CenterImage";
 
+import "./styles/ActiveSessionStyles.scss";
+
 class ActiveSession extends React.Component {
   constructor(props) {
     super(props);
