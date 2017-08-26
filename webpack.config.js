@@ -50,7 +50,10 @@ module.exports = {
   },
   devServer: {
     proxy: {
-      "/api": "http://localhost:8080",
+      "/api": {
+        target: "https://voto.io",
+        secure: false
+      }
     },
     historyApiFallback: true,
     contentBase: "./",

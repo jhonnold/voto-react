@@ -36,7 +36,7 @@ const sagaMonitor = {
         return;
       }
       case types.SESSION_QUESTIONS_RESOLVED: {
-        result.payload.data.map((q) => {
+        result.payload.data.questions.map((q) => {
           store.dispatch(getQuestionUrl(q.imgFileName));
           return 0;
         });

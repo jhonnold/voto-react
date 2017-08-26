@@ -13,7 +13,7 @@ const selecterReducer = (state = initialState, action) => {
 
   switch (type) {
     case types.SESSION_QUESTIONS_RESOLVED: {
-      const frontEndReady = payload.data.map((question, i) => ({
+      const frontEndReady = payload.data.questions.map((question, i) => ({
         ...question,
         id: i,
       }));

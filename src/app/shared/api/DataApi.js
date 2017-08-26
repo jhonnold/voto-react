@@ -10,13 +10,13 @@ const DataApi = {
   },
   activeSessions: () => axios.get("/api/sessions/active"),
   activateSession: params =>
-    axios.post("/api/sessions/activateSession", params),
+    axios.post(`/api/sessions/activateSession/${params.sessionId}`),
   fetchQuestions: params =>
     axios.get(`/api/sessions/sessionQuestions/${params.sessionId}`),
   updateQuestions: params =>
     axios.post("/api/sessions/saveSessionQuestions", { questions: params }),
   getQuestionUrl: params =>
-    axios.get("/api/sessions/questionImageUrl", { params }),
+    axios.get(`/api/sessions/questionImageUrl/${params.imgFileName}`),
   newImageUpload: params => axios.post("/api/sessions/uploadImageFile", params),
   deleteQuestion: params =>
     axios.delete(
