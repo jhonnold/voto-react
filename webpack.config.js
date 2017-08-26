@@ -54,6 +54,9 @@ module.exports = {
     },
     historyApiFallback: true,
     contentBase: "./",
+    disableHostCheck: true,
+    host: "0.0.0.0",
+    port: 3000
   },
   devtool: "source-map",
   resolve: {
