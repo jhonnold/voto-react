@@ -62,12 +62,11 @@
     "webpack-dev-server": "^2.7.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --port 3000",
+    "start": "pm2 start node_modules/.bin/webpack-dev-server",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "build": "npm install && npm run lintnofix",
     "lint": "eslint . --ext .js,.jsx --fix",
     "lintnofix": "eslint . --ext .js,.jsx"
-  },
-  "proxy": "http://localhost:8080"
+  }
 }
