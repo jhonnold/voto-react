@@ -62,7 +62,7 @@
     "webpack-dev-server": "^2.7.1"
   },
   "scripts": {
-    "start": "pm2 start --watch node_modules/.bin/webpack-dev-server",
+    "start": "pm2 start node_modules/.bin/webpack-dev-server",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "build": "npm install && npm run lintnofix",

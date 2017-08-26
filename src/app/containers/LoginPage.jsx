@@ -15,7 +15,6 @@ function LoginPage(props) {
 
   return (
     <div className="login-page-wrapper">
-      DOES THIS WORK?
       <LoginForm
         onSubmit={handleSubmit}
         goToSignUp={goToSignUp}
