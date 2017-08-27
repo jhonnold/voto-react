@@ -28,15 +28,23 @@ class SessionHostPage extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.session.sessionId) {
+    const { session } = this.props;
+    if (!session.sessionId) {
       this.props.goBack();
       return;
     }
 
-    this.props.getQuestions(this.props.session.sessionId);
+    this.props.getQuestions(session.sessionId);
+    this.props.activateSession(session.sessionId, false);
+  }
+
+  componentWillUnmount() {
+    const { session } = this.props;
+    this.props.activateSession(session.sessionId, true);
   }
 
   onLeftArrow() {
+    //TODO POST THE NEW QUESTION ID TO ACTIVE AND LISTEN ON SOCKET
     if (this.state.index > 0) {
       this.setState({
         index: this.state.index - 1,
@@ -45,6 +53,7 @@ class SessionHostPage extends React.Component {
   }
 
   onRightArrow() {
+    //TODO SEE ABOVE
     if (this.state.index + 1 < this.props.questions.length) {
       this.setState({
         index: this.state.index + 1,
@@ -53,14 +62,13 @@ class SessionHostPage extends React.Component {
   }
 
   onSwitch() {
-    this.props.activateSession(
-      this.props.session.sessionId,
-      this.props.session.isActive,
-    );
+    //TODO  
+    console.log('Fire off action to start showing questions or not');
   }
 
   render() {
-    const { containerWidth, questions, session } = this.props;
+    const { index, containerWidth, questions, session } = this.props;
+    const question = questions[index.current];
 
     const width =
       containerWidth > 750 ? containerWidth - 264 : containerWidth - 8;
@@ -95,7 +103,7 @@ class SessionHostPage extends React.Component {
                   <ArrowBack />
                 </IconButton>
                 <Switch
-                  checked={this.props.session.isActive}
+                  checked={question && question.isActive}
                   onChange={this.onSwitch}
                   aria-label="Active Session"
                   checkedClassName="session-host-switch"
@@ -141,10 +149,11 @@ class SessionHostPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ selectedSession, container }) => ({
+const mapStateToProps = ({ selectedSession, container, index }) => ({
   session: selectedSession,
   questions: selectedSession.questions,
   containerWidth: container.width,
+  index,
 });
 
 const mapDispatchToProps = dispatch => ({

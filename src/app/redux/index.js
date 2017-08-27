@@ -11,6 +11,7 @@ import questionsReducer from "./reducers/questionsReducer";
 import containerReducer from "./reducers/containerReducer";
 import selecterReducer from "./reducers/selecterReducer";
 import errorReducer from "./reducers/errorReducer";
+import indexReducer from "./reducers/indexReducer";
 import rootSaga from "./sagas/index";
 import sagaMonitor from "./sagas/sagaMonitor";
 
@@ -52,6 +53,7 @@ const reducer = combineReducers({
   form: formReducer,
   container: containerReducer,
   error: errorReducer,
+  index: indexReducer,
 });
 
 export const store = createStore(
