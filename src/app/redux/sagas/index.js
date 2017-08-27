@@ -13,11 +13,13 @@ import {
   fetchQuestionsSaga,
   getQuestionUrlSaga,
   newImageUploadSaga,
+  activateQuestionSaga,
 } from "./questionsSaga";
 
 export default function* rootSaga() {
   yield [
     fork(loginUserSaga),
+    fork(activateQuestionSaga),
     fork(logoutUserSaga),
     fork(signupUserSaga),
     fork(fetchSessionsSaga),

@@ -84,3 +84,18 @@ export const deleteImageFail = err => ({
   type: types.DELETE_QUESTION_REJECTED,
   payload: err,
 });
+
+export const activateQuestion = questionId => ({
+  type: types.ACTIVATE_QUESTION_REQUESTED,
+  payload: questionId,
+});
+
+export const activateQuestionSuccess = response => ({
+  type: types.ACTIVATE_QUESTION_RESOLVED,
+  payload: response,
+});
+
+export const activateQuestionFail = err => ({
+  type: types.ACTIVATE_QUESTION_REJECTED,
+  payload: err,
+});

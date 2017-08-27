@@ -6,7 +6,8 @@ const errorReducer = (state = {}, action) => {
 
   switch (type) {
     case types.ERROR:
-      return { ...payload.response.data.error, isShowing: true };
+      return state;
+      //return { ...payload.response.data.error, isShowing: true };
     case types.HIDE_ERROR:
       return { ...state, isShowing: false };
     case REHYDRATE:

@@ -4,12 +4,12 @@ class Socket {
   connect(channel) {
     this.socket = io.connect(channel);
 
-    socket.on('SESSION_ACTIVATED', (res) => {
+    this.socket.on('SESSION_ACTIVATED', (res) => {
       console.log(res);
       //TODO Dispatch event here;
     });
 
-    socket.on('VOTE', (res) => {
+    this.socket.on('VOTE', (res) => {
       console.log(res);
       //TODO Dispatch event here;
     });

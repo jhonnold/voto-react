@@ -7,20 +7,17 @@ import { Grid, Divider, IconButton, Switch } from "material-ui";
 import { ArrowForward, ArrowBack } from "material-ui-icons";
 import { getSessionQuestions } from "../redux/actions/questionActions";
 import { activateSession } from "../redux/actions/sessionsActions";
+import { resetActive } from "../redux/actions/activeActions";
 import renderThumb from "../components/Thumb";
 import CenterImage from "../components/CenterImage";
 import QuestionContainer from "../components/QuestionContainer";
 import BarChart from "../components/BarChart";
-
+import { socket } from "../shared/socket";
 import "./styles/SessionHostPageStyles.scss";
 
 class SessionHostPage extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      index: 0,
-    };
 
     this.onLeftArrow = this.onLeftArrow.bind(this);
     this.onRightArrow = this.onRightArrow.bind(this);
@@ -33,14 +30,17 @@ class SessionHostPage extends React.Component {
       this.props.goBack();
       return;
     }
-
+    
+    this.props.resetActive();
     this.props.getQuestions(session.sessionId);
     this.props.activateSession(session.sessionId, false);
+    //socket.connect();
   }
 
   componentWillUnmount() {
     const { session } = this.props;
     this.props.activateSession(session.sessionId, true);
+    //socket.disconnect();
   }
 
   onLeftArrow() {
@@ -62,26 +62,23 @@ class SessionHostPage extends React.Component {
   }
 
   onSwitch() {
-    //TODO  
-    console.log('Fire off action to start showing questions or not');
+    const { questions, active } = this.props;
+    if (active.isShowing) {
+      //this.props.activateQuestion(questions[active.index]);
+    }
   }
 
   render() {
-    const { index, containerWidth, questions, session } = this.props;
-    const question = questions[index.current];
+    const { active, containerWidth, questions, session } = this.props;
+    const question = questions[active.index];
 
     const width =
       containerWidth > 750 ? containerWidth - 264 : containerWidth - 8;
     const height = width * 0.5625; // --> 9/16
 
-    let src;
-    if (questions.length) {
-      src = questions[this.state.index].url;
-    }
-
-    const subtitle = this.state.sessionActive
+    const subtitle = active.isActive
       ? "The above picture is currently visible to connected students"
-      : "Slide the lever to make the session active";
+      : "Slide the lever to make the questions visible to students";
 
     return (
       <div className="session-host-page-wrapper">
@@ -93,7 +90,7 @@ class SessionHostPage extends React.Component {
           </div>
           <Grid container>
             <Grid item xs={12} md={6}>
-              <CenterImage width={width} height={height} src={src} />
+              <CenterImage width={width} height={height} src={question && question.src} />
               <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
               <span className="session-host-subtitle">
                 {subtitle}
@@ -149,11 +146,11 @@ class SessionHostPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ selectedSession, container, index }) => ({
+const mapStateToProps = ({ selectedSession, container, active }) => ({
   session: selectedSession,
   questions: selectedSession.questions,
   containerWidth: container.width,
-  index,
+  active,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -166,6 +163,7 @@ const mapDispatchToProps = dispatch => ({
   activateSession: (id, isActive) => {
     dispatch(activateSession(id, isActive));
   },
+  resetActive: () => dispatch(resetActive()),
 });
 
 SessionHostPage.defaultProps = {

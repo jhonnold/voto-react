@@ -4,13 +4,16 @@ const DataApi = {
   fetchSessions: () => axios.get("/api/sessions"),
   createSession: params => axios.post("/api/sessions/saveNewSession", params),
   updateSession: (params) => {
+    // Were ditching the questions - those go later
     const { questions, ...rest } = params;
 
     return axios.post("/api/sessions/updateSession", rest);
   },
   activeSessions: () => axios.get("/api/sessions/active"),
-  activateSession: params =>
-    axios.post(`/api/sessions/activateSession/${params.sessionId}`),
+  activateSession: ({ sessionId, isActive })=>
+    axios.post(`/api/sessions/activateSession/${sessionId}`, { isActive }),
+  activateQuestion: params => {},
+    //axios.post(`/api/sesssions/activateQuestion/${params.questionId}`),
   fetchQuestions: params =>
     axios.get(`/api/sessions/sessionQuestions/${params.sessionId}`),
   updateQuestions: params =>
