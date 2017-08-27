@@ -42,19 +42,23 @@ class ActiveSession extends React.Component {
             <span>
               {session.className}
             </span>
+            <p>
+              {session.title}
+            </p>
           </div>
           <CenterWrapper>
             <CenterImage width={width} height={height} src={src} />
             <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
-            <span>
-              Subtitle
+            <span className="subtitle">
+              Click a button to answer the above question!
             </span>
+            <Divider style={{ margin: "0.5rem" }} />
             <div className="button-container">
-              <Button raised>A</Button>
-              <Button raised>B</Button>
-              <Button raised>C</Button>
-              <Button raised>D</Button>
-              <Button raised>E</Button>
+              <Button className="button" raised>A</Button>
+              <Button className="button" raised>B</Button>
+              <Button className="button" raised>C</Button>
+              <Button className="button" raised>D</Button>
+              <Button className="button" raised>E</Button>
             </div>
           </CenterWrapper>
         </div>

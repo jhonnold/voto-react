@@ -12,15 +12,15 @@ const sessionsReducer = (state = [], action) => {
       return state.slice();
     }
     case types.NEW_SESSION_RESOLVED: {
-      newState.splice(0, 0, payload.data);
+      newState.splice(0, 0, payload.data[0]);
       return newState;
     }
     case types.SUBMIT_SESSION_RESOLVED: {
-      const { sessionId } = payload.data;
+      const { sessionId } = payload.data[0];
       const index = newState.findIndex(
         session => session.sessionId === sessionId,
       );
-      newState[index] = payload.data;
+      newState[index] = payload.data[0];
       return newState;
     }
     case types.GET_ACTIVE_RESOLVED: {
