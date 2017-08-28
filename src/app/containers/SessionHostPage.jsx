@@ -5,9 +5,9 @@ import { goBack } from "react-router-redux";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Grid, Divider, IconButton, Switch } from "material-ui";
 import { ArrowForward, ArrowBack } from "material-ui-icons";
-import { getSessionQuestions } from "../redux/actions/questionActions";
+import { getSessionQuestions, activeQuestion } from "../redux/actions/questionActions";
 import { activateSession } from "../redux/actions/sessionsActions";
-import { resetActive } from "../redux/actions/activeActions";
+import { resetActive, setActiveIndex } from "../redux/actions/activeActions";
 import renderThumb from "../components/Thumb";
 import CenterImage from "../components/CenterImage";
 import QuestionContainer from "../components/QuestionContainer";
@@ -37,6 +37,12 @@ class SessionHostPage extends React.Component {
     //socket.connect();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.questions && nextprops.questions.length <= 0) {
+      this.props.goBack();
+    }
+  }
+
   componentWillUnmount() {
     const { session } = this.props;
     this.props.activateSession(session.sessionId, true);
@@ -44,27 +50,31 @@ class SessionHostPage extends React.Component {
   }
 
   onLeftArrow() {
-    //TODO POST THE NEW QUESTION ID TO ACTIVE AND LISTEN ON SOCKET
-    if (this.state.index > 0) {
-      this.setState({
-        index: this.state.index - 1,
-      });
+    const { shiftDown, active, activateQuestion, questions } = this.props;
+    if (active.index > 0) {
+      shiftLeft(active.index);
+      if (active.isActive) {
+        activateQuestion(questions[active.index - 1].questionId);
+      }
     }
   }
 
   onRightArrow() {
-    //TODO SEE ABOVE
-    if (this.state.index + 1 < this.props.questions.length) {
-      this.setState({
-        index: this.state.index + 1,
-      });
+    const { shiftRight, active, questions, activateQuestion } = this.props;
+    if (active.index + 1 < questions.length - 1) {
+      shiftRight(active.index);
+      if (active.isActive) {
+        activateQuestion(questions[active.index + 1].questionId);
+      }
     }
   }
 
   onSwitch() {
     const { questions, active } = this.props;
-    if (active.isShowing) {
-      //this.props.activateQuestion(questions[active.index]);
+    if (!active.isActive) {
+      this.props.activateQuestion(questions[active.index].questionId);
+    } else { 
+      this.props.deactiveQuestions(questions[active.index].questionId);
     }
   }
 
@@ -163,7 +173,13 @@ const mapDispatchToProps = dispatch => ({
   activateSession: (id, isActive) => {
     dispatch(activateSession(id, isActive));
   },
+  activeQuestion: id => {
+    dispatch(activateQuestion(id)),
+  },
   resetActive: () => dispatch(resetActive()),
+  shiftLeft: (index) => dispatch(setActiveIndex(index - 1)),
+  shiftRight: (index) => dispatch(setActiveIndex(index + 1)),
+  goBack: () => dispatch(goBack()),
 });
 
 SessionHostPage.defaultProps = {

@@ -3,6 +3,7 @@ import { store } from "../index";
 import { setUser } from "../actions/userActions";
 import { setSelectedSession } from "../actions/sessionsActions";
 import { getQuestionUrl } from "../actions/questionActions";
+import { activate, deactivate } from "../actions/activeActions";
 import * as types from "../actions/types";
 
 const sagaMonitor = {
@@ -50,6 +51,17 @@ const sagaMonitor = {
         store.dispatch(setUser({ loggedIn: false }));
         store.dispatch(push("/login"));
         break;
+      }
+      case types.ACTIVATE_QUESTION_RESOLVED: {
+        if (!store.getState().active.isActive) {
+          store.dispatch(activate()); 
+        }
+        break;
+      }
+      case types.DEACTIVATE_QUESTION_RESOLVED: {
+        if (store.getState().active.isActive) {
+          store.dispatch(deactivate());
+        }
       }
       default: {
         break;

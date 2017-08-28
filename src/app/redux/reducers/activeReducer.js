@@ -15,8 +15,14 @@ const activeReducer = (state = initialState, action) => {
     case types.SET_ACTIVE_INDEX: {
       return {...state, index: payload};
     }
+    case types.ACTIVATE: {
+      return {...state, isActive: true};
+    }
+    case types.DEACTIVATE: {
+      return {...state, isActive: false};
+    }
     default:
-      return {};
+      return state;
   }
 }
 export default activeReducer;

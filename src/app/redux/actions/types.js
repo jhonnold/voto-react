@@ -4,6 +4,8 @@ export const ERROR = "ERROR";
 export const HIDE_ERROR = "HIDE_ERROR";
 export const RESET_ACTIVE = "RESET_ACTIVE";
 export const SET_ACTIVE_INDEX = "SET_ACTIVE_INDEX";
+export const ACTIVATE = "ACTIVATE";
+export const DEACTIVATE = "DEACTIVATE";
 
 export const LOGIN_USER_REQUESTED = "LOGIN_USER_REQUESTED";
 export const LOGIN_USER_RESOLVED = "LOGIN_USER_RESOLVED";

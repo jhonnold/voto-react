@@ -12,8 +12,10 @@ const DataApi = {
   activeSessions: () => axios.get("/api/sessions/active"),
   activateSession: ({ sessionId, isActive })=>
     axios.post(`/api/sessions/activateSession/${sessionId}`, { isActive }),
-  activateQuestion: params => {},
-    //axios.post(`/api/sesssions/activateQuestion/${params.questionId}`),
+  activateQuestion: id => 
+    axios.post(`/api/sesssions/activateQuestion/${id}`),
+  deactivateQuestion: id =>
+    axios.post(`/api/sessions/deactivateQuestios/${id}`),
   fetchQuestions: params =>
     axios.get(`/api/sessions/sessionQuestions/${params.sessionId}`),
   updateQuestions: params =>
