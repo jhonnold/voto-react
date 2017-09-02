@@ -51,7 +51,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        target: "https://voto.io",
+        target: "http://localhost:8080",
         secure: false,
       },
     },

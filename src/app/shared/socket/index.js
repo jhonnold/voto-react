@@ -1,8 +1,13 @@
 import io from "socket.io-client";
 
 class Socket {
+  constructor() {
+    this.isConnected = false;
+  }
+
   connect(channel) {
     this.socket = io.connect(channel);
+    this.isConnected = true;
 
     this.socket.on("SESSION_ACTIVATED", (res) => {
       console.log(res);
@@ -16,7 +21,10 @@ class Socket {
   }
 
   disconnect() {
-    this.socket.disconnect();
+    if (this.isConnected) {
+      this.isConnected = false;
+      this.socket.disconnect();
+    }
   }
 }
 

@@ -12,7 +12,7 @@ import renderThumb from "../components/Thumb";
 import CenterImage from "../components/CenterImage";
 import QuestionContainer from "../components/QuestionContainer";
 import BarChart from "../components/BarChart";
-// import { socket } from "../shared/socket";
+import { socket } from "../shared/socket";
 import "./styles/SessionHostPageStyles.scss";
 
 class SessionHostPage extends React.Component {
@@ -27,7 +27,6 @@ class SessionHostPage extends React.Component {
   componentDidMount() {
     const { session } = this.props;
     if (!session.sessionId) {
-      debugger;
       this.props.goBack();
       return;
     }
@@ -35,13 +34,13 @@ class SessionHostPage extends React.Component {
     this.props.resetActive();
     this.props.getQuestions(session.sessionId);
     this.props.activateSession(session.sessionId, false);
-    // socket.connect();
+    socket.connect("http://localhost:8080");
   }
 
   componentWillUnmount() {
     const { session } = this.props;
     this.props.activateSession(session.sessionId, true);
-    // socket.disconnect();
+    socket.disconnect();
   }
 
   onLeftArrow() {
