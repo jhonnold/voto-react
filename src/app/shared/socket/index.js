@@ -1,4 +1,6 @@
 import io from "socket.io-client";
+import { store } from "../../redux/index";
+import { activeSessions } from "../../redux/actions/sessionsActions";
 
 class Socket {
   constructor() {
@@ -14,9 +16,8 @@ class Socket {
       // TODO Dispatch event here;
     });
 
-    this.socket.on("session-active", (res) => {
-      console.log(res);
-      // TODO Dispatch event here;
+    this.socket.on("session-active", () => {
+      store.dispatch(activeSessions());
     });
   }
 
