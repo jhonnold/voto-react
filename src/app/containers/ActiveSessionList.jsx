@@ -7,6 +7,7 @@ import {
   activeSessions,
   setSelectedSession,
 } from "../redux/actions/sessionsActions";
+import { socket } from "../shared/socket";
 import ActiveSessionCard from "../components/ActiveSessionCard";
 
 import "./styles/ActiveSessionListStyles.scss";
@@ -19,6 +20,8 @@ class ActiveSessionList extends React.Component {
   }
 
   componentDidMount() {
+    socket.connect("https://voto.io");
+    socket.subscribeToActiveSessionFeed();
     this.props.getActiveSessions();
   }
 

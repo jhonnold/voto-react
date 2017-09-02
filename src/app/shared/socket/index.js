@@ -9,15 +9,23 @@ class Socket {
     this.socket = io.connect(channel);
     this.isConnected = true;
 
-    this.socket.on("SESSION_ACTIVATED", (res) => {
+    this.socket.on("user-response", (res) => {
       console.log(res);
       // TODO Dispatch event here;
     });
 
-    this.socket.on("VOTE", (res) => {
+    this.socket.on("session-active", (res) => {
       console.log(res);
       // TODO Dispatch event here;
     });
+  }
+
+  subscribeToSessionFeed() {
+    this.socket.emit("subscribe-to-feed-teacher");
+  }
+
+  subscribeToActiveSessionFeed() {
+    this.socket.emit("subscribe-to-sessions-student");
   }
 
   disconnect() {

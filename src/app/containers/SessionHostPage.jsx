@@ -31,10 +31,12 @@ class SessionHostPage extends React.Component {
       return;
     }
 
+    socket.connect("https://voto.io");
+    socket.subscribeToSessionFeed();
+
     this.props.resetActive();
     this.props.getQuestions(session.sessionId);
     this.props.activateSession(session.sessionId, false);
-    socket.connect("http://localhost:8080");
   }
 
   componentWillUnmount() {
