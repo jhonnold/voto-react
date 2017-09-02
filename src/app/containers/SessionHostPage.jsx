@@ -5,14 +5,14 @@ import { goBack } from "react-router-redux";
 import { Scrollbars } from "react-custom-scrollbars";
 import { Grid, Divider, IconButton, Switch } from "material-ui";
 import { ArrowForward, ArrowBack } from "material-ui-icons";
-import { getSessionQuestions, activeQuestion } from "../redux/actions/questionActions";
+import { getSessionQuestions, activateQuestion, deactivateQuestion } from "../redux/actions/questionActions";
 import { activateSession } from "../redux/actions/sessionsActions";
 import { resetActive, setActiveIndex } from "../redux/actions/activeActions";
 import renderThumb from "../components/Thumb";
 import CenterImage from "../components/CenterImage";
 import QuestionContainer from "../components/QuestionContainer";
 import BarChart from "../components/BarChart";
-import { socket } from "../shared/socket";
+// import { socket } from "../shared/socket";
 import "./styles/SessionHostPageStyles.scss";
 
 class SessionHostPage extends React.Component {
@@ -27,30 +27,25 @@ class SessionHostPage extends React.Component {
   componentDidMount() {
     const { session } = this.props;
     if (!session.sessionId) {
+      debugger;
       this.props.goBack();
       return;
     }
-    
+
     this.props.resetActive();
     this.props.getQuestions(session.sessionId);
     this.props.activateSession(session.sessionId, false);
-    //socket.connect();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.questions && nextprops.questions.length <= 0) {
-      this.props.goBack();
-    }
+    // socket.connect();
   }
 
   componentWillUnmount() {
     const { session } = this.props;
     this.props.activateSession(session.sessionId, true);
-    //socket.disconnect();
+    // socket.disconnect();
   }
 
   onLeftArrow() {
-    const { shiftDown, active, activateQuestion, questions } = this.props;
+    const { shiftLeft, active, activateQuestion, questions } = this.props;
     if (active.index > 0) {
       shiftLeft(active.index);
       if (active.isActive) {
@@ -61,7 +56,7 @@ class SessionHostPage extends React.Component {
 
   onRightArrow() {
     const { shiftRight, active, questions, activateQuestion } = this.props;
-    if (active.index + 1 < questions.length - 1) {
+    if (active.index + 1 < questions.length) {
       shiftRight(active.index);
       if (active.isActive) {
         activateQuestion(questions[active.index + 1].questionId);
@@ -73,14 +68,14 @@ class SessionHostPage extends React.Component {
     const { questions, active } = this.props;
     if (!active.isActive) {
       this.props.activateQuestion(questions[active.index].questionId);
-    } else { 
-      this.props.deactiveQuestions(questions[active.index].questionId);
+    } else {
+      this.props.deactivateQuestion(questions[active.index].questionId);
     }
   }
 
   render() {
     const { active, containerWidth, questions, session } = this.props;
-    const question = questions[active.index];
+    const question = questions[active.index] || {};
 
     const width =
       containerWidth > 750 ? containerWidth - 264 : containerWidth - 8;
@@ -100,7 +95,11 @@ class SessionHostPage extends React.Component {
           </div>
           <Grid container>
             <Grid item xs={12} md={6}>
-              <CenterImage width={width} height={height} src={question && question.src} />
+              <CenterImage
+                width={width}
+                height={height}
+                src={question && question.url}
+              />
               <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
               <span className="session-host-subtitle">
                 {subtitle}
@@ -110,7 +109,7 @@ class SessionHostPage extends React.Component {
                   <ArrowBack />
                 </IconButton>
                 <Switch
-                  checked={question && question.isActive}
+                  checked={active.isActive}
                   onChange={this.onSwitch}
                   aria-label="Active Session"
                   checkedClassName="session-host-switch"
@@ -146,7 +145,7 @@ class SessionHostPage extends React.Component {
               <QuestionContainer
                 questions={this.props.questions}
                 canDrag={false}
-                onSelect={() => {}}
+                onSelect={() => console.log('TODO - FIND INDEX AND SET THAT')}
               />
             </Scrollbars>
           </div>
@@ -164,22 +163,16 @@ const mapStateToProps = ({ selectedSession, container, active }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getQuestions: (sessionId) => {
-    dispatch(getSessionQuestions(sessionId));
-  },
+  getQuestions: sessionId => dispatch(getSessionQuestions(sessionId)),
   goBack: () => {
     dispatch(goBack());
   },
-  activateSession: (id, isActive) => {
-    dispatch(activateSession(id, isActive));
-  },
-  activeQuestion: id => {
-    dispatch(activateQuestion(id)),
-  },
+  activateSession: (id, isActive) => dispatch(activateSession(id, isActive)),
+  activateQuestion: id => dispatch(activateQuestion(id)),
+  deactivateQuestion: id => dispatch(deactivateQuestion(id)),
   resetActive: () => dispatch(resetActive()),
-  shiftLeft: (index) => dispatch(setActiveIndex(index - 1)),
-  shiftRight: (index) => dispatch(setActiveIndex(index + 1)),
-  goBack: () => dispatch(goBack()),
+  shiftLeft: index => dispatch(setActiveIndex(index - 1)),
+  shiftRight: index => dispatch(setActiveIndex(index + 1)),
 });
 
 SessionHostPage.defaultProps = {

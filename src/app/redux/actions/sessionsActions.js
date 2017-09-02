@@ -1,7 +1,8 @@
 import * as types from "./types";
 
-export const getSessions = () => ({
+export const getSessions = params => ({
   type: types.SESSIONS_REQUESTED,
+  payload: params,
 });
 
 export const getSessionsSuccess = response => ({

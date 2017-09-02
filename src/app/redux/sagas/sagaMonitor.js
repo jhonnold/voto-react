@@ -54,7 +54,7 @@ const sagaMonitor = {
       }
       case types.ACTIVATE_QUESTION_RESOLVED: {
         if (!store.getState().active.isActive) {
-          store.dispatch(activate()); 
+          store.dispatch(activate());
         }
         break;
       }
@@ -62,6 +62,7 @@ const sagaMonitor = {
         if (store.getState().active.isActive) {
           store.dispatch(deactivate());
         }
+        break;
       }
       default: {
         break;

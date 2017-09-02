@@ -13,6 +13,8 @@ import {
   deleteImageFail,
   activateQuestionSuccess,
   activateQuestionFail,
+  deactivateQuestionSuccess,
+  deactivateQuestionFail,
 } from "../actions/questionActions";
 
 function* fetchQuestions(action) {
@@ -85,3 +87,17 @@ function* activateQuestion(action) {
 export function* activateQuestionSaga() {
   yield takeEvery(types.ACTIVATE_QUESTION_REQUESTED, activateQuestion);
 }
+
+function* deactivateQuestion(action) {
+  try {
+    const response = yield call(DataApi.deactivateQuestion, action.payload);
+    yield put(deactivateQuestionSuccess(response));
+  } catch (err) {
+    yield put(deactivateQuestionFail(err));
+  }
+}
+
+export function* deactivateQuestionSaga() {
+  yield takeEvery(types.DEACTIVATE_QUESTION_REQUESTED, deactivateQuestion);
+}
+

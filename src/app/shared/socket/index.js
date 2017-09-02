@@ -4,14 +4,14 @@ class Socket {
   connect(channel) {
     this.socket = io.connect(channel);
 
-    this.socket.on('SESSION_ACTIVATED', (res) => {
+    this.socket.on("SESSION_ACTIVATED", (res) => {
       console.log(res);
-      //TODO Dispatch event here;
+      // TODO Dispatch event here;
     });
 
-    this.socket.on('VOTE', (res) => {
+    this.socket.on("VOTE", (res) => {
       console.log(res);
-      //TODO Dispatch event here;
+      // TODO Dispatch event here;
     });
   }
 
@@ -20,4 +20,4 @@ class Socket {
   }
 }
 
-export let socket = new Socket();
+export const socket = new Socket();

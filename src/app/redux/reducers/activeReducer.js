@@ -1,4 +1,4 @@
-import * as types from "../actions/types.js";
+import * as types from "../actions/types";
 
 const initialState = {
   isActive: false,
@@ -13,16 +13,16 @@ const activeReducer = (state = initialState, action) => {
       return initialState;
     }
     case types.SET_ACTIVE_INDEX: {
-      return {...state, index: payload};
+      return { ...state, index: payload };
     }
     case types.ACTIVATE: {
-      return {...state, isActive: true};
+      return { ...state, isActive: true };
     }
     case types.DEACTIVATE: {
-      return {...state, isActive: false};
+      return { ...state, isActive: false };
     }
     default:
       return state;
   }
-}
+};
 export default activeReducer;

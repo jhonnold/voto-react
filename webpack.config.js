@@ -52,14 +52,14 @@ module.exports = {
     proxy: {
       "/api": {
         target: "https://voto.io",
-        secure: false
-      }
+        secure: false,
+      },
     },
     historyApiFallback: true,
     contentBase: "./",
     disableHostCheck: true,
     host: "0.0.0.0",
-    port: 3000
+    port: 3000,
   },
   devtool: "source-map",
   resolve: {

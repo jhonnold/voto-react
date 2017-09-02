@@ -99,3 +99,18 @@ export const activateQuestionFail = err => ({
   type: types.ACTIVATE_QUESTION_REJECTED,
   payload: err,
 });
+
+export const deactivateQuestion = questionId => ({
+  type: types.DEACTIVATE_QUESTION_REQUESTED,
+  payload: questionId,
+});
+
+export const deactivateQuestionSuccess = response => ({
+  type: types.DEACTIVATE_QUESTION_RESOLVED,
+  payload: response,
+});
+
+export const deactivateQuestionFail = err => ({
+  type: types.DEACTIVATE_QUESTION_REJECTED,
+  payload: err,
+});

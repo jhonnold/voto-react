@@ -45,7 +45,7 @@ export default class SessionCard extends React.Component {
   render() {
     const { expanded } = this.state;
     const { onEditClick, onHostClick, data } = this.props;
-    const { title, timeStamp, className } = data;
+    const { title, timeStamp, useCount, className } = data;
 
     return (
       <Grid item xs={12} lg={6}>
@@ -118,7 +118,7 @@ export default class SessionCard extends React.Component {
                 {`Created on ${moment(timeStamp * 1000).format("MMM Do")}`}
               </span>
               <span className="session-card-description-text">
-                Used 4 times
+                {`Used ${useCount} time${useCount !== 1 ? "s" : ""}`}
               </span>
             </div>
           </div>

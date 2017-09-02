@@ -14,6 +14,7 @@ import {
   getQuestionUrlSaga,
   newImageUploadSaga,
   activateQuestionSaga,
+  deactivateQuestionSaga,
 } from "./questionsSaga";
 
 export default function* rootSaga() {
@@ -31,5 +32,6 @@ export default function* rootSaga() {
     fork(deleteQuestionSaga),
     fork(activeSessionSaga),
     fork(activateSessionSaga),
+    fork(deactivateQuestionSaga),
   ];
 }

@@ -29,7 +29,11 @@ class SessionListPage extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.sessions.length === 0) {
+    if (/prev_sessions/.test(this.props.location.pathname)) {
+      this.props.requestRecentSessions();
+    } else if (/fave_sessions/.test(this.props.location.pathname)) {
+      this.props.requestFavoriteSessions();
+    } else {
       this.props.requestSessions();
     }
   }
@@ -103,6 +107,12 @@ const mapStateToProps = ({ sessions }) => ({
 const mapDispatchToProps = dispatch => ({
   requestSessions: () => {
     dispatch(getSessions());
+  },
+  requestRecentSessions: () => {
+    dispatch(getSessions({ recent: true }));
+  },
+  requestFavoriteSessions: () => {
+    dispatch(getSessions({ favorite: true }));
   },
   createSession: (className, title, description) => {
     dispatch(newSession(className, title, description));

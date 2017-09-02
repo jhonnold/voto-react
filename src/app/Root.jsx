@@ -9,6 +9,7 @@ import ErrorComponent from "./components/ErrorComponent";
 import VotoNavWrapper from "./containers/VotoNavWrapper";
 import LoginPage from "./containers/LoginPage";
 import SignupPage from "./containers/SignupPage";
+import SessionListPage from "./containers/SessionListPage";
 import SessionsRouter from "./routers/SessionsRouter";
 import StudentRouter from "./routers/StudentRouter";
 
@@ -66,17 +67,15 @@ class Root extends React.Component {
   }
 
   render() {
-    const { props } = this;
-
     return (
       <VotoNavWrapper
         drawSideNav={this.props.containerWidth > 750}
-        loggedIn={props.user.loggedIn}
-        logout={props.logout}
+        loggedIn={this.props.user.loggedIn}
+        logout={this.props.logout}
       >
         <ErrorComponent />
         <TransitionGroup>
-          <Fade key={props.location.pathname}>
+          <Fade key={this.props.location.pathname}>
             <section
               style={{
                 position: "fixed",
@@ -91,10 +90,12 @@ class Root extends React.Component {
               }}
             >
               {this.redirectIfNeeded()}
-              <Switch location={props.location}>
+              <Switch location={this.props.location}>
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/signup" component={SignupPage} />
                 <Route path="/sessions" component={SessionsRouter} />
+                <Route path="/fave_sessions" component={SessionListPage} />
+                <Route path="/prev_sessions" component={SessionListPage} />
                 <Route path="/student" component={StudentRouter} />
                 <Route component={Blank} />
               </Switch>

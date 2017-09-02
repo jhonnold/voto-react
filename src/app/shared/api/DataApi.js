@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const DataApi = {
-  fetchSessions: () => axios.get("/api/sessions"),
+  fetchSessions: params => axios.get("/api/sessions", { params }),
   createSession: params => axios.post("/api/sessions/saveNewSession", params),
   updateSession: (params) => {
     // Were ditching the questions - those go later
@@ -10,12 +10,12 @@ const DataApi = {
     return axios.post("/api/sessions/updateSession", rest);
   },
   activeSessions: () => axios.get("/api/sessions/active"),
-  activateSession: ({ sessionId, isActive })=>
+  activateSession: ({ sessionId, isActive }) =>
     axios.post(`/api/sessions/activateSession/${sessionId}`, { isActive }),
-  activateQuestion: id => 
-    axios.post(`/api/sesssions/activateQuestion/${id}`),
+  activateQuestion: id =>
+    axios.post(`/api/sessions/activateQuestion/${id}`),
   deactivateQuestion: id =>
-    axios.post(`/api/sessions/deactivateQuestios/${id}`),
+    axios.post(`/api/sessions/deactivateQuestion/${id}`),
   fetchQuestions: params =>
     axios.get(`/api/sessions/sessionQuestions/${params.sessionId}`),
   updateQuestions: params =>
