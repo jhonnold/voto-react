@@ -40,7 +40,12 @@ const colorsObject = {
 };
 
 const logger = createLogger({
-  collapsed: (_, action) => action.type.indexOf("_RESOLVED") === -1,
+  collapsed: (_, action) => {
+    if (action.type) {
+      return action.type.indexOf("_RESOLVED") === -1;
+    }
+    return true;
+  },
   colors: colorsObject,
 });
 

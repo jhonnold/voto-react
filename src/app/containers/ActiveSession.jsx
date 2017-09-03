@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 // import { goBack } from "react-router-redux";
 import { Divider, Button } from "material-ui";
+import { socket } from "../shared/socket";
 import CenterWrapper from "../components/CenterWrapper";
 import CenterImage from "../components/CenterImage";
 
@@ -16,7 +17,13 @@ class ActiveSession extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getQuestions(1);
+    const { session } = this.props;
+    if (!session.sessionId) {
+      this.props.goBack();
+      return;
+    }
+
+    this.props.getQuestions(session.sessionId);
   }
 
   /* eslint-disable*/
