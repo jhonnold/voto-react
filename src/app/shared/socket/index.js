@@ -16,6 +16,16 @@ class Socket {
       // TODO Dispatch event here;
     });
 
+    this.socket.on("user-join", (res) => {
+      console.log(res);
+      // TODO Dispatch event here
+    });
+
+    this.socket.on("session-de-activated", (res) => {
+      console.log(res);
+      // TODO Dispatch event here
+    });
+
     this.socket.on("session-active", () => {
       store.dispatch(activeSessions());
     });
