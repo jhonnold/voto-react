@@ -114,3 +114,24 @@ export const deactivateQuestionFail = err => ({
   type: types.DEACTIVATE_QUESTION_REJECTED,
   payload: err,
 });
+
+export const postResponse = (response, sessionId, questionId) => ({
+  type: types.POST_RESPONSE_REQUESTED,
+  payload: {
+    params: {
+      answer: response,
+    },
+    sessionId,
+    questionId,
+  },
+});
+
+export const postResponseSuccess = response => ({
+  type: types.POST_RESPONSE_RESOLVED,
+  payload: response,
+});
+
+export const postResponseFail = err => ({
+  type: types.POST_RESPONSE_REJECTED,
+  payload: err,
+});

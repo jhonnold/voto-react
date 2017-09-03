@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { goBack } from "react-router-redux";
+import { goBack } from "react-router-redux";
 import { Divider, Button } from "material-ui";
 import { socket } from "../shared/socket";
+import { postResponse } from "../redux/actions/questionActions";
 import CenterWrapper from "../components/CenterWrapper";
 import CenterImage from "../components/CenterImage";
 
@@ -13,7 +14,7 @@ class ActiveSession extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleVote = this.handleVote.bind(this);
+    this.handleResponse = this.handleResponse.bind(this);
   }
 
   componentDidMount() {
@@ -22,16 +23,13 @@ class ActiveSession extends React.Component {
       this.props.goBack();
       return;
     }
-
-    this.props.getQuestions(session.sessionId);
+    // GET ACTIVE QUESTION
   }
 
-  /* eslint-disable*/
-  handleVote(vote) {
-    // TODO Handle vote here
-    console.log(`Voting: ${vote}`);
+  handleResponse(vote) {
+    const { session, question } = this.props;
+    this.props.postResponse(vote, session.sessionId, 9);
   }
-  /* eslint-enable */
 
   render() {
     const { session, containerWidth } = this.props;
@@ -61,7 +59,14 @@ class ActiveSession extends React.Component {
             </span>
             <Divider style={{ margin: "0.5rem" }} />
             <div className="button-container">
-              <Button className="button" raised>A</Button>
+              <Button 
+                onClick={() => this.handleResponse("A")}
+                className="button"
+                raised
+              >
+                A
+              </Button>
+              
               <Button className="button" raised>B</Button>
               <Button className="button" raised>C</Button>
               <Button className="button" raised>D</Button>
@@ -80,13 +85,13 @@ const mapStateToProps = ({ selectedSession, container }) => ({
   containerWidth: container.width,
 });
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = dispatch => ({
   getQuestions: (sessionId) => {
     console.log(`Getting questions for ${sessionId}`);
   },
-  // goBack: () => {
-  //   dispatch(goBack());
-  // },
+  goBack: () => dispatch(goBack()),
+  postResponse: (response, sessionId, questionId) => 
+    dispatch(postResponse(response, sessionId, questionId)),
 });
 
 ActiveSession.propTypes = {

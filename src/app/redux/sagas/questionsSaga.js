@@ -15,6 +15,8 @@ import {
   activateQuestionFail,
   deactivateQuestionSuccess,
   deactivateQuestionFail,
+  postResponseSuccess,
+  postResponseFail,
 } from "../actions/questionActions";
 
 function* fetchQuestions(action) {
@@ -101,3 +103,15 @@ export function* deactivateQuestionSaga() {
   yield takeEvery(types.DEACTIVATE_QUESTION_REQUESTED, deactivateQuestion);
 }
 
+function* postResponse(action) {
+  try {
+    const response = yield call(DataApi.postResponse, action.payload);
+    yield put(postResponseSuccess(response));
+  } catch (err) {
+    yield put(postResponseFail(err));
+  }
+}
+
+export function* postResponseSaga() {
+  yield takeEvery(types.POST_RESPONSE_REQUESTED, postResponse);
+}

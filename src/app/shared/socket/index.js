@@ -12,14 +12,13 @@ class Socket {
 
     this.socket.on("connect", () => this.isConnected = true);
 
+    this.socket.on("new-question", (questionId) => {
+      console.log("TODO - GET ACTIVE QUESTION");
+    });
+
     this.socket.on("user-response", (res) => {
       console.log(res);
     // TODO Dispatch event here;
-    });
-
-    this.socket.on("user-join", (res) => {
-      console.log(res);
-      // TODO Dispatch event here
     });
 
     this.socket.on("session-de-activated", () => {
@@ -34,7 +33,7 @@ class Socket {
       const self = this;
       (function waitForConnect() {
         if (self.isConnected) return resolve();
-        setTimeout(waitForConnect, 30);
+        setTimeout(waitForConnect, 50);
       })();
     });
   }
