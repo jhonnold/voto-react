@@ -54,6 +54,11 @@ module.exports = {
         target: "https://voto.io",
         secure: false,
       },
+      "/socket.io": {
+        target: "https://voto.io",
+        secure: false,
+        ws: true,
+      },
     },
     historyApiFallback: true,
     contentBase: "./",

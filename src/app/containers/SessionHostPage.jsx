@@ -31,7 +31,7 @@ class SessionHostPage extends React.Component {
       return;
     }
 
-    socket.connect("https://voto.io").then(() =>
+    socket.connect("/socket.io").then(() =>
       socket.subscribeToSessionFeed(),
     );
 
