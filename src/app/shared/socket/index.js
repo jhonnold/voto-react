@@ -10,7 +10,7 @@ class Socket {
   connect(channel) {
     this.socket = io.connect({ path: channel });
 
-    this.socket.on("connect", () => console.log("CONNECTED"));
+    this.socket.on("connect", () => this.isConnected = true);
 
     this.socket.on("new-question", (questionId) => {
       console.log("TODO - GET ACTIVE QUESTION");
