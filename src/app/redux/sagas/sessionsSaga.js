@@ -93,5 +93,5 @@ function* deactivateSession(action) {
 }
 
 export function* deactivateSessionSaga() {
-  yield takeEvery(types.DEACTIVATE_SESSION_REQUESTED, activateSession);
+  yield takeEvery(types.DEACTIVATE_SESSION_REQUESTED, deactivateSession);
 }
