@@ -7,6 +7,7 @@ import {
   updateSessionSaga,
   activeSessionSaga,
   activateSessionSaga,
+  deactivateSessionSaga,
 } from "./sessionsSaga";
 import {
   deleteQuestionSaga,
@@ -32,6 +33,7 @@ export default function* rootSaga() {
     fork(deleteQuestionSaga),
     fork(activeSessionSaga),
     fork(activateSessionSaga),
+    fork(deactivateSessionSaga),
     fork(deactivateQuestionSaga),
   ];
 }

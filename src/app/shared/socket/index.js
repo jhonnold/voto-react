@@ -22,9 +22,8 @@ class Socket {
       // TODO Dispatch event here
     });
 
-    this.socket.on("session-de-activated", (res) => {
-      console.log(res);
-      // TODO Dispatch event here
+    this.socket.on("session-de-activated", () => {
+      store.dispatch(activeSessions());
     });
 
     this.socket.on("session-active", () => {

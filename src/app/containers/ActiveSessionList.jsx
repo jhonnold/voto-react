@@ -20,8 +20,9 @@ class ActiveSessionList extends React.Component {
   }
 
   componentDidMount() {
-    socket.connect("https://voto.io");
-    socket.subscribeToActiveSessionFeed();
+    socket.connect("https://voto.io").then(() =>
+      socket.subscribeToActiveSessionFeed(),
+    );
     this.props.getActiveSessions();
   }
 
