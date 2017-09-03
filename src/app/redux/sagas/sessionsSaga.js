@@ -12,6 +12,8 @@ import {
   activeSessionsFail,
   activateSessionSuccess,
   activateSessionFail,
+  deactivateSessionSuccess,
+  deactivateSessionFail,
 } from "../actions/sessionsActions";
 
 function* fetchSessions(action) {
@@ -79,4 +81,17 @@ function* activateSession(action) {
 
 export function* activateSessionSaga() {
   yield takeEvery(types.ACTIVATE_SESSION_REQUESTED, activateSession);
+}
+
+function* deactivateSession(action) {
+  try {
+    const response = yield call(DataApi.deactivateSession, action.payload);
+    yield put(deactivateSessionSuccess(response));
+  } catch (err) {
+    yield put(deactivateSessionFail(err));
+  }
+}
+
+export function* deactivateSessionSaga() {
+  yield takeEvery(types.DEACTIVATE_SESSION_REQUESTED, activateSession);
 }
