@@ -31,9 +31,9 @@ class SessionHostPage extends React.Component {
       return;
     }
 
-    socket.connect("/socket.io").then(() =>
-      socket.subscribeToSessionFeed(),
-    );
+    socket.connect("/socket.io").then(() => {
+      socket.subscribeToSessionFeed();
+    });
 
     this.props.resetActive();
     this.props.getQuestions(session.sessionId);

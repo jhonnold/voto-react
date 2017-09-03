@@ -8,9 +8,9 @@ class Socket {
   }
 
   connect(channel) {
-    this.socket = io.connect(channel);
+    this.socket = io.connect({ path: channel });
 
-    this.socket.on("connect", () => this.isConnected = true);
+    this.socket.on("connect", () => console.log("CONNECTED"));
 
     this.socket.on("new-question", (questionId) => {
       console.log("TODO - GET ACTIVE QUESTION");
@@ -40,6 +40,7 @@ class Socket {
 
   subscribeToSessionFeed() {
     this.socket.emit("subscribe-to-feed-teacher");
+    console.log('emitted');
   }
 
   subscribeToActiveSessionFeed() {
