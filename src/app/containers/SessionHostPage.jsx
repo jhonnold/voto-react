@@ -6,7 +6,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { Grid, Divider, IconButton, Switch } from "material-ui";
 import { ArrowForward, ArrowBack } from "material-ui-icons";
 import { getSessionQuestions, activateQuestion, deactivateQuestion } from "../redux/actions/questionActions";
-import { activateSession } from "../redux/actions/sessionsActions";
+import { activateSession, deactivateSession } from "../redux/actions/sessionsActions";
 import { resetActive, setActiveIndex } from "../redux/actions/activeActions";
 import renderThumb from "../components/Thumb";
 import CenterImage from "../components/CenterImage";
@@ -36,12 +36,12 @@ class SessionHostPage extends React.Component {
 
     this.props.resetActive();
     this.props.getQuestions(session.sessionId);
-    this.props.activateSession(session.sessionId, false);
+    this.props.toggleSession(session.sessionId, true);
   }
 
   componentWillUnmount() {
     const { session } = this.props;
-    this.props.activateSession(session.sessionId, true);
+    this.props.toggleSession(session.sessionId, false);
     socket.disconnect();
   }
 
@@ -168,7 +168,13 @@ const mapDispatchToProps = dispatch => ({
   goBack: () => {
     dispatch(goBack());
   },
-  activateSession: (id, isActive) => dispatch(activateSession(id, isActive)),
+  toggleSession: (id, activate) => {
+    if (activate) {
+      dispatch(activateSession(id));
+    } else {
+      dispatch(deactivateSession(id));
+    }
+  },
   activateQuestion: id => dispatch(activateQuestion(id)),
   deactivateQuestion: id => dispatch(deactivateQuestion(id)),
   resetActive: () => dispatch(resetActive()),
@@ -186,7 +192,7 @@ SessionHostPage.propTypes = {
   goBack: PropTypes.func.isRequired,
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
   getQuestions: PropTypes.func.isRequired,
-  activateSession: PropTypes.func.isRequired,
+  toggleSession: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SessionHostPage);
