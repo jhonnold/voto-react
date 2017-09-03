@@ -9,11 +9,12 @@ class Socket {
 
   connect(channel) {
     this.socket = io.connect(channel);
-    this.isConnected = true;
+
+    this.socket.on("connect", () => this.isConnected = true);
 
     this.socket.on("user-response", (res) => {
       console.log(res);
-      // TODO Dispatch event here;
+    // TODO Dispatch event here;
     });
 
     this.socket.on("user-join", (res) => {
@@ -28,6 +29,14 @@ class Socket {
 
     this.socket.on("session-active", () => {
       store.dispatch(activeSessions());
+    });
+   
+    return new Promise((resolve) => {
+      const self = this;
+      (function waitForConnect() {
+        if (self.isConnected) return resolve();
+        setTimeout(waitForConnect, 30);
+      })();
     });
   }
 
