@@ -37,8 +37,9 @@ class ActiveSession extends React.Component {
     const width =
       containerWidth > 750 ? containerWidth - 264 : containerWidth - 8;
     const height = width * 0.5625; // --> 9/16
-
     const src = null;
+    // TODO make these come frmo the backend on active question
+    const choices = ["A", "B", "C", "D", "E"];
 
     return (
       <div className="active-session-wrapper">
@@ -59,18 +60,16 @@ class ActiveSession extends React.Component {
             </span>
             <Divider style={{ margin: "0.5rem" }} />
             <div className="button-container">
-              <Button 
-                onClick={() => this.handleResponse("A")}
-                className="button"
-                raised
-              >
-                A
-              </Button>
-              
-              <Button className="button" raised>B</Button>
-              <Button className="button" raised>C</Button>
-              <Button className="button" raised>D</Button>
-              <Button className="button" raised>E</Button>
+              {choices.map(c => (
+                <Button
+                  raised
+                  className="button"
+                  onClick={() => this.handleResponse(c)}
+                  key={c}
+                >
+                  {c}
+                </Button>
+              ))}
             </div>
           </CenterWrapper>
         </div>
