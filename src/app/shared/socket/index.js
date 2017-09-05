@@ -13,19 +13,22 @@ class Socket {
     this.socket.on("connect", () => this.isConnected = true);
 
     this.socket.on("new-question", (questionId) => {
-      console.log("TODO - GET ACTIVE QUESTION");
+      console.log(`New question is now ${questionId}`);
     });
 
     this.socket.on("user-response", (res) => {
+      console.log('Got a new user response!');
       console.log(res);
     // TODO Dispatch event here;
     });
 
     this.socket.on("session-de-activated", () => {
+      console.log('A session has been deactivated');
       store.dispatch(activeSessions());
     });
 
     this.socket.on("session-active", () => {
+      console.log('A session has been activated');
       store.dispatch(activeSessions());
     });
    
@@ -48,10 +51,9 @@ class Socket {
   }
 
   disconnect() {
-    if (this.isConnected) {
-      this.isConnected = false;
-      this.socket.disconnect();
-    }
+    this.isConnected = false;
+    this.socket.disconnect();
+    console.log('Disconnected!');
   }
 }
 

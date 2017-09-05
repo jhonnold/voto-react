@@ -30,7 +30,7 @@ const DataApi = {
       `/api/sessions/${params.questionId || 0}/image/${params.imgFileName}`,
     ),
   postResponse: ({ params, sessionId, questionId }) =>
-    axios.post(`/api/sessions/saveResponse/${sessionId}/${questionId}`, { params }),
+    axios.post(`/api/sessions/saveResponse/${sessionId}/${questionId}`, params),
 };
 
 export default DataApi;
