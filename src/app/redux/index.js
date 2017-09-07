@@ -12,6 +12,7 @@ import containerReducer from "./reducers/containerReducer";
 import selecterReducer from "./reducers/selecterReducer";
 import errorReducer from "./reducers/errorReducer";
 import activeReducer from "./reducers/activeReducer";
+import chartReducer from "./reducers/chartReducer";
 import rootSaga from "./sagas/index";
 import sagaMonitor from "./sagas/sagaMonitor";
 
@@ -59,6 +60,7 @@ const reducer = combineReducers({
   container: containerReducer,
   error: errorReducer,
   active: activeReducer,
+  chart: chartReducer,
 });
 
 export const store = createStore(
