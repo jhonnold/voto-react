@@ -13,7 +13,7 @@ export default function BarChart(props) {
       },
     },
     xAxis: {
-      categories: ["A", "B", "C", "D", "E"],
+      categories: props.categories,
     },
     yAxis: {
       title: {

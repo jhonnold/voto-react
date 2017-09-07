@@ -22,6 +22,7 @@ class SessionHostPage extends React.Component {
     this.onLeftArrow = this.onLeftArrow.bind(this);
     this.onRightArrow = this.onRightArrow.bind(this);
     this.onSwitch = this.onSwitch.bind(this);
+    this.getData = this.getData.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +45,11 @@ class SessionHostPage extends React.Component {
     const { session } = this.props;
     this.props.toggleSession(session.sessionId, false);
     socket.disconnect();
+  }
+
+  getData(categories) {
+    const { chart } = this.props;
+    return categories.map(c => chart.filter(d => d.answer === c).length);
   }
 
   onLeftArrow() {
@@ -87,6 +93,8 @@ class SessionHostPage extends React.Component {
       ? "The above picture is currently visible to connected students"
       : "Slide the lever to make the questions visible to students";
 
+    const categories = ["A", "B", "C", "D", "E"];
+
     return (
       <div className="session-host-page-wrapper">
         <div className="session-host-page-container">
@@ -125,13 +133,8 @@ class SessionHostPage extends React.Component {
             <Grid item xs={12} md={6}>
               <BarChart
                 height={(height > 432 ? 432 : height) + 64}
-                data={[
-                  Math.random(),
-                  Math.random(),
-                  Math.random(),
-                  Math.random(),
-                  Math.random(),
-                ]}
+                categories={categories}
+                data={this.getData(categories)}
               />
             </Grid>
           </Grid>
@@ -157,11 +160,12 @@ class SessionHostPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({ selectedSession, container, active }) => ({
+const mapStateToProps = ({ selectedSession, container, active, chart }) => ({
   session: selectedSession,
   questions: selectedSession.questions,
   containerWidth: container.width,
   active,
+  chart,
 });
 
 const mapDispatchToProps = dispatch => ({

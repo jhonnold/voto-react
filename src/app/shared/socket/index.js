@@ -18,18 +18,14 @@ class Socket {
     });
 
     this.socket.on("user-response", (res) => {
-      console.log("Got a new user response!");
-      console.log(res);
       store.dispatch(addResponse(res));
     });
 
     this.socket.on("session-de-activated", () => {
-      console.log("A session has been deactivated");
       store.dispatch(activeSessions());
     });
 
     this.socket.on("session-active", () => {
-      console.log("A session has been activated");
       store.dispatch(activeSessions());
     });
 
