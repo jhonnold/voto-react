@@ -53,7 +53,12 @@ class ActiveSession extends React.Component {
             </p>
           </div>
           <CenterWrapper>
-            <CenterImage width={width} height={height} src={src} />
+            <CenterImage
+              width={width}
+              height={height}
+              src={src}
+              message="There is currently no active question for this session!"
+            />
             <Divider style={{ margin: "0 .5rem .3rem .5rem" }} />
             <span className="subtitle">
               Click a button to answer the above question!

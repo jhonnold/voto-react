@@ -1,6 +1,9 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const BASE_URL = "https://voto.io";
+// const BASE_URL = "http://localhost:8080";
+
 module.exports = {
   entry: ["babel-polyfill", "./src/index.js"],
   output: {
@@ -51,11 +54,11 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        target: "https://voto.io",
+        target: BASE_URL,
         secure: false,
       },
       "/socket.io": {
-        target: "https://voto.io",
+        target: BASE_URL,
         secure: false,
         ws: true,
       },

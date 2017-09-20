@@ -5,3 +5,16 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.center-image-text {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  color: #3d464d;
+  font-weight: 100;
+  font-style: italic;
+  text-align: center;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 0 5px 1px #3d464d;
+}
