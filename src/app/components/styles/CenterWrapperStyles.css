@@ -1,9 +1,0 @@
-.center-wrapper {
-  min-height: min-content;
-}
-
-.center-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
