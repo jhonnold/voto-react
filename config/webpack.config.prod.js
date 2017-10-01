@@ -12,7 +12,6 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
-
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 const publicPath = paths.servedPath;
@@ -56,7 +55,7 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: [require.resolve('./polyfills'), paths.appIndexJs, paths.appIndexSass],
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -90,7 +89,7 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      
+
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -121,7 +120,7 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
+
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -149,7 +148,7 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+
               compact: true,
             },
           },
@@ -165,47 +164,53 @@ module.exports = {
           // tags. If you use code splitting, however, any async bundles will still
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
+          // {
+          //   test: /\.css$/,
+          //   loader: ExtractTextPlugin.extract(
+          //     Object.assign(
+          //       {
+          //         fallback: require.resolve('style-loader'),
+          //         use: [
+          //           {
+          //             loader: require.resolve('css-loader'),
+          //             options: {
+          //               importLoaders: 1,
+          //               minimize: true,
+          //               sourceMap: shouldUseSourceMap,
+          //             },
+          //           },
+          //           {
+          //             loader: require.resolve('postcss-loader'),
+          //             options: {
+          //               // Necessary for external CSS imports to work
+          //               // https://github.com/facebookincubator/create-react-app/issues/2677
+          //               ident: 'postcss',
+          //               plugins: () => [
+          //                 require('postcss-flexbugs-fixes'),
+          //                 autoprefixer({
+          //                   browsers: [
+          //                     '>1%',
+          //                     'last 4 versions',
+          //                     'Firefox ESR',
+          //                     'not ie < 9', // React doesn't support IE8 anyway
+          //                   ],
+          //                   flexbox: 'no-2009',
+          //                 }),
+          //               ],
+          //             },
+          //           },
+          //         ],
+          //       },
+          //       extractTextPluginOptions
+          //     )
+          //   ),
+          //   // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+          // },
+          //
+          // LOAD SASS INSTEAD OF CSS
           {
-            test: /\.css$/,
-            loader: ExtractTextPlugin.extract(
-              Object.assign(
-                {
-                  fallback: require.resolve('style-loader'),
-                  use: [
-                    {
-                      loader: require.resolve('css-loader'),
-                      options: {
-                        importLoaders: 1,
-                        minimize: true,
-                        sourceMap: shouldUseSourceMap,
-                      },
-                    },
-                    {
-                      loader: require.resolve('postcss-loader'),
-                      options: {
-                        // Necessary for external CSS imports to work
-                        // https://github.com/facebookincubator/create-react-app/issues/2677
-                        ident: 'postcss',
-                        plugins: () => [
-                          require('postcss-flexbugs-fixes'),
-                          autoprefixer({
-                            browsers: [
-                              '>1%',
-                              'last 4 versions',
-                              'Firefox ESR',
-                              'not ie < 9', // React doesn't support IE8 anyway
-                            ],
-                            flexbox: 'no-2009',
-                          }),
-                        ],
-                      },
-                    },
-                  ],
-                },
-                extractTextPluginOptions
-              )
-            ),
-            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+            test: /\.scss$/,
+            loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
           },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
@@ -217,7 +222,7 @@ module.exports = {
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.js$/, /\.html$/, /\.json$/],
+            exclude: [/\.(js|jsx)$/, /\.html$/, /\.json$/, /\.scss$/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },
