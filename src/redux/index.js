@@ -9,29 +9,26 @@ import createHistory from 'history/createBrowserHistory';
 
 export const history = createHistory();
 
-export default () => new Promise((resolve, reject) => {
-  try {
-    const reducers = combineReducers({
-      kea: keaReducer('kea'),
-      scenes: keaReducer('scenes'),
-      router: routerReducer,
-    });
+export default () =>
+  new Promise((resolve, reject) => {
+    try {
+      const reducers = combineReducers({
+        kea: keaReducer('kea'),
+        scenes: keaReducer('scenes'),
+        router: routerReducer,
+      });
 
-    const sagaMiddleware = createSagaMiddleware();
-    const finalCreateStore = compose(
-      autoRehydrate(),
-      applyMiddleware(sagaMiddleware, routerMiddleware(history), logger),
-    )(createStore);
+      const sagaMiddleware = createSagaMiddleware();
+      const finalCreateStore = compose(
+        autoRehydrate(),
+        applyMiddleware(sagaMiddleware, routerMiddleware(history), logger),
+      )(createStore);
 
-    const store = finalCreateStore(reducers);
-    sagaMiddleware.run(keaSaga);
+      const store = finalCreateStore(reducers);
+      sagaMiddleware.run(keaSaga);
 
-    persistStore(
-      store,
-      {},
-      () => resolve(store),
-    );
-  } catch (err) {
-    reject(err);
-  }
-});
+      persistStore(store, {}, () => resolve(store));
+    } catch (err) {
+      reject(err);
+    }
+  });

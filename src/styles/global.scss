@@ -1,0 +1,48 @@
+// LOAD FOUNDATION THROUGHOUT THE APP
+@import 'node_modules/foundation-sites/scss/foundation.scss';
+@include foundation-everything;
+
+@import 'variables.scss';
+
+@font-face {
+  font-family: PrimarySchool;
+  src: url(/fonts/PrimarySchool.otf);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: PrimarySchool;
+  margin: 0;
+}
+
+span, p, div {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+}
+
+html, body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-container {
+  flex: 1;
+}
+
+.blue-gradient-background {
+  background-image: linear-gradient(to right, $light-blue, $dark-blue);
+}
+
+.dark-blue-background {
+  background-color: $dark-blue;
+}
+
+.light-blue-background {
+  background-color: $light-blue;
+}
+
+@import 'NavBarStyles.scss';

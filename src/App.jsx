@@ -4,8 +4,9 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Switch, Route } from 'react-router';
 
 import getStore, { history } from './redux';
+import LoginRouter from './routers/LoginRouter';
 
-import './shared/styles/global.scss';
+import './styles/global.scss';
 
 async function init() {
   const store = await getStore();
@@ -13,7 +14,7 @@ async function init() {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Switch>
-          <Route render={() => <div>{JSON.stringify(store.getState())}</div>} />
+          <Route component={LoginRouter} />
         </Switch>
       </ConnectedRouter>
     </Provider>
