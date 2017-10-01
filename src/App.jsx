@@ -7,14 +7,17 @@ import getStore, { history } from './redux';
 
 import './shared/styles/global.scss';
 
-const store = getStore();
+async function init() {
+  const store = await getStore();
+  return (
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Switch>
+          <Route render={() => <div>{JSON.stringify(store.getState())}</div>} />
+        </Switch>
+      </ConnectedRouter>
+    </Provider>
+  );
+}
 
-export default () => (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Switch>
-        <Route render={() => <div>Test</div>} />
-      </Switch>
-    </ConnectedRouter>
-  </Provider>
-);
+export default init;
