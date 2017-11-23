@@ -17,6 +17,7 @@
     "space-before-function-paren": "off",
     "react/prefer-stateless-function": "warn",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": "off",
     "linebreak-style": "off",
     "global-require": "off",
     "semi": "warn",

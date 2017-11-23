@@ -1,9 +1,10 @@
 import { take, fork, cancel, cancelled, put, call } from 'redux-saga/effects';
+import api from '../../shared/api';
 import types from '../actions/types';
 
-function* authorize() {
+function* authorize(params) {
   try {
-    const response = yield call(); // TODO
+    const response = yield call(api.loginUser, params);
     yield put({ type: types.loginResolved, payload: response });
   } catch (err) {
     yield put({ type: types.loginRejected, payload: err });

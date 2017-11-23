@@ -27,6 +27,7 @@
     ]
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "cross-env": "5.1.1",
     "history": "^4.7.2",
     "material-ui": "^1.0.0-beta.21",

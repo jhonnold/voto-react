@@ -1,8 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { Button } from 'material-ui';
 import { blue, lightBlue } from 'material-ui/colors';
-// import styled from 'styled-components';
 
 const theme = createMuiTheme({
   palette: {
@@ -11,12 +11,16 @@ const theme = createMuiTheme({
   },
 });
 
-const App = () => {
+const App = ({ login }) => {
   return (
     <MuiThemeProvider theme={theme}>
-      <Button raised color="accent">Hi</Button>
+      <Button raised color="accent" onClick={() => login()}>Hi</Button>
     </MuiThemeProvider>
   );
 };
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  login: () => dispatch({ type: 'LOGIN_REQUESTED', payload: { userName: 'teacher', password: 'password' } }),
+});
+
+export default connect(null, mapDispatchToProps)(App);
