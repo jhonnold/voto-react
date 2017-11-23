@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import { Route } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { injectGlobal } from 'styled-components';
 
@@ -32,7 +31,7 @@ const Root = () => (
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <ConnectedRouter history={history}>
-        <Route path="/" component={App} />
+        <App />
       </ConnectedRouter>
     </PersistGate>
   </Provider>
