@@ -4,8 +4,11 @@ import { persistCombineReducers, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
+import logger from 'redux-logger';
 
 import { UserReducer } from './reducers';
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 export const history = createHistory();
 const routerMiddlewareWithHistory = routerMiddleware(history);
@@ -23,9 +26,17 @@ const reducer = persistCombineReducers(config, {
 
 export const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
+  let middleware = null;
+
+  if (isProduction) {
+    middleware = applyMiddleware(routerMiddlewareWithHistory);
+  } else {
+    middleware = applyMiddleware(routerMiddlewareWithHistory, sagaMiddleware, logger);
+  }
+
   const store = createStore(
     reducer,
-    applyMiddleware(routerMiddlewareWithHistory, sagaMiddleware),
+    middleware,
   );
   const persistor = persistStore(store);
 
