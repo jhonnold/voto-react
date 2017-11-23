@@ -3,6 +3,7 @@ import { routerReducer, routerMiddleware } from 'react-router-redux';
 import { persistCombineReducers, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createHistory from 'history/createBrowserHistory';
+import createSagaMiddleware from 'redux-saga';
 
 import { UserReducer } from './reducers';
 
@@ -21,8 +22,12 @@ const reducer = persistCombineReducers(config, {
 });
 
 export const configureStore = () => {
-  const store = createStore(reducer, applyMiddleware(routerMiddlewareWithHistory));
+  const sagaMiddleware = createSagaMiddleware();
+  const store = createStore(
+    reducer,
+    applyMiddleware(routerMiddlewareWithHistory, sagaMiddleware),
+  );
   const persistor = persistStore(store);
 
-  return { persistor, store };
+  return { persistor, store: { ...store, runSaga: sagaMiddleware.run } };
 };

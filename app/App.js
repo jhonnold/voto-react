@@ -6,6 +6,7 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { injectGlobal } from 'styled-components';
 
 import { configureStore, history } from './redux';
+import rootSaga from './redux/sagas';
 import App from './components/App';
 
 injectGlobal([`
@@ -25,6 +26,7 @@ injectGlobal([`
 `]);
 
 const { persistor, store } = configureStore();
+store.runSaga(rootSaga);
 
 const Root = () => (
   <Provider store={store}>
