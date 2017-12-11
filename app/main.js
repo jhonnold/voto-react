@@ -5,6 +5,10 @@ import { AppContainer } from 'react-hot-loader';
 
 import Voto from './App';
 
+import './global.css';
+// Make sure we import the semantic styles
+import '../semantic/dist/semantic.min.css';
+
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
