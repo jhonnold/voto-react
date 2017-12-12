@@ -8,7 +8,7 @@ const config = {
   devtool: 'cheap-module-source-map',
 
   entry: [
-    './main.js',
+    './index.js',
     // './assets/scss/main.scss',
   ],
 
@@ -47,18 +47,18 @@ const config = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
-      // {
-      //   test: /\.scss$/,
-      //   exclude: /node_modules/,
-      //   use: ExtractTextPlugin.extract({
-      //     fallback: 'style-loader',
-      //     use: [
-      //       'css-loader',
-      //       { loader: 'sass-loader', query: { sourceMap: false } },
-      //     ],
-      //     publicPath: '../',
-      //   }),
-      // },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            { loader: 'sass-loader', query: { sourceMap: false } },
+          ],
+          publicPath: '../',
+        }),
+      },
       // { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=15000&name=images/[name].[ext]' },
       // { test: /\.eot(\?v=\d+.\d+.\d+)?$/, use: 'file-loader?name=fonts/[name].[ext]' },
       // { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, use: 'url-loader?

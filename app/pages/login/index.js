@@ -1,12 +1,9 @@
 import React from 'react';
-import { Grid, Header } from 'semantic-ui-react';
+import { Button } from 'material-ui';
+import { withTheme } from 'material-ui/styles';
 
 const Login = () => (
-  <Grid verticalAlign="middle" textAlign="center">
-    <Grid.Column>
-      <Header as="h1" color="blue">Please Login...</Header>
-    </Grid.Column>
-  </Grid>
+  <Button raised color="accent">Login</Button>
 );
 
-export default Login;
+export default withTheme()(Login);
