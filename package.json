@@ -7,7 +7,7 @@
     "start": "webpack-dev-server",
     "clean": "rimraf dist",
     "production": "cross-env npm run clean && webpack --config webpack.production.config.js --progress --profile --colors",
-    "lint": "eslint ./app/**/**.js",
+    "lint": "eslint ./app/",
     "test": "jest",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage",
@@ -20,11 +20,16 @@
     ],
     "mapCoverage": true,
     "collectCoverageFrom": [
-      "app/**/*.{js,jsx,ts,tsx}"
+      "app/*.{js,jsx,ts,tsx}"
     ],
     "testMatch": [
       "**/?(*.)(spec|test).js?(x)"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(JPG|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   },
   "dependencies": {
     "axios": "^0.17.1",

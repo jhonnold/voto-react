@@ -9,7 +9,7 @@ import VisibilityOff from 'material-ui-icons/VisibilityOff';
 import { withTheme } from 'material-ui/styles';
 import styled from 'styled-components';
 
-import background from '../../assets/images/banner-back-gray.JPG';
+import background from '../../assets/images/banner-back-gray.jpg';
 
 const Wrapper = styled.div`
   width: 100%;
