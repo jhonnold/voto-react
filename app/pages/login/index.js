@@ -1,13 +1,16 @@
 import React from 'react';
+import { reduxForm, Field } from 'redux-form';
 import { Typography } from 'material-ui';
 import IconButton from 'material-ui/IconButton';
 import Button from 'material-ui/Button';
-import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
+import { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl } from 'material-ui/Form';
 import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
 import { withTheme } from 'material-ui/styles';
 import styled from 'styled-components';
+
+import Input from '../../components/redux-form-input';
 
 import background from '../../assets/images/banner-back-gray.jpg';
 
@@ -42,7 +45,7 @@ const Header = styled.div`
   width: calc(100% - ${props => props.theme.spacing.unit * 8}px);
 `;
 
-const LoginForm = styled.div`
+const LoginForm = styled.form`
   margin: ${props => props.theme.spacing.unit * 2}px;
 `;
 
@@ -65,14 +68,15 @@ const StyledButton = styled(Button)`
   margin: ${props => props.theme.spacing.unit}px;
 `;
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
+const handleLogin = (event) => {
+  event.preventDefault();
+  console.log(event);
+};
 
-    this.state = {
-      passwordVisible: false,
-    };
-  }
+class Login extends React.Component {
+  state = {
+    passwordVisible: false,
+  };
 
   render() {
     const { theme } = this.props;
@@ -80,36 +84,38 @@ class Login extends React.Component {
       <Wrapper>
         <Content theme={theme}>
           <Header theme={theme}>
-            <Typography color="accent" type="display3" align="center">
+            <Typography color="accent" type="display3" align="center" id="header">
               VOTO
             </Typography>
           </Header>
-          <LoginForm theme={theme}>
+          <LoginForm theme={theme} onSubmmit={handleLogin}>
             <InputWrapper fullWidth theme={theme}>
               <InputLabel htmlFor="email">Email</InputLabel>
-              <Input id="email" onChange={e => console.log(e)} />
+              <Field name="email" type="text" component={Input} />
             </InputWrapper>
             <InputWrapper fullWidth theme={theme}>
               <InputLabel htmlFor="password">Password</InputLabel>
-              <Input
-                id="password"
-                onChange={e => console.log(e)}
+              <Field
+                name="password"
                 type={this.state.passwordVisible ? 'text' : 'password'}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={() =>
-                        this.setState({ passwordVisible: !this.state.passwordVisible })
-                      }
-                    >
-                      {this.state.passwordVisible ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
+                component={Input}
+                muiProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() =>
+                          this.setState({ passwordVisible: !this.state.passwordVisible })
+                        }
+                      >
+                        {this.state.passwordVisible ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </InputWrapper>
             <ButtonContainer theme={theme}>
-              <StyledButton raised color="accent" theme={theme}>
+              <StyledButton raised color="accent" theme={theme} type="submit">
                 Login
               </StyledButton>
               <Typography type="caption">
@@ -123,4 +129,4 @@ class Login extends React.Component {
   }
 }
 
-export default withTheme()(Login);
+export default reduxForm({ form: 'loginForm' })(withTheme()(Login));
