@@ -1,6 +1,7 @@
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { blue, orange } from 'material-ui/colors';
+import { injectGlobal } from 'styled-components';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
@@ -12,6 +13,21 @@ import Routes from './pages/routes';
 const { persistor, store } = configureStore();
 store.runSaga(rootSaga);
 
+// eslint-disable-next-line
+injectGlobal`
+  html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  #root {
+    height: 100%;
+    background: linear-gradient(to bottom, #EEEEEE, #CCCCCC);
+  }
+`;
+
 const theme = createMuiTheme({
   palette: {
     primary: blue,
@@ -19,7 +35,13 @@ const theme = createMuiTheme({
   },
   overrides: {
     MuiButton: {
-      raisedAccent: { color: 'white' },
+      raisedAccent: {
+        color: 'white',
+        background: `linear-gradient(to left, ${orange[400]}, ${orange[500]})`,
+      },
+    },
+    MuiTypography: {
+      colorAccent: { color: 'white' },
     },
   },
 });

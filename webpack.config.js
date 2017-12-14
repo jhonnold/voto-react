@@ -72,7 +72,7 @@ const config = {
       },
       // { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=15000&name=images/[name].[ext]' },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|JPG)$/,
         use: [
           {
             loader: 'url-loader',
