@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Typography from 'material-ui/Typography';
 import { withTheme } from 'material-ui/styles';
 import styled from 'styled-components';
 
+import { signup } from '../../redux/actions';
 import SignupForm from '../../components/signup-form';
 
 import background from '../../assets/images/banner-back-gray.jpg';
@@ -40,7 +42,7 @@ const Header = styled.div`
   flex-direction: column;
 `;
 
-export const Signup = ({ theme }) => (
+export const Signup = ({ theme, signupSubmit }) => (
   <Wrapper>
     <Content theme={theme}>
       <Header theme={theme}>
@@ -51,9 +53,13 @@ export const Signup = ({ theme }) => (
           Signup
         </Typography>
       </Header>
-      <SignupForm theme={theme} />
+      <SignupForm theme={theme} onSubmit={signupSubmit} />
     </Content>
   </Wrapper>
 );
 
-export default withTheme()(Signup);
+const mapDispatchToProps = dispatch => ({
+  signupSubmit: params => dispatch(signup(params)),
+});
+
+export default connect(null, mapDispatchToProps)(withTheme()(Signup));

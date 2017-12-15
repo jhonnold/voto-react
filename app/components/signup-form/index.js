@@ -42,9 +42,9 @@ class Signup extends React.Component {
   };
 
   render() {
-    const { theme } = this.props;
+    const { theme, handleSubmit } = this.props;
     return (
-      <SignupForm theme={theme}>
+      <SignupForm theme={theme} onSubmit={handleSubmit}>
         <InputWrapper theme={theme}>
           <InputLabel htmlFor="firstName">First Name</InputLabel>
           <Field name="firstName" type="text" component={Input} />
