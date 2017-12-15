@@ -42,7 +42,7 @@ const Header = styled.div`
   flex-direction: column;
 `;
 
-const Login = ({ theme, loginSubmit }) => (
+export const Login = ({ theme, loginSubmit }) => (
   <Wrapper>
     <Content theme={theme}>
       <Header theme={theme}>

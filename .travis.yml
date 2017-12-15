@@ -6,13 +6,11 @@ cache:
 branches:
   only:
       - master
-      - /^greenkeeper/.*$/
 notifications:
-  email: false
+  email:
+  - jayhonnold@gmail.com
 node_js:
-  - "node"
-  - "lts/*"
-  - 7
+- '9.3.0'
 before_install:
   - npm i -g npm@^3.8.2
 before_script:

@@ -40,7 +40,7 @@ const Header = styled.div`
   flex-direction: column;
 `;
 
-const Signup = ({ theme }) => (
+export const Signup = ({ theme }) => (
   <Wrapper>
     <Content theme={theme}>
       <Header theme={theme}>
