@@ -5,9 +5,11 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import { InputLabel, InputAdornment } from 'material-ui/Input';
-import { FormControl } from 'material-ui/Form';
+import Radio from 'material-ui/Radio';
+import { FormControl, FormControlLabel } from 'material-ui/Form';
 import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
+import { RadioGroup } from 'redux-form-material-ui';
 import styled from 'styled-components';
 
 import Input from '../redux-form-input';
@@ -33,6 +35,13 @@ const ButtonContainer = styled.div`
 const StyledButton = styled(Button)`
   width: 50%;
   margin: ${props => props.theme.spacing.unit}px;
+`;
+
+const RadioGroupCenter = styled(RadioGroup)`
+  && {
+    flex-direction: row;
+    justify-content: center;
+  }
 `;
 
 
@@ -82,6 +91,10 @@ class Signup extends React.Component {
             }}
           />
         </InputWrapper>
+        <Field name="type" component={RadioGroupCenter}>
+          <FormControlLabel value="t" control={<Radio />} label="Teacher" />
+          <FormControlLabel value="s" control={<Radio />} label="Student" />
+        </Field>
         <ButtonContainer theme={theme}>
           <StyledButton raised color="accent" theme={theme} type="submit">
             Signup
