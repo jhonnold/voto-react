@@ -1,4 +1,5 @@
 import React from 'react';
+import LoadingBar from 'react-redux-loading-bar';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { blue, orange } from 'material-ui/colors';
 import { injectGlobal } from 'styled-components';
@@ -51,6 +52,7 @@ const Root = () => (
     <PersistGate persistor={persistor}>
       <ConnectedRouter history={history}>
         <MuiThemeProvider theme={theme}>
+          <LoadingBar style={{ background: `linear-gradient(to left, ${orange[300]}, ${orange[700]})` }} />
           <Routes />
         </MuiThemeProvider>
       </ConnectedRouter>

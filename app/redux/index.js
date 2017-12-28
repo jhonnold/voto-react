@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
+import { loadingBarReducer, loadingBarMiddleware } from 'react-redux-loading-bar';
 import { persistCombineReducers, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createHistory from 'history/createBrowserHistory';
@@ -18,12 +19,14 @@ const config = {
   key: 'root',
   storage,
   debug: true,
+  whitelist: 'user',
 };
 
 const reducer = persistCombineReducers(config, {
   routerReducer,
   user: UserReducer,
   form: formReducer,
+  loadingBar: loadingBarReducer,
 });
 
 export const configureStore = () => {
@@ -31,15 +34,25 @@ export const configureStore = () => {
   let middleware = null;
 
   if (isProduction) {
-    middleware = applyMiddleware(routerMiddlewareWithHistory);
+    middleware = applyMiddleware(
+      routerMiddlewareWithHistory,
+      sagaMiddleware,
+      loadingBarMiddleware({
+        promiseTypeSuffixes: ['REQUESTED', 'RESOLVED', 'REJECTED'],
+      }),
+    );
   } else {
-    middleware = applyMiddleware(routerMiddlewareWithHistory, sagaMiddleware, logger);
+    middleware = applyMiddleware(
+      routerMiddlewareWithHistory,
+      sagaMiddleware,
+      loadingBarMiddleware({
+        promiseTypeSuffixes: ['REQUESTED', 'RESOLVED', 'REJECTED'],
+      }),
+      logger,
+    );
   }
 
-  const store = createStore(
-    reducer,
-    middleware,
-  );
+  const store = createStore(reducer, middleware);
   const persistor = persistStore(store);
 
   return { persistor, store: { ...store, runSaga: sagaMiddleware.run } };
