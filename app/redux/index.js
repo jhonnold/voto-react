@@ -6,7 +6,7 @@ import { persistCombineReducers, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
-import logger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 
 import { UserReducer, AppReducer } from './reducers';
 
@@ -14,6 +14,34 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 export const history = createHistory();
 const routerMiddlewareWithHistory = routerMiddleware(history);
+
+const colorsObject = {
+  title: (action) => {
+    if (action.type.indexOf('_REQUESTED') >= 0) {
+      return 'blue';
+    } else if (action.type.indexOf('_RESOLVED') >= 0) {
+      return 'green';
+    } else if (action.type.indexOf('_REJECTED') >= 0) {
+      return 'red';
+    }
+    return 'black';
+  },
+  prevState: () => '#9E9E9E',
+  action: () => '#03A9F4',
+  nextState: () => '#4CAF50',
+  error: () => '#F20404',
+};
+
+const logger = createLogger({
+  predicate: (_, action) => !/@@/.test(action.type),
+  collapsed: (_, action) => {
+    if (action.type) {
+      return action.type.indexOf('_RESOLVED') === -1;
+    }
+    return true;
+  },
+  colors: colorsObject,
+});
 
 const config = {
   key: 'root',
@@ -53,10 +81,7 @@ export const configureStore = () => {
     );
   }
 
-  const store = createStore(
-    reducer,
-    middleware,
-  );
+  const store = createStore(reducer, middleware);
 
   const persistor = persistStore(store);
 
