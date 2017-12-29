@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: 'https://voto.io/api/',
+  baseURL: 'http://localhost:8080/api', // 'https://voto.io/api/',
   timeout: 1000,
   withCredentials: true,
 });
