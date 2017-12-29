@@ -1,10 +1,10 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
+import AppBar from '../../components/teacher-app-bar';
 import Home from '../teacher/home';
 
-export default ({ match }) => (
-  <Switch>
-    <Route path={`${match.url}/home`} component={Home} />
-  </Switch>
-);
+export default ({ match }) => ([
+  <AppBar key="AppBar" />,
+  <Route path={`${match.url}/home`} component={Home} key="Home" />,
+]);
