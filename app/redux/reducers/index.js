@@ -1,2 +1,2 @@
 export { default as UserReducer } from './UserReducer';
-export const breaker = {};
+export { default as AppReducer } from './AppReducer';

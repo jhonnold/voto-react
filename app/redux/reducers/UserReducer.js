@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case types.LOGIN_USER_RESOLVED: {
+    case types.loginUserResolved: {
       return payload;
     }
     default: {

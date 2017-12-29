@@ -8,7 +8,7 @@ import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 
-import { UserReducer } from './reducers';
+import { UserReducer, AppReducer } from './reducers';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -27,6 +27,7 @@ const reducer = persistCombineReducers(config, {
   user: UserReducer,
   form: formReducer,
   loadingBar: loadingBarReducer,
+  app: AppReducer,
 });
 
 export const configureStore = () => {
@@ -52,7 +53,11 @@ export const configureStore = () => {
     );
   }
 
-  const store = createStore(reducer, middleware);
+  const store = createStore(
+    reducer,
+    middleware,
+  );
+
   const persistor = persistStore(store);
 
   return { persistor, store: { ...store, runSaga: sagaMiddleware.run } };

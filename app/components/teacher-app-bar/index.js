@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
 import ToolBar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -8,9 +9,11 @@ import MenuIcon from 'material-ui-icons/Menu';
 import { withTheme } from 'material-ui/styles';
 import styled from 'styled-components';
 
+import { toggleDrawer } from '../../redux/actions';
+
 const GradientBar = styled(AppBar)`
   background: linear-gradient(
-    to right,
+    to left,
     ${props => props.theme.palette.primary[500]},
     ${props => props.theme.palette.primary[700]}
   );
@@ -21,10 +24,10 @@ const MenuButton = styled(IconButton)`
   margin-right: 20px;
 `;
 
-const TeacherBar = ({ theme }) => (
+const TeacherBar = ({ theme, toggle }) => (
   <GradientBar position="static" theme={theme}>
     <ToolBar>
-      <MenuButton color="contrast">
+      <MenuButton color="contrast" onClick={toggle}>
         <MenuIcon />
       </MenuButton>
       <Typography type="title" color="inherit" style={{ flex: 1 }}>
@@ -35,4 +38,8 @@ const TeacherBar = ({ theme }) => (
   </GradientBar>
 );
 
-export default withTheme()(TeacherBar);
+const mapDispatchToProps = dispatch => ({
+  toggle: () => dispatch(toggleDrawer()),
+});
+
+export default connect(null, mapDispatchToProps)(withTheme()(TeacherBar));
