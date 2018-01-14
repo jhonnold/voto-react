@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { getClasses } from '../../../redux/actions';
+import ClassCard from '../../../components/class-card';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -10,13 +11,16 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>Home</div>
+      <div>
+        {this.props.classes.map(c => <ClassCard {...c} />)}
+      </div>
     );
   }
 }
 
-const mapStateToProps = ({ user }) => ({
+const mapStateToProps = ({ user, classes }) => ({
   user,
+  classes,
 });
 
 const mapDispatchToProps = dispatch => ({

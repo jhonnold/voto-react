@@ -5,7 +5,7 @@ import types from '../actions/types';
 function* classesRequested() {
   try {
     const response = yield call(api.getClasses);
-    yield put({ type: types.classesResolved, payload: response.data });
+    yield put({ type: types.classesResolved, payload: response.data.classes });
   } catch (err) {
     // TODO
   } finally {

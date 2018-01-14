@@ -8,7 +8,7 @@ import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
 
-import { UserReducer, AppReducer } from './reducers';
+import { UserReducer, AppReducer, ClassesReducer } from './reducers';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -56,6 +56,7 @@ const reducer = persistCombineReducers(config, {
   form: formReducer,
   loadingBar: loadingBarReducer,
   app: AppReducer,
+  classes: ClassesReducer,
 });
 
 export const configureStore = () => {
