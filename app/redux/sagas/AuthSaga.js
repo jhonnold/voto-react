@@ -20,19 +20,23 @@ export function* loginFlow() {
   while (true) {
     const { payload } = yield take(types.loginRequested);
     const task = yield fork(authorize, payload);
-    const action = yield take([types.loginResolved, types.loginRejected, types.logoutRequested]);
+    const action = yield take([types.loginResolved, types.loginRejected, types.logout]);
 
-    if (action.type === types.logoutRequested) {
+    if (action.type === types.logout) {
       // Enter here if we're logging out
       yield cancel(task);
     } else if (action.type === types.loginResolved) {
-      history.push(`/${action.payload.type.toLowerCase()}/home`);
-      // TODO set user in user reducer
+      api.instance.defaults.headers.common.Authorization = action.payload.token;
+      history.push(`/${action.payload.user.type}/home`);
+
       // wait to logout now that we successfully logged in
-      yield take(types.logoutRequested);
+      yield take(types.logout);
     } else {
       // TODO
     }
+
+    api.instance.defaults.headers.common.Authorization = '';
+    history.push('/');
   }
 }
 
@@ -53,17 +57,20 @@ export function* signupFlow() {
   while (true) {
     const { payload } = yield take(types.signupRequested);
     const task = yield fork(signup, payload);
-    const action = yield take([types.signupResolved, types.signupRejected, types.logoutRequested]);
+    const action = yield take([types.signupResolved, types.signupRejected, types.logout]);
 
-    if (action.type === types.logoutRequested) {
+    if (action.type === types.logout) {
       yield cancel(task);
     } else if (action.type === types.signupResolved) {
       history.push(`/${action.payload.type.toLowerCase()}/home`);
       // TODO set user in user reducer
       // wait to logout now that we successfully logged in
-      yield take(types.logoutRequested);
+      yield take(types.logout);
     } else {
       // TODO
     }
+
+    api.instance.defaults.headers.common.Authorization = '';
+    history.push('/');
   }
 }

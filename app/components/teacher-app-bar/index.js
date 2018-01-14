@@ -9,7 +9,7 @@ import MenuIcon from 'material-ui-icons/Menu';
 import { withTheme } from 'material-ui/styles';
 import styled from 'styled-components';
 
-import { toggleDrawer } from '../../redux/actions';
+import { toggleDrawer, logout } from '../../redux/actions';
 
 const GradientBar = styled(AppBar)`
   background: linear-gradient(
@@ -24,7 +24,7 @@ const MenuButton = styled(IconButton)`
   margin-right: 20px;
 `;
 
-const TeacherBar = ({ theme, toggle }) => (
+const TeacherBar = ({ theme, toggle, ...props }) => (
   <GradientBar position="static" theme={theme}>
     <ToolBar>
       <MenuButton color="contrast" onClick={toggle}>
@@ -33,13 +33,14 @@ const TeacherBar = ({ theme, toggle }) => (
       <Typography type="title" color="inherit" style={{ flex: 1 }}>
         Voto
       </Typography>
-      <Button color="contrast">Logout</Button>
+      <Button color="contrast" onClick={props.logout}>Logout</Button>
     </ToolBar>
   </GradientBar>
 );
 
 const mapDispatchToProps = dispatch => ({
   toggle: () => dispatch(toggleDrawer()),
+  logout: () => dispatch(logout()),
 });
 
 export default connect(null, mapDispatchToProps)(withTheme()(TeacherBar));

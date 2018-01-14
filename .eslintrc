@@ -14,7 +14,9 @@
     "es6": true
   },
   "rules": {
+    "no-debugger": "warn",
     "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "warn",
     "space-before-function-paren": "off",
     "react/prefer-stateless-function": "warn",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],

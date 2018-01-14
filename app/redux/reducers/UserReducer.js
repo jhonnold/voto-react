@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case types.loginResolved: {
-      return payload;
+      return payload.user;
     }
     default: {
       return state;
