@@ -52,7 +52,13 @@ const Root = () => (
     <PersistGate persistor={persistor}>
       <ConnectedRouter history={history}>
         <MuiThemeProvider theme={theme}>
-          <LoadingBar style={{ background: `linear-gradient(to left, ${orange[300]}, ${orange[700]})` }} />
+          <LoadingBar
+            style={{
+              background: `linear-gradient(to left, ${orange[300]}, ${
+                orange[700]
+              })`,
+            }}
+          />
           <Routes />
         </MuiThemeProvider>
       </ConnectedRouter>
